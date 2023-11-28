@@ -1,0 +1,2199 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{vietnam}
+\usepackage[left=2.5cm, right=3cm, top=2.00cm, bottom=2.00cm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+%\fancyhead[R]{\textit {Đỗ Sỹ Hưng}}
+%\fancyhead[L]{Luận văn }
+\fancyfoot[L]{\nouppercase{\leftmark}}
+\fancyfoot[R]{\thepage}
+\rfoot{\thepage}
+
+
+
+\usepackage{chngcntr}
+\usepackage{titlesec}
+\counterwithin{equation}{section} 
+\usepackage{tikz}
+\usepackage{indentfirst}
+\usetikzlibrary{snakes}
+\usepackage{rotating}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{longfbox}
+\usepackage{chronology}
+\usepackage{graphicx}
+\usepackage{amssymb} % $\mathbb{R}
+\usepackage{amsthm} % Unnumbered theorem
+\usepackage{graphicx} %insert picture
+\usepackage{tabu}
+%\usepackage[define-L-C-R]{nicematrix}
+\usepackage{enumitem} %a, b, c [label=(\alph*)]; [label=(\Alph*)]; [label=(\roman*)] [label=(\arabic*)]
+\graphicspath{ {images/} } %insert picture
+% \renewcommand\refname{A}
+\titleformat{\section}{\normalfont\bfseries\filcenter}{CHƯƠNG \thesection.}{0.3cm}{}
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+%\NiceMatrixOptions{cell-space-top-limit=1pt,cell-space-bottom-limit=1pt}
+\newcommand{\Char}{{\mathrm char}}
+\newcommand{\im}{{\mathrm im}}
+\newcommand{\setheight}[2]{\smash{#1}\vphantom{#2}}
+
+\DeclareMathOperator{\esssup}{esssup}
+\DeclareMathOperator{\supp}{supp}
+\newtheorem{theorem}{Định lý}[section]
+\newtheorem{prop}{}
+\newtheorem{proposition}{Mệnh đề}
+\newtheorem{lemma}[theorem]{Bổ đề}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Định nghĩa}[section]
+\newtheorem{remark}[definition]{Nhận xét}[section]
+\newtheorem{warning}{Warning}
+\theoremstyle{definition}
+\newtheorem{rem}{Remark}[section]
+\newtheorem{example}{Example}[subsection]
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[ minh]}
+  {\end{proof}}
+\pagestyle{fancy}
+
+% for the abstract
+% Abstracts have to be 12pt, indented 1.4 inches on each side, and inline with the label
+\renewenvironment{abstract}{%
+\noindent\begin{minipage}{1\textwidth}
+\setlength{\leftskip}{0.4in}
+\setlength{\rightskip}{0.4in}
+\textbf{Abstract.}}
+{\end{minipage}}
+
+\lhead{\it Khoá luận tốt nghiệp đại học}
+
+\rhead{\it Ngành: Toán Giải tích}
+
+
+\renewcommand{\headrulewidth}{1,2pt}
+
+\renewcommand{\footrulewidth}{1,2pt} % Cái này là tiêu đề chạy
+\begin{document}
+\begin{titlepage}
+
+\thispagestyle{empty}
+% \thisfancypage{\setlength{\fboxsep}{0pt}\fbox}{} 
+
+\begin{center}
+\vspace*{0.3cm}
+{\fontsize{14}{1}\selectfont  ĐẠI HỌC QUỐC GIA TP. HỒ CHÍ MINH}\\
+{\fontsize{14}{1}\selectfont\bf TRƯỜNG ĐẠI HỌC KHOA HỌC TỰ NHIÊN}\\
+\hfill
+
+\vspace*{3cm}
+
+{\fontsize{14}{1}\selectfont\bf ĐỖ SỸ HƯNG}
+
+\vspace*{3cm}
+
+{\fontsize{16}{1}\selectfont \bf { TÍNH CHẤT NGHIỆM CỦA BÀI TOÁN DIRICHLET CHO PHƯƠNG TRÌNH KIRCHHOFF PHI TUYẾN CHỨA SỐ HẠNG TẮT DẦN MẠNH }}
+
+\vspace*{4cm}
+
+{\fontsize{14}{1}\selectfont\bf KHOÁ LUẬN TỐT NGHIỆP ĐẠI HỌC}
+
+\vfill
+
+{\fontsize{12}{1}\selectfont Thành phố Hồ Chí Minh - 2023}
+\end{center}
+\vspace*{0.5cm}
+
+
+\end{titlepage}
+
+\newpage
+\thispagestyle{empty}
+
+
+\begin{center}
+\vspace*{0.3cm}
+{\fontsize{14}{1}\selectfont  ĐẠI HỌC QUỐC GIA TP. HỒ CHÍ MINH}\\
+{\fontsize{14}{1}\selectfont\bf TRƯỜNG ĐẠI HỌC KHOA HỌC TỰ NHIÊN}\\
+\vspace*{3cm}
+
+{\fontsize{14}{1}\selectfont\bf ĐỖ SỸ HƯNG}
+
+\vspace*{3cm}
+
+{\fontsize{16}{1}\selectfont \bf {TÍNH CHẤT NGHIỆM CỦA BÀI TOÁN DIRICHLET CHO PHƯƠNG TRÌNH KIRCHHOFF PHI TUYẾN CHỨA SỐ HẠNG TẮT DẦN MẠNH
+}}
+
+\vspace*{2cm}
+
+\end{center}
+ 
+
+
+\begin{center}
+    {\fontsize{13}{1}\selectfont \qquad Ngành: \textbf{Toán Giải tích}} 
+\end{center}
+ 
+
+
+\vspace*{2.5cm}
+
+\begin{center}
+    {\fontsize{13}{1}\selectfont \qquad Giáo viên hướng dẫn}
+
+    {\fontsize{13}{1}\selectfont \qquad \textbf{TS. Nguyễn Thành Long}}
+\end{center}
+ 
+
+
+\vfill
+
+\begin{center}
+{\fontsize{12}{1}\selectfont  Thành phố Hồ Chí Minh - 2023}
+\end{center}
+ 
+
+\vspace*{0.5cm}
+
+\section*{LỜI CẢM ƠN}
+
+Lời đầu tiên,
+tôi chân thành gửi lời cảm ơn đến Thầy TS. Nguyễn Thành Long đã tận tình dạy dỗ, hướng dẫn tôi trong suốt quá trình thực hiện khóa luận. Tôi không thể hoàn thành khoá luận nếu không có sự hướng dẫn của Thầy. Tôi cũng cảm ơn Thầy TS. Lê Hữu Kỳ Sơn đã nhiệt tình trợ giúp và giải đáp những câu hỏi của tôi trong quá trình thực hiện khoá luận.
+
+Tôi bày tỏ lòng biết ơn đến Quý Thầy, Cô trong Khoa Toán-Tin học, trường Đại học Khoa học Tự nhiên, Đại học Quốc gia TP. HCM đã dành tâm huyết trong truyền đạt kiến thức cho thế hệ sinh viên chúng tôi.
+
+Tôi muốn gửi lời cảm ơn đến tất cả bạn bè trong lớp Cử nhân tài năng K19. Những cuộc trao đổi học thuật và giúp đỡ trong quá trình làm bài tập đã giúp cuộc sống sinh viên của tôi trở thành một quãng thời gian có ý nghĩa.
+
+Cuối cùng, tôi cảm ơn đến gia đình tôi vì sự hỗ trợ và khuyến khích đối với cuộc sống của tôi hiện tại và tương lai.
+
+Do thời gian và kiến thức có hạn, tôi còn có nhiều hạn chế cần được cải thiện. Tôi chân thành cảm ơn những đánh giá và chỉnh sửa về bất kỳ nội dung nào trong Khoá luận.
+\newpage
+
+\tableofcontents
+\newpage
+
+\section[Phần tổng quan]{PHẦN TỔNG QUAN}
+
+Khoá luận này đề cập đến bài toán giá trị biên và ban đầu cho phương trình sóng phi tuyến dưới đây
+\begin{align} \label{11}
+    u_{tt} - \sigma u_{txx} - \left(1 + \|u_x(t)\|^2\right) u_{xx} + Ku^3 + \lambda u_t = f(x,t),\ 0 < x < 1,\ 0 < t < T,
+\end{align}
+với điều kiện biên Dirichlet thuần nhất
+\begin{align} \label{12}
+    u(0,t) = u(1,t) = 0,
+\end{align}
+và điều kiện đầu
+\begin{align} \label{13}
+    u(x,0) = \tilde{u}_0(x), \: u_t(x,0) = \tilde{u}_1(x),
+\end{align}
+trong đó $K, \sigma, \lambda > 0$ là hằng số thực và $f, \tilde{u}_0, \tilde{u}_1$ là các hàm cho trước thoả các điều kiện mà ta sẽ chỉ ra sau.
+
+Bài toán \eqref{11}-\eqref{13} có nhiều ý nghĩa trong Cơ học mà nhiều nhà Toán học quan tâm nghiên cứu trong thời gian gần đây, chẳng hạn như trong \cite{3}-\cite{6} và các tài liệu tham khảo trong đó.
+
+Sử dụng phương pháp xấp xỉ tuyến tính, trong \cite{4}, các tác giả đã chứng minh được sự tồn tại duy nhất và khai triển tiệm cận của nghiệm của phương trình
+\begin{align}
+    u_{tt} - \left(b_0 + B\left(\|u_x\|^2\right)\right) u_{xx} = f(x,t,u,u_x,u_t),\ 0 < x < 1,\ 0 < t < T,
+\end{align}
+kết hợp với điều kiện biên
+\begin{align}
+    u(0,t) = u(1,t) = 0,
+\end{align}
+và các điều kiện ban đầu \eqref{13}, trong đó $b_0 > 0$ là hằng số thực và $B, f, \tilde{u}_0, \tilde{u}_1$ là các hàm cho trước.
+
+Cũng bằng phương pháp này, trong \cite{6}, Triết đã thu được các kết quả tương tự cho bài toán giá trị biên và ban đầu cho phương trình phi tuyến
+\begin{align}
+    u_{tt} - \frac{\partial}{\partial x} \left(B\left(x,t,u, \|u\|^2, \|u_x\|^2\right) u_x\right) = f(x,t,u,u_x,u_t), \ 0 < x < 1,\ 0 < t < T,
+\end{align}
+với điều kiện biên không thuần nhất
+\begin{align}
+\begin{cases}
+    u_x(0,t) - h_0 u(0,t) = g_0(t), \\
+    u(1,t) = g_1(t),
+\end{cases}
+\end{align}
+và các điều kiện ban đầu \eqref{13}, trong đó $h_0 \ge 0$ là hằng số thực và $B, f, g_0, g_1, \tilde{u}_0, \tilde{u}_1$ là các hàm cho trước.
+
+Trong \cite{5}, Ngọc và Long đã chứng minh kết quả về sự tồn tại và tính tắt dần mũ của bài toán cho phương trình sóng phi tuyến
+\begin{align}
+    u_{tt} - u_{xx} + Ku + \lambda u_t = a |u|^{p-2} u + f(x,t), \ 0 < x < 1,\ 0 < t < T,
+\end{align}
+liên kết với các điều kiện biên phi địa phương dạng
+\begin{align}
+\begin{cases}
+    \displaystyle u_x(0,t) = g_0(t) + \int_0^1 k_0(y,t) u(y,t)\:dy, \\
+    \displaystyle -u_x(1,t) = g_1(t) + \int_0^1 k_1(y,t) u(y,t)\:dy,
+\end{cases}
+\end{align}
+và các điều kiện ban đầu \eqref{13}, trong đó $K, \lambda > 0, p > 2, a = \pm 1$ là hằng số và $f, g_0, g_1, k_0, k_1, \tilde{u}_0, \tilde{u}_1$ là các hàm cho trước.
+
+Trên cơ sở các tài liệu được đọc cùng với việc tham dự các buổi seminar định kỳ, tôi đã học tập được các phương pháp và kỹ thuật nhằm vận dụng vào bài toán cụ thể \eqref{11}-\eqref{13}. Trong khoá luận này sẽ đề cập đến sự tồn tại và duy nhất nghiệm yếu của Bài toán \eqref{11}-\eqref{13}. Việc chứng minh được dựa vào phương pháp xấp xỉ Faedo-Galerkin liên kết với thuật giải xấp xỉ tuyến tính cùng với các kỹ thuật đánh giá tiên nghiệm, sử dụng phương pháp hội tụ yếu dựa vào tính compact. Khoá luận cũng khảo sát sự tồn tại duy nhất nghiệm yếu của Bài toán \eqref{11}-\eqref{13} khi các dữ liệu cho giảm tính trơn. Cuối cùng, khoá luận cũng khảo sát tính tắt dần mũ của nghiệm yếu cho bài toán \eqref{11}-\eqref{13} khi $t \to +\infty$.
+
+Khoá luận trình bày theo bố cục như sau:
+
+\textbf{Chương 1.} Phần tổng quan nhằm giới thiệu bài toán cần thực hiện ở khoá luận này.
+
+\textbf{Chương 2.} Phần kiến thức chuẩn bị, nhằm trình bày một số kết quả vắn tắt một số không gian hàm được sử dụng. Một số bổ đề, định lý quan trọng cũng được nhắc lại.
+
+\textbf{Chương 3.} Trường hợp $(\tilde{u}_0, \tilde{u}_1) \in H^2 \cap H^1_0, f \in C^1([0,1] \times [0,T^*])$. Nghiên cứu sự tồn tại và duy nhất nghiệm yếu của bài toán \eqref{11}-\eqref{13} dựa vào thuật giải xấp xỉ tuyến tính dưới đây:
+
+(i) Cho trước bước lặp đầu tiên
+\begin{align*}
+    u_0 \in W_1(R,T) = \{ v \in W(R,T) \colon v'' \in L^\infty(0,T;L^2) \},
+\end{align*}
+trong đó $W(R,T) = \{ v \in W_T \colon \|v\|_{W_T} \le R \}$ là quả cầu đóng (tâm $0$, bán kính $R$) trong không gian Banach
+\begin{align*}
+   W_T = \{ v \in L^\infty(0,T;H^2 \cap H^1_0) \colon v' \in L^\infty(0,T;H^2 \cap H^1_0), v'' \in L^2(0,T;H^1_0) \},
+\end{align*}
+đối với chuẩn
+\begin{align*}
+    \|v\|_{W_T} = \max \left\{ \|v\|_{L^\infty(0,T;H^2 \cap H^1_0)}, \|v'\|_{L^\infty(0,T;H^2 \cap H^1_0)}, \|v''\|_{L^2(0,T;H^1_0)} \right\}.
+\end{align*}
+
+\begin{enumerate}
+    \item[(i)] Giả sử biết $u_{m-1} \in W_1(R,T)$.
+    \item[(ii)] Ta tìm $u_m \in W_1(R,T)$, $(m > 1)$ là nghiệm yếu của bài toán
+\end{enumerate}
+
+\begin{align} \label{14}
+\begin{cases}
+    \begin{aligned}
+        u''_m + \sigma \Delta u'_m - \left(1 + \|\nabla u_{m-1}(t)\|^2\right) \Delta u_m &+ \lambda u'_m + Ku^3_{m-1} \\
+        &= f(x,t), 0 < x < 1, 0 < t < T,
+    \end{aligned} \\
+    u_m(0,t) = u_m(1,t) = 0, \\
+    u_m(x,0) = \tilde{u}_0(x), \: u'_m(x,0) = \tilde{u}_1(x), \\
+    \nabla = \dfrac{\partial}{\partial x}, \: \Delta = \dfrac{\partial^2}{\partial x^2}.
+\end{cases}
+\end{align}
+
+Trong chương này khóa luận trình bày các bước sau:
+\begin{enumerate}
+    \item[(i)] Sử dụng định lý ánh xạ co trong việc chứng minh sự tồn tại nghiệm xấp xỉ Faedo-Galerkin liên kết với thuật giải xấp xỉ tuyến tính của bài toán \eqref{14},
+    \item[(ii)] Thực hiện các đánh giá tiên nghiệm kết hợp với việc sử dụng các định lý nhúng compact của Lions để qua giới hạn các số hạng tương ứng.
+\end{enumerate}
+
+\textit{Chương 4.} Trường hợp $(\tilde{u}_0, \tilde{u}_1) \in H^1_0 \times L^2, f \in L^1((0,1) \times \R_+)$. Nghiên cứu sự tồn tại và duy nhất nghiệm yếu của bài toán \eqref{11}-\eqref{13} dựa vào xấp xỉ trù mật.
+
+\textit{Chương 5.} Nghiên cứu tính tắt dần mũ của nghiệm yếu cho bài toán \eqref{11}-\eqref{13} khi $t \to +\infty$.
+
+Cuối cùng là phần kết luận và danh mục các tài liệu tham khảo.
+\newpage
+
+\section[Kiến thức chuẩn bị]{KIẾN THỨC CHUẨN BỊ}
+
+Chương này nhằm trình bày vắn tắt một số không gian hàm sử dụng trong khoá luận. Một số bổ đề, định lý quan trọng sẽ được phát biểu lại. Các kết quả này không mới và nhằm mục đích quy ước các ký hiệu và sử dụng công cụ sẵn có cho thuận tiên. Chi tiết có thể xem trong Brézis \cite{Bre} và Lions \cite{Lions}.
+
+\subsection{Không gian hàm $L^p(0, T; X)$, với $1 \le p \le \infty$}
+
+Cho không gian Banach với chuẩn $\|\cdot\|_X$ và $X'$ là không gian đối ngẫu của nó. Cho $T > 0$, ta ký hiệu $L^p(0,T;X)$, $1 \le p \le \infty$, để chỉ không gian Banach của các hàm $u:(0,T) \rightarrow X$ đo được, sao cho $\|u\|_{L^p(0,T;X)} < +\infty$, trong đó
+\begin{align*}
+    \|u\|_{L^p(0,T;X)} = \begin{cases}
+        \displaystyle\left(\int_0^T \|u(t)\|_X^p \: dt\right)^{1/p}, &\text{ nếu } 1 \le p < \infty, \\
+        \underset{0 < t < T}{\esssup} \|u(t)\|_X, &\text{ nếu } p = \infty,
+    \end{cases}
+\end{align*}
+trong đó
+\begin{align*}
+    \underset{0 < t < T}{\esssup} \|u(t)\|_X = \inf \{ M > 0 : \|u(t)\|_X \le M \text{ a.e. } t \in (0,T) \}.
+\end{align*}
+
+\begin{remark}\end{remark}
+\begin{enumerate}
+    \item Nếu $1 < p < \infty$, thì đối ngẫu của $L^p(0,T;X)$ là $L^{p'}(0,T;X')$ với $\dfrac{1}{p} + \dfrac{1}{p'} = 1$. Nếu $X$ phản xạ thì $L^p(0,T;X)$ cũng phản xạ.
+    \item Đối ngẫu của $L^1(0,T;X)$ là $L^\infty(0,T;X')$. Chú ý rằng các không gian $L^1(0,T;X)$ và $L^\infty(0,T;X)$ là không phản xạ.
+    \item Nếu $X = L^p(\Omega)$ thì $L^p(0,T;X) = L^p(\Omega \times (0,T)), 1 \le p < \infty$.
+\end{enumerate}
+
+\subsection{Phân bố nhận giá trị trong không gian Banach}
+
+\begin{definition}\end{definition}
+\begin{enumerate}
+    \item[(i)] Cho $T > 0$, ký hiệu $D(0,T) = C_c^\infty(0,T)$ để chỉ không gian các hàm số thực khả vi vô hạn trong $(0,T)$ và có giá compact trong $(0,T)$.
+    \item[(ii)] Sự hội tụ trong $D(0,T)$. Cho $\{\varphi_j\} \subset D(0,T)$, ta nói $\varphi_j \to 0$ trong $D(0,T)$ nếu
+    \begin{enumerate}
+        \item[(j)] Tồn tại tập $K$ compact trong $(0,T)$ sao cho $\supp(\varphi_j) \subset K, \forall j \in \mathbb{N}$,
+        \item[(jj)] $\underset{t \in K}{\sup} \left|\varphi_j^{(k)} (t)\right| \to 0, \forall k \in \mathbb{N}$.
+    \end{enumerate}
+\end{enumerate}
+
+\begin{definition}
+Cho $X$ là không gian Banach thực. Một ánh xạ tuyến tính liên tục từ $D(0,T)$ vào $X$ được gọi là một phân bố nhận giá trị trong $X$. Tập hợp tất cả các phân bố nhận giá trị trong $X$ được ký hiệu bởi $D'(0,T;X)$, nghĩa là
+\begin{align*}
+    D'(0,T;X) = \mathcal{L}(D(0,T);X) = \{ f: D(0,T) \to X : f \text{ tuyến tính và liên tục } \}.
+\end{align*}
+\end{definition}
+
+Giải thích phần tử của $D'(0,T;X)$. Cho $f \in D'(0,T;X)$, điều này có nghĩa là $f:D(0,T) \to X : f$ tuyến tính và liên tục.
+\begin{enumerate}
+    \item[(i)] $f$ tuyến tính $\Longleftrightarrow$ $f(\varphi_1 + c\varphi_2) = f(\varphi_1) + cf(\varphi_2), \forall \varphi_1, \varphi_2 \in D(0,T), \forall c \in \mathbb{R}$;
+    \item[(ii)] $f$ liên tục $\Longleftrightarrow$ $\left[\:\forall\{\varphi_j\} \subset D(0,T), \varphi_j \to 0 \text{ trong } D(0,T) \Longrightarrow \|f(\varphi_j)\|_X \to 0\:\right]$.
+\end{enumerate}
+
+Về ký hiệu, người ta cũng viết $f(\varphi) = \langle f, \varphi \rangle$ với $f \in D'(0,T;X)$ và $\varphi \in D(0,T)$, do đó
+\begin{align*}
+    f \quad &\in \quad D'(0,T;X) \\
+    &\Longleftrightarrow \begin{cases}
+        \text{(i) } \langle f, \varphi_1 + c\varphi_2 \rangle = \langle f, \varphi_1 \rangle + c \langle f, \varphi_2 \rangle, \forall \varphi_1, \varphi_2 \in D(0,T), \forall c \in \mathbb{R}, \\
+        \text{(ii) } \forall\{\varphi_j\} \subset D(0,T), \text{ nếu } \varphi_j \to 0 \text{ trong } D(0,T) \text{ thì } \|\langle f, \varphi_j\rangle\|_X \to 0.
+    \end{cases}
+\end{align*}
+
+\begin{definition}
+Định nghĩa đẳng thức trong $D'(0,T;X)$.
+\end{definition}
+
+Cho $f_1,f_2 \in D'(0,T;X)$, ta định nghĩa $f_1 = f_2$ nếu
+\begin{align*}
+    \langle f_1, \varphi \rangle = \langle f_2, \varphi \rangle,\ \forall \varphi \in D(0,T).
+\end{align*}
+
+\begin{definition}
+Sự hội tụ trong $D'(0,T;X)$.
+\end{definition}
+
+Cho $\{f_j\} \subset D'(0,T;X)$, ta nói $f_j \to 0$ trong $D'(0,T;X)$ nếu
+\begin{align*}
+    \|\langle f_j, \varphi \rangle\|_X \to 0,\ \forall \varphi \in D(0,T).
+\end{align*}
+
+\begin{definition}
+Với mọi $f \in D'(0,T;X)$, ta định nghĩa
+\end{definition}
+\begin{align*}
+    \frac{df}{dt} \: : \: D(0,T) &\rightarrow X \\
+    \varphi &\longmapsto - \left\langle f, \frac{d\varphi}{dt} \right\rangle.
+\end{align*}
+
+Ta có thể kiểm tra lại rằng $\dfrac{df}{dt} \in D'(0,T;X)$.
+
+Ta cũng gọi $\dfrac{df}{dt}$ là đạo hàm của $f$ theo nghĩa phân bố, và còn gọi là đạo hàm cấp một của $f$ theo nghĩa phân bố. Ta cũng có thể ký hiệu $\dfrac{df}{dt} \equiv f'$.
+
+Theo định nghĩa trên với phân bố $f' \in D'(0,T;X)$, ta cũng xác định đạo hàm cấp 1 của $f'$ theo nghĩa phân bố, đạo hàm này gọi là đạo hàm cấp hai của $f$ theo nghĩa phân bố, ký hiệu $f'' = (f')'$.
+
+Bằng quy nạp, ta có định nghĩa đạo hàm cấp $k$ của $f \in D'(0,T;X)$ theo nghĩa phân bố như sau
+\begin{align*}
+    f^{(k)} \: : \: D(0,T) &\to X \\
+    \varphi &\longmapsto \left\langle f^{(k)}, \varphi \right\rangle = (-1)^k \left\langle f, \varphi^{(k)} \right\rangle.
+\end{align*}
+
+Dễ dàng kiểm tra lại rằng $f^{(k)} \in D'(0,T;X), \forall k \in \mathbb{N}$.
+
+\subsection{Phép nhúng $L^p(0,T;X)$ vào $D'(0,T;X)$}
+
+Cho $f \in L^2(0,T;X)$, ta định nghĩa
+\begin{align*}
+    T_f \: : \: D(0,T) &\to X \\
+    \varphi &\longmapsto \langle T_f, \varphi \rangle = \int_0^T f(t)\varphi(t) dt.
+\end{align*}
+
+Ta có thể kiểm tra lại rằng $T_f \in D'(0,T;X).$
+
+Xét ánh xạ
+\begin{align*}
+    \Psi \: : \: L^2(0,T;X) &\to D'(0,T;X) \\
+    f &\longmapsto \Psi(f) = T_f.
+\end{align*}
+
+Dễ thấy rằng $\Psi$ tuyến tính và ta có thể kiểm tra lại rằng $\Psi$ đơn ánh, do đó ta có thể đồng nhất $f \equiv \Psi(f) = T_f$, do đó ta có thể đồng nhất $L^2(0,T;X)$ như là không gian con của $D'(0,T;X)$ (tức $\Psi$ là phép nhúng từ $L^2(0,T;X)$ vào $D'(0,T;X)$).
+
+Hơn nữa phép nhúng $\Psi$ này liên tục. Thật vậy, cho $\{f_j\} \subset L^2(0,T;X), f \in L^2(0,T;X)$ và $\|f_j - f\|_{L^2(0,T;X)} \to 0$. Ta sẽ chứng minh rằng
+\begin{align*}
+    \Psi(f_j) - \Psi(f) \to 0 \text{ trong } D'(0,T;X).
+\end{align*}
+
+Ta chứng minh điều này như sau, cho $\varphi \in D(0,T)$, ta có
+\begin{align*}
+    \|\langle \Psi(f_j) - \Psi(f), \varphi \rangle\|_X
+    &= \|\langle T_{f_j} - T_f, \varphi \rangle\|_X
+    = \left\| \int_0^T \left(f_j(t) - f(t)\right) \varphi(t) dt \right\|_X \\
+    &\le \int_0^T \|f_j(t) - f_(t)\|_X |\varphi(t)| dt \\
+    &= \int_{\supp(\varphi)}\|f_j(t) - f(t)\|_X |\varphi(t)| dt \\
+    &\le \left(\int_{\supp(\varphi)} \|f_j(t) - f(t)\|^2_X\right)^{1/2} \left(\int_{\supp(\varphi)} |\varphi(t)|^2\right)^{1/2} \\
+    &\le \|f_j - f\|_{L^2(0,T;X)}\left(\int_{\supp(\varphi)} |\varphi(t)|^2 dt\right)^{1/2}
+    \to 0.
+\end{align*}
+
+Tóm lại phép nhúng $\Psi : L^2(0,T;X) \to D'(0,T;X)$ là liên tục. Ta còn ký hiệu $L^2(0,T;X) \hookrightarrow D'(0,T;X)$ để chỉ phép nhúng từ $L^2(0,T;X)$ vào $D'(0,T;X)$ là liên tục.
+
+Một cách tương tự, ta cũng có $L^p(0,T;X) \hookrightarrow D'(0,T;X), 1 \le p \le \infty$.
+
+Chú ý rằng, nếu mọi $f \in L^p(0,T;X)$ ta có thể xem $f$ và $f'$ là các phần tử của $D'(0,T;X)$.
+
+\begin{theorem}[Lions \cite{Lions} p.7]
+Nếu $f \in L^p(0,T;X)$ và $f' \in L^p(0,T;X), 1 \le p \le \infty$, thì $f$ bằng hầu khắp nơi một hàm liên tục từ $[0,T] \to X$, điều này có nghĩa là, nếu $f \in L^p(0,T;X)$ và $f' \in L^p(0,T;X), 1 \le p \le \infty$, thì tồn tại $\tilde{f} \in C([0,T];X)$ sao cho $f(t) = \tilde{f}(t), a.e. \: t \in [0,T]$.
+\end{theorem}
+
+Giả sử $X_0, X, X_1$ là các không gian Banach sao cho $X_0 \hookrightarrow X \hookrightarrow X_1$ là các phép nhúng liên tục, $X_i$ phản xạ với $i=0,1$ và phép nhúng $X_0 \hookrightarrow X_1$ là compact. Ta định nghĩa không gian $W(0,T)$ như sau
+\begin{align*}
+    W(0,T) = \{ v \in L^{p_0}(0,T;X_0) : v' \in L^{p_1}(0,T;X_1) \},
+\end{align*}
+với $1 \le p_i \le \infty, i = 0,1$. Không gian $W(0,T)$ được trang bị bởi chuẩn
+\begin{align*}
+    \|v\|_{W(0,T)} = \|v\|_{L^{p_0}(0,T;X_0)} + \|v'\|_{L^{p_1}(0,T;X_1)},
+\end{align*}
+là không gian Banach và phép nhúng $W(0,T) \hookrightarrow L^{p_0}(0,T;X)$ là liên tục.
+
+Ta có kết quả sau
+
+\begin{theorem}[Lions \cite{Lions} p.57-59]
+Nếu $1 < p_0, p_1 < \infty$, thì phép nhúng $W(0,T) \hookrightarrow L^{p_0}(0,T;X)$ là compact.
+\end{theorem}
+
+\begin{theorem}[Lions \cite{Lions} p.12]
+Cho $Q$ là một tập mở bị chặn trong $\mathbb{R}^N$ và $g,g_m$ là các hàm trong $L^q(Q), (1 < q < \infty)$ sao cho
+\begin{enumerate}
+    \item[(i)] $g_m$ bị chặn trong $L^q(Q)$,
+    \item[(ii)] $g_m \to g$ a.e. trong $Q$.
+\end{enumerate}
+Khi đó, $g_m \to g$ trong $L^q(Q)$ yếu.
+\end{theorem}
+
+\subsection{Các không gian hàm thông dụng}
+
+Trước tiên ta đặt các ký hiệu sau $\Omega = (0,1), Q_T = \Omega \times (0,T), T > 0$ và ta bỏ qua định nghĩa của các không gian hàm thông dụng $C^m(\overline{\Omega}), L^p(\Omega), H^m(\Omega), W^{m,p}(\Omega)$. Để cho gọn, ta ký hiệu lại như sau: $L^p = L^p(\Omega), H^m = H^m(\Omega), H^m_0 = H^m_0(\Omega), W^{m,p} = W^{m,p}(\Omega)$. Chi tiết có thể xem trong Brézis \cite{Bre}.
+
+Ta định nghĩa $L^2$ là không gian Hilbert với tích vô hướng $\langle \cdot,\cdot \rangle$ được xác định bởi
+\begin{align}
+    \langle u, v \rangle = \int_0^1 u(x)v(x)dx, \: u, v \in L^2. \label{ch2:funcspace:innerproduct}
+\end{align}
+
+Ký hiệu $\|\cdot\|$ chỉ chuẩn sinh bởi tích vô hướng (\ref{ch2:funcspace:innerproduct}), nghĩa là
+\begin{align}
+    \|u\| = \sqrt{\langle u, u \rangle}, \: u \in L^2. \label{ch2:funcspace:norm}
+\end{align}
+
+Ta định nghĩa không gian Sobolev cấp 1
+\begin{align}
+    H^1 = \{ v \in L^2 : v_x \in L^2 \}, \label{ch2:funcspace:sobolev}
+\end{align}
+và không gian này cũng là không gian Hilbert đối với tích vô hướng
+\begin{align}
+    \langle u, v \rangle_{H^1} = \langle u, v \rangle + \langle u_x, v_x \rangle. \label{ch2:funcspace:sobolev:innerproduct}
+\end{align}
+
+Ký hiệu $\|\cdot\|_{H^1}$ chỉ chuẩn sinh bởi tích vô hướng (\ref{ch2:funcspace:sobolev:innerproduct}), nghĩa là
+\begin{align}
+    \|u\|_{H^1} = \sqrt{\langle u, u \rangle_{H^1}}, u \in H^1. \label{ch2:funcspace:sobolev:norm}
+\end{align}
+
+Ta có bổ đề về sự liên quan giữa $H^1$ và $C^0(\overline{\Omega})$ mà chứng minh chi tiết có thể xem trong Brézis \cite{Bre}.
+
+\begin{lemma}
+Phép nhúng $H^1 \hookrightarrow C^0(\overline{\Omega})$ là compact và
+\begin{align}
+    \|v\|_{C^0(\overline{\Omega})} \le \sqrt{2} \|v\|_{H^1}, \: \forall v \in H^1. \label{ch2:funcspace:compactembeded}
+\end{align}
+\end{lemma}
+
+Ngoài các không gian nói trên, trong khoá luận này còn sử dụng không gian hàm như sau
+\begin{align}
+    H^1_0 = \{ v \in H^1 : v(0) = v(1) = 0 \}. \label{ch2:funcspace:H10}
+\end{align}
+
+Khi đó $H^1_0$ là không gian con đóng của $H^1$, do đó, $H^1_0$ là không gian Hilbert đối với tích vô hướng của $H^1$. Hơn nữa, trên $H^1_0$ thì hai chuẩn $v \longmapsto \|v_x\|$ và $v \longmapsto \|v\|_{H^1}$ là tương đương. Mặt khác, $H^1_0$ có tính chất
+\begin{align}
+    H^1_0 = \overline{C^\infty_c(\Omega)}^{H^1} = \text{ bao đóng của } C^\infty_c(\Omega) \text{ trong } H^1. \label{ch2:funcspace:H10:closure}
+\end{align}
+
+Ta có các bổ đề sau:
+
+\begin{lemma}
+Phép nhúng $H^1_0 \hookrightarrow C^0(\overline{\Omega})$ là compact và
+\begin{align}
+    \|v\|_{C^0(\overline{\Omega})} \le \|v_x\|,\ \forall v \in H^1_0.
+\end{align}
+\end{lemma}
+
+\begin{lemma} \label{ch2:funcspace:embededlemma}
+Đồng nhất $L^2 \equiv (L^2)'$ (đối ngẫu của $L^2$). Ta có $H^1_0 \hookrightarrow L^2 \hookrightarrow (H^1_0)' \equiv H^{-1}$ với các phép nhúng liên tục và nằm trù mật.
+\end{lemma}
+
+\begin{remark}
+Từ Bổ đề \ref{ch2:funcspace:embededlemma}, ta cũng dùng ký hiệu $\langle \cdot,\cdot \rangle$ để chỉ cặp tích đối ngẫu $\langle \cdot,\cdot \rangle_{H^{-1}, H^1_0}$ giữa $H^1_0$ và $(H^1_0)' \equiv H^{-1}$.
+\end{remark}
+
+% Ta cũng ký hiệu $\|\cdot\|_X$ để chỉ chuẩn trong không gian Banach $X$ và ký hiệu $X'$ là đối ngẫu của $X$.
+
+\subsection{Một số bất đẳng thức thông dụng}
+
+\begin{lemma}[Bất đẳng thức Gronwall]
+Giả sử $u: [0,T] \to \mathbb{R}$ là hàm liên tục, không âm trên $[0,T]$ và thoả mãn bất đẳng thức
+\begin{align*}
+    u(t) \le C_1 + C_2\int_0^t u(s)ds,
+\end{align*}
+với mọi $t \in [0,T]$, trong đó $C_1, C_2$ là các hằng số không âm. Khi đó ta có
+\begin{align*}
+    u(t) \le C_1 e^{C_2t}, \textit{ với mọi } t \in [0.T].
+\end{align*}
+\end{lemma}
+
+\begin{lemma}
+Nếu $p \ge 2$, ta có
+\begin{align*}
+    \left| |x|^{p-2} x - |y|^{p-2} y \right| \le (p - 1) M^{p-2} |x-y|, \forall x, y \in [-M, M], \forall M > 0.
+\end{align*}
+\end{lemma}
+
+\textbf{Ký hiệu thường dùng}
+
+Trong khoá luận này, ta viết
+\begin{align*}
+    u(t), \: u_t(t) = u'(t) = \dot{u}(t), \: u_{tt}(t) = u''(t) = \ddot{u}(t), \: u_x(t) = \nabla u(t), \: u_{xx}(t) = \Delta u(t)
+\end{align*}
+lần lượt thay cho 
+\begin{align*}
+    u(x,t), \: \frac{\partial u}{\partial t}(x,t), \: \frac{\partial^2 u}{\partial t^2}(x,t), \: \frac{\partial u}{\partial x}(x,t), \: \frac{\partial^2 u}{\partial x^2}(x,t).
+\end{align*}
+\pagebreak
+
+\section[Sự tồn tại và duy nhất của nghiệm yếu]{SỰ TỒN TẠI VÀ DUY NHẤT CỦA NGHIỆM YẾU}
+
+Trong chương này, ta xét bài toán sau
+\begin{align}
+    \begin{cases}
+        u_{tt} - \sigma u_{txx} - \left(1 + \|u_x(t)\|^2\right) u_{xx} + Ku^3 + \lambda u_t \\
+        \quad\quad\quad\quad\quad\quad\quad\quad = f(x,t),\: 0 < x < 1,\: 0 < t < T, \label{maineqn}\\
+        u(0,t) = u(1,t) = 0, \\
+        u(x,0) = \tilde{u}_0(x),\ u_t(x,0) = \tilde{u}_1(x),
+    \end{cases}
+\end{align}
+trong đó $K$, $\lambda$, $\sigma > 0$ là các hằng số thực và $f, \tilde{u}_0, \tilde{u}_1$ là các hàm cho trước.
+
+Ta định nghĩa nghiệm yếu của Bài toán \eqref{maineqn} là hàm $u \in L^\infty(0,T;H^2 \cap H^1_0)$ sao cho $u' \in L^\infty(0,T;H^2 \cap H^1_0)$ và $u'' \in L^2(0,T;H^1_0) \cap L^\infty(0,T;L^2)$, đồng thời thoả bài toán biến phân sau
+\begin{align}
+    \left< u''(t), v \right> + \sigma \left< u'_x(t), v_x \right> &+ \left(1 + \|u_x(t)\|^2\right) \left< u_x(t), v_x \right> \\
+    &+ K \left< u^3(t), v \right> + \lambda \left< u'(t), v \right> = \left< f(t), v \right>, \notag
+\end{align}
+với mọi $v \in H^1_0$ và hầu hết $t \in (0,T)$, cùng với các điều kiện đầu
+\begin{align}
+    u(0) = \tilde{u}_0,\: u'(0) = \tilde{u}_1.
+\end{align}
+
+Phần dưới đây là trình bày thuật giải xấp xỉ tuyến tính cho Bài toán \eqref{maineqn}.
+
+\subsection{Thuật giải xấp xỉ tuyến tính}
+
+Trước hết, cho $T^* > 0$ cố định, ta thành lập các giả thiết sau
+\begin{enumerate}
+    \item[(${\bf H}_1$)] $\tilde{u}_0, \tilde{u}_1 \in H^2 \cap H^1_0$;
+    \item[(${\bf H}_2$)] $f \in C^1([0,1] \times [0,T^*])$ thoả mãn điều kiện $f(0,t) = f(1,t) = 0, \forall t \in [0, T^*]$.
+\end{enumerate}
+
+Ta định nghĩa
+\begin{align*}
+    \begin{cases}
+        K(f) &= \|f\|_{C^1(\overline{Q}_{T^*})} = \|f\|_{C^0(\overline{Q}_{T^*})} + \left\|\frac{\partial f}{\partial x}\right\|_{C^0(\overline{Q}_{T^*})} + \left\|\frac{\partial f}{\partial y}\right\|_{C^0(\overline{Q}_{T^*})}, \\
+        \|f\|_{C^0(\overline{Q}_{T^*})} &= \sup_{(x,t) \in \overline{Q}_{T^*}} |f(x,t)|,\  \overline{Q}_{T^*} = [0,1] \times [0,T^*].
+    \end{cases}
+\end{align*}
+
+Với mỗi $T \in (0, T^*]$, ta cũng đặt
+\begin{align*}
+    W_T = \{ v \in L^\infty (0,T;H^2 \cap H^1_0) \colon v' \in L^\infty (0,T; H^2 \cap H^1_0), v'' \in L^2(0,T; H^1_0) \}.
+\end{align*}
+
+Khi đó $W_T$ là không gian Banach đối với chuẩn
+\begin{align*}
+    \|v\|_{W_T} = \max \left\{ \|v\|_{L^\infty(0,T;H^2 \cap H^1_0)} ; \|v'\|_{L^\infty(0,T;H^2 \cap H^1_0)}; \|v''\|_{ L^2(0,T;H^1_0)} \right\}.
+\end{align*}
+
+Với mỗi $R > 0$, ta cũng đặt
+\begin{align} \label{wrtspace}
+    W(R,T) &= \{ v \in W_T \colon \|v\|_{W_T} \le R \}, \\
+    W_1(R,T) &= \{ v \in W(R,T) \colon v'' \in L^\infty(0,T;L^2) \}. \notag
+\end{align}
+
+Ta xây dựng dãy xấp xỉ tuyến tính $\{ u_m \}$ như sau:
+
+Trước tiên, ta chọn số hạng ban đầu $u_0 \equiv 0$ và giả sử rằng
+\begin{align} \label{firstterm}
+    u_{m-1} \in W_1(R,T).
+\end{align}
+
+Ta tìm $u_m \in W_1(R,T)$ là nghiệm của bài toán biến phân liên kết với Bài toán \eqref{maineqn} như sau
+\begin{align} \label{generalterm}
+    \begin{cases}
+        \begin{aligned}
+        \left<u''_m(t), v\right> + \sigma \left<u'_{mx}(t), v_x \right> + \mu_m(t) \left< u_{mx}(t), v_x \right> &+ \lambda \left< u'_m(t), v \right> \\
+        &= \left< F_m(t), v \right> , \forall v \in H^1_0, \\
+        \end{aligned} \\
+        u_m(0) = \tilde{u}_0,\  u'_m(0) = \tilde{u}_1,
+    \end{cases}
+\end{align}
+trong đó
+\begin{align*}
+    F_m(t) &= -K u^3_{m-1}(t) + f(t), \\
+    \mu_m(t) &= 1 + \|\nabla u_{m-1}(t)\|^2.
+\end{align*}
+
+\subsection{Sự tồn tại của dãy lặp}
+
+Sự tồn tại của dãy $\{u_m\}$ được cho bởi định lý sau đây
+
+\begin{theorem} \label{theorem31}
+    Giả sử $({\bf H}_1)$ - $({\bf H}_2)$ thoả. Khi đó, tồn tại các hằng số $R > 0, T > 0$ sao cho với $u_0 \equiv 0$, tồn tại một dãy quy nạp $\{u_m\} \subset W_1(R,T)$ xác định bởi \eqref{firstterm}, \eqref{generalterm}.
+\end{theorem}
+
+\textit{Chứng minh.} Chứng minh được dựa vào phương pháp xấp xỉ Faedo-Galerkin, liên hệ với các đánh giá tiên nghiệm, từ đó rút ra các dãy con hội tụ yếu trong các không gian hàm thích hợp nhờ một số phép nhúng compact. Trong định lý này, nguyên lý ánh xạ co cũng được sử dụng để chứng minh sự tồn tại của nghiệm xấp xỉ Faedo-Galerkin.
+
+\textit{Bước 1. Xấp xỉ Faedo-Galerkin.}
+
+Xét một cơ sở Hilbert $\{w_j\}$ của $L^2$ gồm các hàm $w_j(x) = \sqrt{2} \sin (j\pi x), j = 1,2,\cdots$. Cơ sở Hilbert $\{w_j\}$ cũng được thành lập từ các hàm riêng của toán tử Laplace $-\Delta = \frac{-\partial^2}{\partial x^2}$ sao cho
+\begin{align}
+    -\Delta w_j = \lambda_j w_j,\  w_j \in H^1_0 \cap C^\infty([0,1]), \  \lambda_j = (j\pi)^2, j = 1,2,\cdots.
+\end{align}
+
+Hơn nữa, $\left\{ \frac{w_j}{\sqrt{\lambda_j}} \right\}$ sẽ tạo thành một cơ sở Hilbert của $H^1_0$ đối với tích vô hướng $\left< u_x, v_x \right>$.
+
+Nghiệm xấp xỉ Galerkin của Bài toán \eqref{generalterm} được tìm dưới dạng
+\begin{align}
+    u_m^{(k)}(t) = \sum_{j=1}^k c_{mj}^{(k)}(t) w_j,
+\end{align}
+trong đó các hàm $c_{mj}^{(k)}(t), j = 1,\cdots,k$ thoả mãn hệ phương trình vi phân tuyến tính cấp hai sau đây
+\begin{align} \label{umk:weakeqn}
+\begin{cases}
+    \begin{aligned}
+    \left< \ddot{u}_m^{(k)}(t), w_j \right>
+    + \sigma \left<\dot{u}_{mx}^{(k)}(t), w_{jx}\right>
+    &+ \mu_m(t) \left< u_{mx}^{(k)}(t), w_{jx}\right> \\
+    &+ \lambda \left< \dot{u}_m^{(k)}(t), w_j \right> 
+    = \left<F_m(t), w_j \right>, j = 1,\cdots,k,
+    \end{aligned} \\
+    u_m^{(k)}(0) = \tilde{u}_{0k}, \dot{u}_m^{(k)}(0) = \tilde{u}_{1k},
+\end{cases}
+\end{align}
+với
+\begin{align} \label{310}
+\begin{cases}
+    \tilde{u}_{0k} = \displaystyle \sum_{j=1}^k \alpha_j^{(k)} w_j \to \tilde{u}_0 \text{ mạnh trong } H^2 \cap H^1_0, \\
+    \tilde{u}_{1k} = \displaystyle \sum_{j=1}^k \beta_j^{(k)} w_j \to \tilde{u}_1 \text{ mạnh trong } H^2 \cap H^1_0.
+\end{cases}
+\end{align}
+
+Bài toán \eqref{umk:weakeqn} tương đương với hệ gồm $k$ phương trình vi phân với $k$ ẩn hàm $c_{mj}^{(k)}(t), j = 1,\cdots,k$ sau đây
+\begin{align} \label{cmk:eqn}
+\begin{cases}
+    \ddot{c}_{mj}^{(k)}(t)
+    + (\sigma \lambda_j + \lambda) \dot{c}_{mj}^{(k)}(t)
+    + \lambda_j \mu_m(t) c_{mj}^{(k)}(t) = \left<F_m(t), w_j\right>, j=1,\cdots,k, \\[0.2cm]
+    c_{mj}^{(k)}(0) = \alpha_j^{(k)},\  c_{mj}^{(k)}(0) = \beta_j^{(k)}.
+\end{cases}
+\end{align}
+
+Nhân hai vế của \eqref{cmk:eqn} bởi $e^{\overline{\lambda}_j t}$, với $\overline{\lambda}_j = \sigma \lambda_j + \lambda$ và sau đó lấy tích phân, ta nhận được hệ phương trình tích phân sau
+\begin{align} \label{cmk:solution}
+    c_{mj}^{(k)}(t) &=
+    \alpha_j^{(k)} + \frac{\beta_j^{(k)}}{\overline{\lambda}_j}\left(1 - e^{-\overline{\lambda}_j t}\right)
+    + \int_0^t e^{-\overline{\lambda}_j r} \: dr \int_0^r e^{\overline{\lambda}_j s} \left<F_m(s), w_j\right>\: ds \\
+    &\quad - \lambda_j \int_0^t e^{-\overline{\lambda}_j r} \: dr \int_0^r e^{\overline{\lambda}_j s} \mu_m(s) c_{mj}^{(k)}(s)\:ds \notag \\
+    &\equiv G_{mj}^{(k)}(t) + L_j[c_{m}^{(k)}](t), \quad j = 1,\cdots,k, \notag
+\end{align}
+trong đó
+\begin{align} \label{cmk:coeff}
+\begin{cases}
+    c_m^{(k)} = (c_{m1}^{(k)}, \cdots, c_{mk}^{(k)}), \\
+    \displaystyle G_{mj}^{(k)}(t) = \alpha_j^{(k)} + \frac{\beta_j^{(k)}}{\overline{\lambda}_j}\left(1 - e^{-\overline{\lambda}_j t}\right) + \int_0^t e^{-\overline{\lambda}_j r} \: dr \int_0^r e^{\overline{\lambda}_j s} \left<F_m(s), w_j\right>\: ds, \\
+    \displaystyle L_j[c_{m}^{(k)}](t) = - \lambda_j \int_0^t e^{-\overline{\lambda}_j r} \: dr \int_0^r e^{\overline{\lambda}_j s} \mu_m(s) c_{mj}^{(k)}(s)\:ds.
+\end{cases}
+\end{align}
+
+Khi đó ta có bổ đề sau
+
+\begin{lemma} \label{lemma32}
+    Giả sử $({\bf H}_1)$ - $({\bf H}_2)$ là đúng. Khi đó hệ \eqref{cmk:eqn} có nghiệm $c_m^{(k)} = (c_{m1}^{(k)}, \cdots, c_{mk}^{(k)})$ trên một đoạn $[0,T]$.
+\end{lemma}
+
+\textit{Chứng minh.} Ta bỏ qua chỉ số $m, k$ trong các cách viết và viết
+\begin{align*}
+    c = (c_1,\cdots,c_k), \  c_j, \  \alpha_j, \  \beta_j, \  G_j(t), \  L_k[c](t)
+\end{align*}
+lần lượt thay cho
+\begin{align*}
+    c_m^{(k)} = (c_{m1}^{(k)}, \cdots, c_{mk}^{(k)}), \ 
+    c_{mj}^{(k)}, \ 
+    \alpha_j^{(k)}, \ 
+    \beta_j^{(k)}, \ 
+    G_{mj}^{(k)}(t), \ 
+    L_j[c_m^{(k)}](t).
+\end{align*}
+
+Khi đó hệ \eqref{cmk:solution}, \eqref{cmk:coeff} thành phương trình điểm bất động
+\begin{align}
+    c = U[c],
+\end{align}
+trong đó
+\begin{align}
+\begin{cases}
+    c = (c_1,\cdots,c_k), \\
+    U[c] = G + L[c], \\
+    G = (G_1, \cdots, G_k), \\
+    L[c] = (L_1[c], \cdots, L_k[c]), \\
+    \displaystyle G_j(t) = \alpha_j + \frac{\beta_j}{\overline{\lambda}_j}\left(1 - e^{-\overline{\lambda}_j t}\right) + \int_0^t e^{-\overline{\lambda}_j r} \: dr \int_0^r e^{\overline{\lambda}_j s}\left<F_m(s), w_j\right> \: ds, \\
+    \displaystyle L_j[c](t) = -\lambda_j \int_0^t e^{-\overline{\lambda}_j r} \: dr \int_0^r e^{\overline{\lambda}_j s} \mu_m(s) c_j(s) \: ds,\  j = 1,\cdots,k.
+\end{cases}
+\end{align}
+
+Đặt $X = C^0([0,T]; \R^k)$ là không gian Banach các hàm $c = (c_1, \cdots, c_k) \colon [0,T] \to \R^k$ liên tục đối với chuẩn $\|\cdot\|_X$ dưới đây
+\begin{align}
+    \|c\|_X &= \sup_{0\le t\le T} |c(t)|_1, \\
+    |c(t)|_1 &= \sum_{i=1}^k |c_i(t)|, \ c = (c_1, \cdots, c_k) \in X. \notag
+\end{align}
+
+Với $\gamma > 0$ sao cho $\frac{\lambda_k}{\gamma^2}(1+R^2) < 1$. Ta dùng một chuẩn khác trên $X$ như sau
+\begin{align}
+    \|c\|_{\gamma,X} &= \sup_{0 \le t \le T} e^{-\gamma t} |c(t)|_1, \\
+    |c(t)|_1 &= \sum_{i=1}^k |c_i(t)|, \  c = (c_1, \cdots, c_k) \in X. \notag
+\end{align}
+
+Dễ dàng kiểm tra $U[c] \in X, \forall c \in X$.
+
+Bây giờ ta sẽ chứng minh rằng
+\begin{align*}
+    U \colon X \to X \text{ là một ánh xạ co đối với chuẩn } \|\cdot\|_{\gamma,X}.
+\end{align*}
+
+Trước hết, lấy bất kỳ $c,d \in X$, do $L$ tuyến tính, ta có
+\begin{align}
+    U[c] - U[d] = L[c - d] = L[h],
+\end{align}
+với $h = c - d$.
+
+Khi đó
+\begin{align*}
+    |U[c](t) - U[d](t)|_1
+    &= |L[h](t)|_1 = \sum_{j=1}^k |L_j[h](t)| \\
+    &= \sum_{j=1}^k \left| -\lambda_j \int_0^t e^{-\overline{\lambda}_j r} \: dr \int_0^r e^{\overline{\lambda}_j s} \mu_m(s) h_j(s) \: ds \right| \\
+    & \le \lambda_k \sum_{j=1}^k \int_0^t dr \int_0^r \mu_m(s) |h_j(s)| \: ds \\
+    &\le \lambda_k \int_0^t dr \int_0^r \mu_m(s)|h(s)|_1 \: ds.
+\end{align*}
+
+Mặt khác
+\begin{align*}
+    \mu_m(t) &= 1 + \|\nabla u_{m-1}(t)\|^2 \le 1 + \|u_{m-1}\|^2_{L^\infty(0,T;H^1_0)} \le 1 + R^2, \\
+    |h(s)|_1 &\le e^{\gamma s} \|h\|_{\gamma,X},
+\end{align*}
+suy ra
+\begin{align*}
+    |U[c](t) - U[d](t)|_1
+    &\le \lambda_k \int_0^t dr \int_0^r \mu_m(s)|h(s)|_1 \: ds \\
+    &\le \lambda_k (1+R^2) \int_0^t dr \int_0^r e^{\gamma s} \|h\|_{\gamma,X} \: ds \\
+    &\le \frac{\lambda_k}{\gamma^2}(1+R^2) e^{\gamma t} \|h\|_{\gamma,X} \\
+    &= \frac{\lambda_k}{\gamma^2}(1+R^2) e^{\gamma t} \|c - d\|_{\gamma,X}.
+\end{align*}
+
+Do đó
+\begin{align*}
+    \|U[c] - U[d]\|_{\gamma,X}
+    &= \sup_{0\le t \le T} e^{-\gamma t} |U[c](t) - U[d](t)|_1 \\
+    &\le \frac{\lambda_k}{\gamma^2}(1+R^2)\|c-d\|_{\gamma,X}, \ \forall c,d \in X.
+\end{align*}
+
+Do $\frac{\lambda_k}{\gamma^2} (1+R^2) < 1$, nên $U \colon X \to X$ là một ánh xạ co. Theo nguyên lý ánh xạ co, sẽ có duy nhất $c \in X$ sao cho
+\begin{align*}
+    c = U[c],
+\end{align*}
+nghĩa là, hệ \eqref{cmk:eqn} có duy nhất nghiệm $u_m^{(k)}(t)$ trên đoạn $[0,T]$. Bổ đề \ref{lemma32} được chứng minh. \qed
+
+\textit{Bước 2. Đánh giá tiên nghiệm.}
+
+\textbf{(i)} Trong \eqref{umk:weakeqn} thay $w_j$ bởi $\dot{u}_m^{(k)}(t)$, ta được
+\begin{align} \label{319}
+    &\frac{1}{2} \frac{d}{dt} \left[ \left\|\dot{u}_m^{(k)}(t)\right\|^2 + \mu_m(t) \left\|u_{mx}^{(k)}(t)\right\|^2 + 2 \lambda \int_0^t \left\|\dot{u}_m^{(k)}(s)\right\|^2  ds + 2 \sigma \int_0^t \left\|\dot{u}_{mx}^{(k)}(s)\right\|^2  ds \right] \\
+    &= \frac{1}{2} \mu'_m(t) \left\|u_{mx}^{(k)}(t)\right\|^2 + \left<F_m(t), \dot{u}_m^{(k)}(t)\right>. \notag
+\end{align}
+
+Khi đó, tích phân hai vế của \eqref{319} theo biến thời gian, ta được
+\begin{align}
+    X_m^{(k)}(t) = X_m^{(k)}(0) + \int_0^t \mu'_m(s) \left\|u_{mx}^{(k)}(s)\right\|^2  ds + 2 \int_0^t \left<F_m(s), \dot{u}_m^{(k)}(s)\right>  ds,
+\end{align}
+trong đó
+\begin{align}
+    X_m^{(k)}(t) = \left\|\dot{u}_m^{(k)}(t)\right\|^2 + \mu_m(t) \left\|u_{mx}^{(k)}(t)\right\|^2 &+ 2 \lambda \int_0^t \left\|\dot{u}_m^{(k)}(s)\right\|^2  ds \\
+    &+ 2 \sigma \int_0^t \left\|\dot{u}_{mx}^{(k)}(s)\right\|^2 ds. \notag
+\end{align}
+
+\textbf{(ii)} Trong \eqref{umk:weakeqn} thay $w_j  = \frac{-1}{\lambda_j}\Delta w_j$, sau đó đơn giản $\lambda_j$, ta có
+\begin{align} \label{322}
+    &\left<\dot{u}_m^{(k)}(t), -\Delta w_j\right>
+    + \sigma \left< \dot{u}_{mx}^{(k)}(t), -\Delta w_{jx}\right>
+    + \mu_m(t) \left<u_{mx}^{(k)}(t), -\Delta w_{jx}\right>
+    + \lambda \left< \dot{u}_m^{(k)}(t), -\Delta w_j\right> \notag \\
+    &=\left<F_m(t), -\Delta w_j\right>, \ j = 1,\cdots,k.
+\end{align}
+
+Biến đổi số hạng thứ nhất của vế trái của \eqref{322} bằng tích phân từng phần và sử dụng điều kiện biên ta thu được
+\begin{align}
+    \left<\ddot{u}_m^{(k)}(t), -\Delta w_j\right>
+    &= - \left[\ddot{u}^{(k)}(1,t) w_{jx}(1) - \ddot{u}_m^{(k)}(0,t) w_{jx}(0) - \left<\ddot{u}_{mx}^{(k)}(t), w_{jx}\right>\right] \\
+    &= \left<\ddot{u}_{mx}^{(k)}(t), w_{jx}\right>, \notag
+\end{align}
+bởi vì
+\begin{align*}
+    \ddot{u}_m^{(k)}(0,t) &= \sum_{j=1}^k \ddot{c}_{mj}^{(k)}(t) w_j(0) = 0, \\
+    \ddot{u}_m^{(k)}(1,t) &= \sum_{j=1}^k \ddot{c}_{mj}^{(k)}(t) w_j(1) = 0.
+\end{align*}
+
+Tương tự trong \eqref{322}, số hạng thứ tư của vế trái và số hạng của vế phải, ta cũng có
+\begin{align}
+    \lambda \left< \dot{u}_m^{(k)}(t), -\Delta w_j\right> &= \lambda \left<\dot{u}_{mx}^{(k)}(t), w_{jx}\right>, \\
+    \left< F_m(t), -\Delta w_j\right> &= \left<F_{mx}(t), w_{jx}\right>. \notag
+\end{align}
+
+Biến đổi số hạng thứ hai và thứ ba của vế trái của \eqref{322} bằng tích phân từng phần và sử dụng điều kiện biên ta thu được
+\begin{align} \label{325}
+    \left< u_{mx}^{(k)}(t), -\Delta w_{jx}\right>
+    &= -\left[u_{mx}^{(k)}(1,t) \Delta w_j(1) - u_{mx}^{(k)}(0,t) \Delta w_j(0) - \left<\Delta u_m^{(k)}(t), \Delta w_j\right>\right] \\
+    &= \left<\Delta u_m^{(k)}(t), \Delta w_j\right>, \notag \\
+    \left< \dot{u}_{mx}^{(k)}(t), -\Delta w_{jx}\right> &= \left<\Delta \dot{u}_m^{(k)}(t), \Delta w_j\right>, \notag
+\end{align}
+bởi vì
+\begin{align*}
+    \Delta w_j(0) &= -\lambda_j w_j(0) = 0, \\
+    \Delta w_j(1) &= -\lambda_j w_j(1) = 0.
+\end{align*}
+
+Từ \eqref{322} - \eqref{325} ta được
+\begin{align} \label{326}
+    &\left< \ddot{u}_{mx}^{(k)}(t), w_{jx} \right>
+    + \sigma \left< \Delta \dot{u}_m^{(k)}(t), \Delta w_j \right>
+    + \mu_m(t) \left< \Delta u_m^{(k)}(t), \Delta w_j \right>
+    + \lambda \left< \dot{u}_{mx}^{(k)}(t), w_{jx} \right> \\
+    &= \left< F_{mx}(t), w_{jx}\right>, \  j = 1,\cdots,k. \notag
+\end{align}
+
+Trong \eqref{326} thay $w_j$ bởi $\dot{u}_m^{(k)}(t)$ ta được
+\begin{align} \label{327}
+    \frac{1}{2} \frac{d}{dt} \left[ \left\|\dot{u}_{mx}^{(k)}(t)\right\|^2 + \mu_m(t) \left\|\Delta u_m^{(k)}(t)\right\|^2 + 2 \lambda \int_0^t \left\|\dot{u}_{mx}^{(k)}(s)\right\|^2 ds + 2 \sigma \int_0^t \left\|\Delta \dot{u}_m^{(k)}(s)\right\|^2 ds\right] \notag \\
+    = \frac{1}{2} \mu'_m(t) \left\|\Delta u_m^{(k)}(t)\right\|^2 + \left< F_{mx}(t), \dot{u}_{mx}^{(k)}(t)\right>.
+\end{align}
+
+Lấy tích phân hai vế của \eqref{327} theo biến thời gian $t$, ta được
+\begin{align}
+    Y_m^{(k)}(t) = Y_m^{(k)}(0)
+    + \int_0^t \mu'_m(s) \left\|\Delta u_m^{(k)}(s)\right\|^2 ds
+    + 2 \int_0^t \left< F_{mx}(s), \dot{u}_{mx}^{(k)}(s)\right> ds,
+\end{align}
+trong đó
+\begin{align}
+    Y_m^{(k)}(t) = \left\|\dot{u}_{mx}^{(k)}(t)\right\|^2 + \mu_m(t) \left\|\Delta u_m^{(k)}(t)\right\|^2 &+ 2 \lambda \int_0^t \left\|\dot{u}_{mx}^{(k)}(s)\right\|^2 ds \\
+    &+ 2 \sigma \int_0^t \left\|\Delta \dot{u}_m^{(k)}(s)\right\|^2 ds. \notag
+\end{align}
+
+Trong \eqref{326} thay $w_j$ bởi $\ddot{u}_m^{(k)}(t)$, ta được
+\begin{align} \label{330}
+    &\frac{d}{dt} \left[\sigma \left\|\Delta \dot{u}_m^{(k)})(t)\right\|^2 + \lambda \left\|\dot{u}_{mx}^{(k)}(t)\right\|^2 + 2\int_0^t \left\|\ddot{u}_{mx}^{(k)}(s)\right\|^2 ds\right] \\
+    &= - 2 \frac{d}{dt} \left[\mu_m(t) \left<\Delta u_m^{(k)}(t), \Delta \dot{u}_m^{(k)}(t)\right>\right]
+    + 2\mu'_m(t) \left<\Delta u_m^{(k)}(t), \Delta \dot{u}_m^{(k)}(t)\right> \notag \\
+    &\quad + 2 \mu_m(t) \left\|\Delta \dot{u}_m^{(k)}(t)\right\|^2
+    + 2 \left<F_{mx}(t), \ddot{u}_{mx}(t)\right>. \notag
+\end{align}
+
+Lấy tích phân hai vế của \eqref{330} theo biến thời gian $t$, ta được
+\begin{align}
+    Z_m^{(k)}(t) &= Z_m^{(k)}(0)
+    + 2 \mu_m(0) \left< \Delta \tilde{u}_{0k}, \Delta \tilde{u}_{1k} \right>
+    - 2\mu_m(t) \left<\Delta u_m^{(k)}(t), \Delta \dot{u}_m^{(k)}(t)\right> \\
+    &\quad + 2 \int_0^t \mu'_m(s)\left<\Delta u_m^{(k)}(s), \Delta \dot{u}_m^{(k)}(s)\right> ds \notag \\
+    &\quad + 2\int_0^t \mu_m(s) \left\|\Delta \dot{u}_m^{(k)}(s)\right\|^2 ds
+    + 2 \int_0^t \left<F_{mx}(s), \ddot{u}_{mx}^{(k)}(s)\right> ds, \notag
+\end{align}
+trong đó
+\begin{align}
+    Z_m^{(k)}(t) = \sigma \left\|\Delta \dot{u}_m^{(k)}(t)\right\|^2 + \lambda \left\|\dot{u}_{mx}^{(k)}(t)\right\|^2 + 2\int_0^t \left\|\ddot{u}_{mx}^{(k)}(s)\right\|^2 ds.
+\end{align}
+
+Đặt
+\begin{align}
+    S_m^{(k)}(t)
+    &= X_m^{(k)}(t) + Y_m^{(k)}(t) + Z_m^{(k)}(t) \\
+    &= \left\|\dot{u}_m^{(k)}(t)\right\|^2
+      + (1 + \lambda) \left\|\dot{u}_{mx}^{(k)}(t)\right\|^2
+      + \sigma \left\|\Delta \dot{u}_m^{(k)}(t)\right\|^2 \notag \\
+    &\quad + \mu_m(t) \left[\left\|u_{mx}^{(k)}(t)\right\|^2 + \left\|\Delta u_m^{(k)}(t)\right\|^2\right] \notag \\
+    &\quad + 2\lambda \int_0^t \left\|\dot{u}_m^{(k)}(s)\right\|^2 ds + 2(\lambda + \sigma) \int_0^t \left\|\dot{u}_{mx}^{(k)}(s)\right\|^2 ds \notag \\
+    &\quad +2 \sigma \int_0^t \left\|\Delta \dot{u}_m^{(k)}(s)\right\|^2 ds + 2 \int_0^t \left\|\ddot{u}_{mx}^{(k)}(s)\right\|^2 ds, \notag
+\end{align}
+khi đó, ta có
+\begin{align}
+    S_m^{(k)}(t)
+    &= S_m^{(k)}(0) + 2 \mu_m(0) \left< \Delta \tilde{u}_{0k}, \Delta \tilde{u}_{1k} \right> \\
+    &\quad + \int_0^t \mu'_m(s) \left[\left\|u_{mx}^{(k)}(s)\right\|^2 + \left\|\Delta u_m^{(k)}(s)\right\|^2 + \left<\Delta u_m^{(k)}(s), \Delta \dot{u}_m^{(k)}(s)\right>\right] ds \notag \\
+    &\quad + 2 \int_0^t \mu_m(s) \left\|\Delta \dot{u}_m^{(k)}(s)\right\|^2 ds - 2 \mu_m(t) \left<\Delta u_m^{(k)}(t), \Delta \dot{u}_m^{(k)}(t)\right> \notag \\
+    &\quad + 2 \int_0^t \left[\left<F_m(s), \dot{u}_m^{k)}(s)\right> + \left< F_{mx}(s), \dot{u}_{mx}^{(k)}(s)\right> + \left<F_{mx}(s), \ddot{u}_{mx}^{(k)}(s)\right>\right] ds. \notag
+\end{align}
+
+Đặt
+\begin{align*}
+    \overline{S}_m^{(k)}(t)
+    = \left\|\dot{u}_m^{(k)}(t)\right\|^2_{H^2 \cap H^1_0} + \left\|u_m^{(k)}(t)\right\|^2_{H^2 \cap H^1_0} + \int_0^t \left(\left\|\dot{u}_m^{(k)}(s)\right\|^2_{H^2 \cap H^1_0} + \left\|\ddot{u}_m^{(k)}(s)\right\|^2\right) ds,
+\end{align*}
+trong đó
+\begin{align*}
+    \|v\|_{H^2 \cap H^1_0} &= \sqrt{\|v_x\|^2 + \|\Delta v\|^2},\ v \in H^2 \cap H^1_0.
+\end{align*}
+
+Khi đó
+\begin{align} \label{335}
+    \sigma_* \overline{S}_m^{(k)}(t)
+    &\le S_m^{(k)}(t) \notag \\
+    &= S_m^{(k)}(0) + 2 \mu_m(0) \left< \Delta \tilde{u}_{0k}, \Delta \tilde{u}_{1k} \right> \\
+    &\quad + \int_0^t \mu'_m(s) \left[\left\|u_{mx}^{(k)}(s)\right\|^2 + \left\|\Delta u_m^{(k)}(s)\right\|^2 + \left<\Delta u_m^{(k)}(s), \Delta \dot{u}_m^{(k)}(s)\right>\right] ds \notag \\
+    &\quad + 2 \int_0^t \mu_m(s) \left\|\Delta \dot{u}_m^{(k)}(s)\right\|^2 ds - 2 \mu_m(t) \left<\Delta u_m^{(k)}(t), \Delta \dot{u}_m^{(k)}(t)\right> \notag \\
+    &\quad + 2 \int_0^t \left[\left<F_m(s), \dot{u}_m^{(k)}(s)\right> + \left< F_{mx}(s), \dot{u}_{mx}^{(k)}(s)\right> + \left<F_{mx}(s), \ddot{u}_{mx}^{(k)}(s)\right>\right] ds \notag \\
+    &= S_m^{(k)}(0) + 2 \mu_m(0) \left< \Delta \tilde{u}_{0k}, \Delta \tilde{u}_{1k} \right> + \sum_{j=1}^4 I_j, \notag
+\end{align}
+trong đó $\sigma_* = \min \{ \lambda, \sigma, 1 \}$.
+
+\textit{Đánh giá} $\displaystyle I_1 = \int_0^t \mu'_m(s) \left[\left\|u_{mx}^{(k)}(s)\right\|^2 + \left\|\Delta u_m^{(k)}(s)\right\|^2 + \left<\Delta u_m^{(k)}(s), \Delta \dot{u}_m^{(k)}(s)\right>\right] ds$.
+
+Ta có
+\begin{align*}
+    1 \le \mu_m(t) &= 1 + \|\nabla u_{m-1}(t)\|^2 \le 1 + R^2, \\
+    \mu'_m(t) &= 2 \left< \nabla u_{m-1}(t), \nabla u'_{m-1}(t) \right>,
+\end{align*}
+do đó
+\begin{align*}
+    |\mu'_m(t)|
+    &= 2 \left|\left<\nabla u_{m-1}(t), \nabla u'_{m-1}(t)\right>\right|
+    \le 2 \| \nabla u_{m-1}(t) \| \| \nabla u'_{m-1}(t) \| \\
+    &= 2 \| u_{m-1} \|_{L^\infty (0,T;H^1_0)} \| u'_{m-1} \|_{L^\infty(0,T;H^1_0)}
+    \le 2 R^2.
+\end{align*}
+
+Mặt khác, từ bất đẳng thức
+\begin{align*}
+    \overline{S}_m^{(k)}(t)
+    &= \left\|\dot{u}_m^{(k)}(t)\right\|^2_{H^2 \cap H^1_0} + \left\|u_m^{(k)}(t)\right\|^2_{H^2 \cap H^1_0} + \int_0^t \left(\left\|\dot{u}_m^{(k)}(s)\right\|^2_{H^2 \cap H^1_0} + \left\|\ddot{u}_m^{(k)}(s)\right\|^2\right) ds \\
+    &\ge \left\|\dot{u}_m^{(k)}(t)\right\|^2_{H^2 \cap H^1_0} + \left\|u_m^{(k)}(t)\right\|^2_{H^2 \cap H^1_0} \\
+    &\ge 2 \left\|\dot{u}_m^{(k)}(t)\right\|_{H^2 \cap H^1_0} \left\|u_m^{(k)}(t)\right\|_{H^2 \cap H^1_0},
+\end{align*}
+ta suy ra
+\begin{align*}
+    &\quad \left|\left\|u_{mx}^{(k)}(s)\right\|^2 + \left\|\Delta u_m^{(k)}(s)\right\|^2 + \left<\Delta u_m^{(k)}(s), \Delta \dot{u}_m^{(k)}(s)\right>\right| \\
+    &\le \left\|u_{mx}^{(k)}(s)\right\|^2 + \left\|\Delta u_m^{(k)}(s)\right\|^2 + 2 \left\|\Delta u_m^{(k)}(s)\right\| \left\|\Delta \dot{u}_m^{(k)}(s)\right\| \\
+    &\le \left\|u_{m}^{(k)}(s)\right\|^2_{H^2 \cap H^1_0} + 2 \left\|u_m^{(k)}(s)\right\|_{H^2 \cap H^1_0} \left\|\dot{u}_m^{(k)}(s)\right\|_{H^2 \cap H^1_0} \\
+    &\le \overline{S}_m^{(k)}(s) + \overline{S}_m^{(k)}(s) = 2 \overline{S}_m^{(k)}(s).
+\end{align*}
+
+Tích phân $I_1$ được đánh giá như sau
+\begin{align}
+    I_1 &= \int_0^t \mu'_m(s) \left[\left\|u_{mx}^{(k)}(s)\right\|^2 + \left\|\Delta u_m^{(k)}(s)\right\|^2 + \left<\Delta u_m^{(k)}(s), \Delta \dot{u}_m^{(k)}(s)\right>\right] ds \\
+    &\le 4 R^2 \int_0^t \overline{S}_m^{(k)}(s) \: ds. \notag
+\end{align}
+
+\textit{Đánh giá} $\displaystyle I_2 = 2 \int_0^t \mu_m(s) \left\|\Delta \dot{u}_m^{(k)}(s)\right\|^2 ds$.
+\begin{align}
+    I_2 = 2 \int_0^t \mu_m(s) \left\|\Delta \dot{u}_m^{(k)}(s)\right\|^2 ds
+    &\le 2 (1 + R^2) \int_0^t \left\|\dot{u}_m^{(k)}(s)\right\|^2_{H^2 \cap H^1_0} ds \\
+    &\le 2 (1 + R^2) \int_0^t \overline{S}_m^{(k)}(s)\: ds. \notag
+\end{align}
+
+\textit{Đánh giá} $\displaystyle I_3 = - 2 \mu_m(t) \left<\Delta u_m^{(k)}(t), \Delta \dot{u}_m^{(k)}(t)\right>$.
+\begin{align*}
+    I_3 &= - 2 \mu_m(t) \left<\Delta u_m^{(k)}(s), \Delta \dot{u}_m^{(k)}(s)\right> \\
+    &\le 2 \left\|\mu_m(t) \Delta u_m^{(k)}(t)\right\| \left\|\Delta \dot{u}_m^{(k)}(t)\right\| \notag \\
+    &\le \gamma \left\|\Delta \dot{u}_m^{(k)}(t)\right\|^2 + \frac{1}{\gamma} \left\|\mu_m(t) \Delta u_m^{(k)}(t)\right\|^2 \notag \\
+    &\le \gamma \overline{S}_m^{(k)}(t) + \frac{1}{\gamma} \left\|\mu_m(t) \Delta u_m^{(k)}(t)\right\|^2. \notag
+\end{align*}
+
+Mặt khác
+\begin{align*}
+    \left|\frac{\partial}{\partial t} \left[\mu_m(t) \Delta u_m^{(k)}(t)\right]\right|
+    &= \left|\mu'_m(t) \Delta u_m^{(k)}(t) + \mu_m(t) \Delta \dot{u}_m^{(k)}(t)\right| \\
+    &\le 2 R^2 \left\|\Delta u_m^{(k)}(t)\right\| + (1 + R^2) \left\|\Delta \dot{u}_m^{(k)}(t)\right\| \\
+    &\le 2(R^2 + 1) \left(\left\|\Delta u_m^{(k)}(t)\right\| + \left\|\Delta \dot{u}_m^{(k)}(t)\right\|\right) \\
+    &\le 2\sqrt{2} (R^2 + 1) \left(\left\|\Delta u_m^{(k)}(t)\right\|^2 + \left\|\Delta \dot{u}_m^{(k)}(t)\right\|^2\right)^{1/2} \\
+    &\le 2\sqrt{2} (R^2 + 1) \sqrt{\overline{S}_m^{(k)}(t)}.
+\end{align*}
+
+Ta suy ra
+\begin{align*}
+    \|\mu_m(t) \Delta u_m^{(k)}(t) \|^2
+    &= \left\| \mu_m(0) \Delta u_m^{(k)}(0) + \int_0^t \frac{\partial}{\partial s} \left[\mu_m(s) \Delta u_m^{(k)}(s)\right] ds \right\|^2 \\
+    &\le \left(\left\|\mu_m(0) \Delta \tilde{u}_{0k}\right\| + \int_0^t \left\|\frac{\partial}{\partial s} \left[\mu_m(s) \Delta u_m^{(k)}(s)\right]\right\| ds\right)^2 \\
+    &\le 2 \left\|\mu_m(0) \Delta \tilde{u}_{0k}\right\|^2 + 2 \left(\int_0^t \left\|\frac{\partial}{\partial s} \left[\mu_m(s) \Delta u_m^{(k)}(s)\right]\right\| ds\right)^2 \\
+    &\le 2 \left\|\mu_m(0) \Delta \tilde{u}_{0k}\right\|^2 + 2T \int_0^t \left\|\frac{\partial}{\partial s} \left[\mu_m(s) \Delta u_m^{(k)}(s)\right]\right\|^2 ds \\
+    &\le 2 \left\|\mu_m(0) \Delta \tilde{u}_{0k}\right\|^2 + 16T^* (1 + R^2)^2 \int_0^t \overline{S}_m^{(k)}(s)\: ds.
+\end{align*}
+
+Như vậy, số hạng $I_3$ được đánh giá như sau
+\begin{align}
+    I_3 &= - 2 \mu_m(t) \left<\Delta u_m^{(k)}(t), \Delta \dot{u}_m^{(k)}(t)\right> \\
+    &\le \gamma \overline{S}_m^{(k)}(t) + \frac{1}{\gamma} \left\|\mu_m(t) \Delta u_m^{(k)}(t)\right\|^2 \notag \\
+    &\le \gamma \overline{S}_m^{(k)}(t) + \frac{2}{\gamma} \left\|\mu_m(0) \Delta \tilde{u}_{0k}\right\|^2 + \frac{16}{\gamma} T^* (1 + R^2)^2 \int_0^t \overline{S}_m^{(k)}(s)\: ds. \notag 
+\end{align}
+
+\textit{Đánh giá} $\displaystyle I_4 = 2 \int_0^t \left[\left<F_m(s), \dot{u}_m^{(k)}(s)\right> + \left< F_{mx}(s), \dot{u}_{mx}^{(k)}(s)\right> + \left<F_{mx}(s), \ddot{u}_{mx}^{(k)}(s)\right>\right] ds$.
+
+Từ các công thức sau
+\begin{align*}
+    F_m(x,t) &= -K u^3_{m-1}(x,t) + f(x,t), \\
+    F_{mx}(x,t) &= -3K u^2_{m-1}(x,t) \nabla u_{m-1}(x,t) + f_x(x,t).
+\end{align*}
+ta suy ra các đánh giá
+\begin{align*}
+    \|F_m(t)\| &\le KR^3 + K(f), \\
+    \|F_{mx}(t)\| &\le 3KR^3 + K(f).
+\end{align*}
+
+Từ đây dẫn đến
+\begin{align}
+    I_4
+    &= 2 \int_0^t \left[\left<F_m(s), \dot{u}_m^{k)}(s)\right> + \left< F_{mx}(s), \dot{u}_{mx}^{(k)}(s)\right> + \left<F_{mx}(s), \ddot{u}_{mx}^{(k)}(s)\right>\right] ds \\
+    &\le 2 \int_0^t \left[(\|F_m(s)\| + \|F_{mx}(s)\|) \left\|\dot{u}_{mx}^{(k)}(s)\right\|\right] ds
+     + 2 \int_0^t \|F_{mx}(s)\| \left\|\ddot{u}_{mx}^{(k)}(s)\right\| ds \notag \\
+    &\le 2(4KR^3 + 2K(f)) \int_0^t \sqrt{\overline{S}_m^{(k)}(s)} ds + 2(3KR^3 + K(f)) \int_0^t \left\|\ddot{u}_{mx}^{(k)}(s)\right\| ds \notag \\
+    &\le T(4KR^3 + 2K(f))^2 + \int_0^t \overline{S}_m^{(k)}(s) \: ds + \frac{1}{\gamma} T (3KR^3 + K(f))^2 + \gamma \int_0^t \left\|\ddot{u}_{mx}^{(k)}(s)\right\|^2 ds \notag \\
+    &\le T\left[(4KR^3 + 2K(f))^2 + \frac{1}{\gamma}(3KR^3 + K(f))^2\right] + \int_0^t \overline{S}_m^{(k)}(s) \: ds + \gamma \overline{S}_m^{(k)}(t). \notag
+\end{align}
+
+Từ \eqref{335} và các đánh giá $I_1 - I_4$, ta được
+\begin{align} \label{340}
+    (\sigma_* - 2\gamma) \overline{S}_m^{(k)}(t)
+    \le S_m^{(k)}(0) + 2 \mu_m(0) \left<\Delta \tilde{u}_{0k}, \Delta \tilde{u}_{1k}\right>
+    + \frac{2}{\gamma} \| \mu_m(0) \Delta \tilde{u}_{0k} \|^2 \\
+    + T \left[(4KR^3 + 2K(f))^2 + \frac{1}{\gamma}(3KR^2 + K(f))^2\right] \notag \\
+    + \left[3(1+2R^2) + \frac{16}{\gamma}T^* (1+R^2)^2\right] \int_0^t \overline{S}_m^{(k)}(s)\:ds. \notag
+\end{align}
+
+Chọn $\gamma = \dfrac{\sigma_*}{4}$, ta suy ra từ \eqref{340} rằng
+\begin{align} \label{341}
+    \overline{S}_m^{(k)}(t) \le S_{0m}^{(k)} + T D_R^{(1)} + D_R^{(2)} \int_0^t \overline{S}_m^{(k)}(s)\:ds,
+\end{align}
+trong đó
+\begin{align*}
+    S_{0m}^{(k)} &= \frac{2}{\sigma_*}\left[S_m^{(k)}(0) + 2 \mu_m(0) \left<\Delta \tilde{u}_{0k}, \Delta \tilde{u}_{1k}\right> + \frac{2}{\gamma} \| \mu_m(0) \Delta \tilde{u}_{0k} \|^2\right], \\
+    D_R^{(1)} &= \frac{2}{\sigma_*}\left[(4KR^3 + 2K(f))^2 + \frac{1}{\gamma}(3KR^2 + K(f))^2\right], \\
+    D_R^{(2)} &= \frac{2}{\sigma_*}\left[3(1+2R^2) + \frac{16}{\gamma}T^* (1+R^2)^2\right].
+\end{align*}
+
+Đánh giá $S_{0m}^{(k)}$. Ta thấy các biểu thức $\mu_m(0), S_m^{(k)}(0)$ độc lập với $m$. Thật vậy
+\begin{align*}
+    \mu_m(0) &= 1 + \|\tilde{u}_{0x}\|^2, \\
+    S_m^{(k)}(0) &= \|\tilde{u}_{1x}\|^2 + (1 + \lambda) \|\tilde{u}_{1kx}\|^2 + \sigma \|\Delta \tilde{u}_{1k}\|^2 \\
+                  &\quad + (1 + \|\tilde{u}_{0x}\|^2) \left[\|\tilde{u}_{0kx}\|^2 + \|\Delta\tilde{u}_{0k}\|^2\right].
+\end{align*}
+
+Do đó, $S_{0m}^{(k)}$ là biểu thức độc lập với $m$. Do \eqref{310} nên ta có thể tìm được một hằng số $R > 0$ độc lập với $m,k$ để cho
+\begin{align} \label{341}
+    S_{0m}^{(k)} \le \frac{R^2}{2}, \  \forall k, m \in \N.
+\end{align}
+
+Chọn $T$ thoả $0 < T \le T^*$ sao cho
+\begin{align} \label{343}
+    \left(\frac{R^2}{2} + TD_R^{(1)}\right) \exp \left(TD_R^{(2)}\right) \le R^2,
+\end{align}
+và
+\begin{align} \label{344}
+    k_T = \left(2 + \frac{1}{\sqrt{2\sigma}}\right) R^2 \sqrt{\frac{4}{\sigma} + 9K^2} \sqrt{2T} \exp \left[T(1+2R^2)\right] < 1.
+\end{align}
+
+Từ \eqref{341}, \eqref{343} ta có
+\begin{align} \label{345}
+    \overline{S}_m^{(k)}(t) \le R^2 \exp\left(-TD_R^{(2)}\right) + D_R^{(2)} \int_0^t \overline{S}_m^{(k)}(s)\:ds, \ \forall t \in [0,T],\ \forall m,k \in \N.
+\end{align}
+
+Áp dụng Bất đẳng thứ Gronwall, từ \eqref{345} ta được
+\begin{align}
+    \overline{S}_m^{(k)}(t) \le R^2 \exp\left(-TD_R^{(2)}\right) \exp\left(tD_R^{(2)}\right) \le R^2, \ \forall t \in [0,T],\ \forall m,k \in \N.
+\end{align}
+
+Điều đó dẫn đến
+\begin{align} \label{347}
+    u_m^{(k)} \in W(R,T),\ \forall m,k \in \N.
+\end{align}
+
+\textit{Bước 3: Qua giới hạn.}
+
+Từ \eqref{wrtspace}, \eqref{347}, ta suy ra rằng tồn tại một dãy con của dãy $\{u_m^{(k)}\}$, mà vẫn ký hiệu là $\{u_m^{(k)}\}$ sao cho
+\begin{align} \label{348}
+    \begin{cases}
+        u_m^{(k)} \to u_m \text{ yếu* trong } L^\infty (0,T;H^2 \cap H^1_0), \\
+        \dot{u}_m^{(k)} \to u'_m \text{ yếu* trong } L^\infty (0,T;H^2 \cap H^1_0), \\
+        \ddot{u}_m^{(k)} \to u''_m \text{ yếu trong } L^2 (0,T;H^1_0), \\
+        u_m \in W(R,T).
+    \end{cases}
+\end{align}
+
+Qua giới hạn trong \eqref{umk:weakeqn} nhờ vào \eqref{310} và \eqref{348}, ta sẽ chứng minh rằng $u_m$ thoả
+\begin{align} \label{349}
+    \begin{cases}
+        \begin{aligned}
+            \left< u''_m(t), v\right> + \sigma \left< u'_{mx}(t), v_x \right>
+            + \mu_m(t) \left<u_{mx}(t), v_x \right> &+ \lambda \left<u'_m(t), v\right> \\
+            &= \left<F_m(t), v \right>,\ \forall v \in H^1_0,
+        \end{aligned} \\
+        u_m(0) = \tilde{u}_0,\: u'_m(0) = \tilde{u}_1,
+    \end{cases}
+\end{align}
+trong đó
+\begin{align*}
+    F_m(t) &= -Ku^3_{m-1}(t) + f(t), \\
+    \mu_m(t) &= 1 + \|\nabla u_{m-1}(t)\|^2.
+\end{align*}
+
+Thật vậy, giả sử $\varphi \in D(0,T)$. Nhân phương trình \eqref{umk:weakeqn} với $\varphi$, sau đó lấy tích phân theo biến $t$ trên $0 \le t \le T$, ta được
+\begin{align} \label{350}
+    &\int_0^T \left<\ddot{u}_m^{(k)}(t), w_j\right> \varphi(t)\:dt
+    + \sigma \int_0^T \left<\dot{u}_{mx}^{(k)}(t), w_{jx}\right> \varphi(t)\:dt \notag \\
+    &\quad + \int_0^T \mu_m(t) \left<u_{mx}^{(k)}(t), w_{jx}\right>\varphi(t)\:dt
+    + \lambda \int_0^T \left<\dot{u}_m^{(k)}(t), w_j\right> \varphi(t)\:dt \\
+    &\quad = \int_0^T \left< F_m(t), w_j \right> \varphi(t)\:dt, \ 1 \le j \le k. \notag
+\end{align}
+
+Cho $k \to \infty$ trong \eqref{350}, ta thu được $u_m$ thoả phương trình
+\begin{align*}
+    &\int_0^T \left<u''_m(t), w_j\right> \varphi(t)\:dt
+    + \sigma \int_0^T \left<u'_{mx}(t), w_{jx}\right> \varphi(t)\:dt \notag \\
+    &\quad + \int_0^T \mu_m(t) \left<u_{mx}(t), w_{jx}\right>\varphi(t)\:dt
+    + \lambda \int_0^T \left<u'_m(t), w_j\right> \varphi(t)\:dt \\
+    &\quad = \int_0^T \left< F_m(t), w_j \right> \varphi(t)\:dt, \ \forall j \in \N,\ \forall \varphi \in D(0,T).
+\end{align*}
+
+Do $\{w_j\}$ là cơ sở Hilbert trong $H^1_0$, từ đây ta suy ra
+\begin{align} \label{351}
+    &\int_0^T \left<u''_m(t), w\right> \varphi(t)\:dt
+    + \sigma \int_0^T \left<u'_{mx}(t), w_{x}\right> \varphi(t)\:dt \\
+    &\quad + \int_0^T \mu_m(t) \left<u_{mx}(t), w_{x}\right>\varphi(t)\:dt
+    + \lambda \int_0^T \left<u'_m(t), w\right> \varphi(t)\:dt \notag \\
+    &\quad = \int_0^T \left< F_m(t), w \right> \varphi(t)\:dt, \ \forall w \in H^1_0,\ \forall \varphi \in D(0,T). \notag
+\end{align}
+
+Từ phương trình \eqref{351} dẫn tới
+\begin{align} \label{352}
+    \left<u''_m(t), w\right> + \sigma \left<u'_{mx}(t), w_x\right> + \mu_m(t)\left<u_{mx}(t), w_x\right> + \lambda \left<u'_m(t), w\right> \\[5pt]
+    = \left<F_m(t), w\right>,\ \forall w \in H^1_0, \text{a.e.}, t \in (0,T). \notag
+\end{align}
+
+\textit{Nghiệm lại điều kiện đầu.}
+
+\medskip
+
+(i) $u_m(0) = \tilde{u}_0$.
+
+Chú ý rằng
+\begin{align} \label{353}
+    \int_0^T \left<\dot{u}_m^{(k)}(t), (T-t)w_j\right> dt = -T \left<\tilde{u}_{0k}, w_j\right> + \int_0^T \left<u_m^{(k)}(t), w_j\right> dt,\ k \ge j.
+\end{align}
+
+Cho $k \to \infty$ trong \eqref{353} và nhờ vào $\eqref{348}_{1,2}$, ta thu được
+\begin{align} \label{354}
+    \int_0^T \left<u'_m(t), (T-t)w_j\right> dt = -T \left<\tilde{u}_{0}, w_j\right> + \int_0^T \left<u_m(t), w_j\right> dt,\ \forall j \in \N.
+\end{align}
+
+Mặt khác, ta cũng có
+\begin{align} \label{355}
+    \int_0^T \left<u'_m(t), (T-t)w_j\right> dt = -T \left<u_m(0), w_j\right> + \int_0^T \left<u_m(t), w_j\right> dt,\ \forall j \in \N.
+\end{align}
+
+So sánh \eqref{354} và \eqref{355}, ta thu được
+\begin{align} \label{356}
+    \left<u_m(0), w_j\right> = \left<\tilde{u}_0, w_j\right>,\ \forall j \in \N.
+\end{align}
+
+Mà \eqref{356} tương đương với điều kiện đầu
+\begin{align}
+    u_m(0) = \tilde{u}_0
+\end{align}
+
+(ii) $u'_m(0) = \tilde{u}_1$.
+
+Chú ý rằng
+\begin{align} \label{358}
+    \int_0^T \left<\ddot{u}_m^{(k)}(t), (T-t)w_j\right> dt = -T \left<\tilde{u}_{1k}, w_j\right> + \int_0^T \left<\dot{u}_m^{(k)}(t), w_j\right> dt,\ k \ge j.
+\end{align}
+
+Cho $k \to \infty$ trong \eqref{358} và nhờ vào $\eqref{348}_{2,3}$, ta thu được
+\begin{align} \label{359}
+    \int_0^T \left<u''_m(t), (T-t)w_j\right> dt = -T \left<\tilde{u}_{1}, w_j\right> + \int_0^T \left<u'_m(t), w_j\right> dt,\ \forall j \in \N.
+\end{align}
+
+Mặt khác, ta cũng có
+\begin{align} \label{360}
+   \int_0^T \left<u''_m(t), (T-t)w_j\right> dt = -T \left<u'_m(0), w_j\right> + \int_0^T \left<u'_m(t), w_j\right> dt,\ \forall j \in \N.
+\end{align}
+
+So sánh \eqref{359} và \eqref{360}, ta thu được
+\begin{align} \label{361}
+    \left<u'_m(0), w_j\right> = \left<\tilde{u}_{1}, w_j\right>,\ \forall j \in \N.
+\end{align}
+
+Mà \eqref{361} tương đương với điều kiện đầu
+\begin{align}
+    u'_m(0) = \tilde{u}_1
+\end{align}
+
+Tóm lại, khi qua giới hạn trong \eqref{umk:weakeqn} khi $k \to \infty$, nhờ vào \eqref{348} ta thu được $u_m$ thoả \eqref{generalterm}. Mặt khác, từ $\eqref{348}_4$ và $\eqref{349}_1$, ta suy ra được
+\begin{align}
+    u''_m = \sigma \Delta u'_m + \mu_m(t) \Delta u_m - \lambda u'_m + F_m \in L^\infty(0,T;L^2).
+\end{align}
+
+Do đó
+\begin{align}
+    u_m \in W_1(R,T).
+\end{align}
+
+Định lý \ref{theorem31} đã được chứng minh. \qed
+
+\subsection{Sự hội tụ của dãy lặp}
+
+Tiếp theo định lý sau cho kết quả hội tụ của dãy $\{u_m\}$ về nghiệm yếu của Bài toán \eqref{maineqn}.
+
+Trước hết, ta chú ý
+\begin{align*}
+    H_T = \left\{ v \in C^0([0,T]; H^1_0) \cap C^1([0,T]; L^2) \colon v' \in L^2(0,T;H^1_0) \right\}
+\end{align*}
+là không gian Banach (Lions[2]) với chuẩn
+\begin{align*}
+    \|v\|_{H_T} = \|v\|_{C^0([0,T]; H^1_0)} + \|v\|_{C^1([0,T]; L^2)} + \|v'\|_{L^2(0,T;H^1_0)},
+\end{align*}
+hoặc chuẩn tương đương
+\begin{align*}
+    \|v\|_{H_T} = \|v\|_{C^0([0,T]; H^1_0)} + \|v'\|_{C^0([0,T]; L^2)} + \|v'\|_{L^2(0,T;H^1_0)}.
+\end{align*}
+
+Khi đó ta có
+\begin{theorem} \label{theorem33}
+    Giả sử $(H_1)$-$(H_2)$ thoả. Khi đó, hai hằng số $R > 0, T > 0$ được xác định ở Định lý \ref{theorem31}, sao cho
+    \begin{enumerate}
+        \item Bài toán \eqref{maineqn} có duy nhất nghiệm yếu $u \in W_1(R,T)$.
+        \item Dãy quy nạp tuyến tính $\{u_m\}$ xác định bởi \eqref{firstterm}-\eqref{generalterm} hội tụ về $u$ trong $H_T$. Hơn nữa, ta có đánh giá sai số
+        \begin{align}
+            \|u_m - u\|_{H_T} \le \frac{R}{1 - k_T}k_T^m, \text{ với mọi } m \in \N,
+        \end{align}
+        trong đó $k_T < 1$ là một hằng số chỉ phụ thuộc vào $T, \lambda, \sigma, f, \tilde{u}_0, \tilde{u}_1$.
+    \end{enumerate}
+\end{theorem}
+
+\textit{Chứng minh.}
+
+\textit{(i) Sự tồn tại nghiệm}
+
+Trước hết, ta sẽ chứng minh dãy $\{u_m\}$ là một dãy Cauchy trong $H_T$.
+
+Đặt $v_m = u_{m+1} - u_m$, thì $v_m$ thoả mãn bài toán biến phân
+\begin{align} \label{366}
+\begin{cases}
+    \left<v''_m(t), w\right> + \sigma \left<v'_{mx}(t), w_x\right> + \mu_{m+1}\left<v_{mx}(t), w_x\right> \\
+    \quad\quad\quad\quad + \left[\mu_{m+1}(t) - \mu_m(t)\right]\left<u_{mx}(t), w_x\right> + \lambda \left<v'_m(t), w\right> \\
+    \quad\quad\quad\quad = \left<F_{m+1}(t) - F_m(t), w\right>, \\
+    v_m(0) = v'_m(0) = 0,
+\end{cases}
+\end{align}
+với mọi $w \in H^1_0$ và a.e. $t \in (0,T)$.
+
+Lấy $w = v'_m(t)$ trong \eqref{366} ta được
+\begin{align}
+    &\frac{d}{dt}\left[ \left\|v'_m(t)\right\|^2 + \mu_{m+1}(t) \left\|v_{mx}(t)\right\|^2 + 2 \sigma \int_0^t \left\|v'_{mx}(s)\right\|^2 ds + 2\lambda \int_0^t \left\|v'_m(s)\right\|^2 ds \right] \\
+    &= \mu'_{m+1}(t)\left\|v_{mx}(t)\right\|^2 - 2 \left[\mu_{m+1}(t) - \mu_m(t)\right] \left<u_{mx}(t), v'_{mx}(t)\right> \notag \\
+    &\quad+ 2 \left<F_{m+1}(t) - F_m(t), v'_m(t)\right>. \notag
+\end{align}
+
+Sau đó lấy tích phân theo biến $t$, ta được
+\begin{align} \label{368}
+    Z_m(t) &= \int_0^t \mu'_{m+1}(s)\left\|v_{mx}(s)\right\|^2 ds - 2 \int_0^t \left[\mu_{m+1}(s) - \mu_m(s)\right] \left<u_{mx}(s), v'_{mx}(s)\right> ds \\
+    &\quad + 2 \int_0^t \left<F_{m+1}(s) - F_m(s), v'_m(s)\right> ds \notag \\
+    &= J_1 + J_2 + J_3, \notag
+\end{align}
+trong đó
+\begin{align}
+    Z_m(t) = \left\|v'_m(t)\right\|^2 + \mu_{m+1}(t) \left\|v_{mx}(t)\right\|^2 &+ 2 \sigma \int_0^t \left\|v'_{mx}(s)\right\|^2 ds \\
+    &+ 2\lambda \int_0^t \left\|v'_m(s)\right\|^2 ds. \notag
+\end{align}
+
+Bây giờ ta tiến hành đánh giá các tích phân $J_1$-$J_3$ trong vế phải của \eqref{368}.
+
+\textit{Đánh giá tích phân} $\displaystyle J_1 = \int_0^t \mu'_{m+1}(s)\left\|v_{mx}(s)\right\|^2 ds$.
+
+Ta có
+\begin{align*}
+    \mu'_{m+1}(s) = 2\left<u_{mx}(s), u'_{mx}(s)\right>, 
+\end{align*}
+do đó
+\begin{align*}
+    |\mu'_{m+1}(s)| = 2\left|\left<u_{mx}(s), u'_{mx}(s)\right>\right| \le 2 \left\|u_{mx}(s)\right\|\left\|u'_{mx}(s)\right\| \le 2R^2.
+\end{align*}
+
+Từ đó ta có
+\begin{align} \label{370}
+    J_1 = \int_0^t \mu'_{m+1}(s)\left\|v_{mx}(s)\right\|^2 ds \le 2R^2 \int_0^t \left\|v_{mx}(s)\right\|^2 ds \le 2R^2 \int_0^t Z_m(s)\:ds.
+\end{align}
+
+\textit{Đánh giá tích phân} $\displaystyle J_2 = - 2 \int_0^t \left[\mu_{m+1}(s) - \mu_m(s)\right] \left<u_{mx}(s), v'_{mx}(s)\right> ds$.
+
+Ta có
+\begin{align*}
+    \left|\mu_{m+1}(s) - \mu_m(s)\right|
+    &= \left|\left|\nabla u_{m}(s)\right\|^2 - \left|\nabla u_{m-1}(s)\right\|^2\right| \\
+    &\le 2R \left\|\nabla v_{m-1}(s)\right\|
+    \le 2R \|v_{m-1}\|_{H_T}.
+\end{align*}
+
+Từ đây ta suy ra tích phân $J_2$ được đánh giá như sau
+\begin{align}
+    J_2
+    &= -2 \int_0^t \left[\mu_{m+1}(s) - \mu_m(s)\right] \left<u_{mx}(s), v'_{mx}(s)\right> ds \\
+    &\le 2 \int_0^t \left|\mu_{m+1}(s) - \mu_m(s)\right| \left\|u_{mx}(s)\right\| \left\|v'_{mx}(s)\right\| \notag \\
+    &\le 4R^2 \|v_{m-1}\|_{H_T} \int_0^t \left\|v'_{mx}(s)\right\|ds \notag \\
+    &\le \frac{1}{2\sigma \gamma} 4TR^4 \|v_{m-1}\|^2_{H_T} + 2 \sigma \gamma \int_0^t \left\|v'_{mx}(s)\right\|^2 ds \notag \\
+    &\le \frac{1}{2\sigma \gamma} 4TR^4 \|v_{m-1}\|^2_{H_T} + \gamma Z_m(t). \notag
+\end{align}
+
+\textit{Đánh giá tích phân} $\displaystyle J_3 = 2 \int_0^t \left<F_{m+1}(s) - F_m(s), v'_m(s)\right> ds$.
+
+Ta có
+\begin{align*}
+    |u_m(x,s)| \quad &\le \quad \|u_{mx}(s)\| \le \|u_m\|_{L^\infty(0,T;H^1_0)} \le R, \\
+    |u_{m-1}(x,s)| \quad &\le \quad \|u_{m-1}\|_{L^\infty(0,T;H^1_0)} \le R, \\
+\end{align*}
+và bất đẳng thức
+\begin{align*}
+    |u^3 - v^3| \le 3R^2 |u - v|, \ \forall u,v \in [-R, R], \forall R > 0.
+\end{align*}
+
+Ta suy ra
+\begin{align*}
+    |F_{m+1}(x,s) - F_m(x,s)|
+    &= K|u^3_m(x,s) - u^3_{m-1}(x,s)| \\
+    &\le 3KR^2 |u_m(x,s) - u_{m-1}(x,s)| = 3KR^2 |v_{m-1}(x,s)| \notag \\
+    &\le 3KR^2 \|\nabla v_{m-1}(s)\| \le 3KR^2 \|v_{m-1}\|_{C^0([0,T];H^1_0)} \notag \\
+    &\le 3KR^2 \|v_{m-1}\|_{H_T}. \notag
+\end{align*}
+
+Khi đó tích phân $J_3$ được đánh giá như sau
+\begin{align} \label{372}
+    J_3 &= 2 \int_0^t \left<F_{m+1}(s) - F_m(s), v'_m(s)\right> ds \\
+    &\le 2 \int_0^t \|F_{m+1}(s) - F_m(s)\| \|v'_m(s)\| ds \notag \\
+    &\le 6KR^2 \|v_{m-1}\|_{H_T} \int_0^t \sqrt{Z_m(s)}\:ds \notag \\
+    &\le 9TK^2R^4 \|v_{m-1}\|^2_{H_T} + \int_0^t Z_m(s)\:ds. \notag
+\end{align}
+
+Từ \eqref{368}, \eqref{370} và \eqref{372}, ta suy ra rằng
+\begin{align*}
+    Z_m(t) \le \gamma Z_m(t) + T\left(\frac{2}{\sigma\gamma} + 9K^2\right)R^4 \|v_{m-1}\|^2_{H_T} + (1 + 2R^2) \int_0^t Z_m(s)\:ds.
+\end{align*}
+
+Chọn $\gamma = \dfrac{1}{2}$, ta có
+\begin{align*}
+    Z_m(t) \le 2T\left(\frac{4}{\sigma} + 9K^2\right)R^4 \|v_{m-1}\|^2_{H_T} + 2(1+2R^2) \int_0^t Z_m(s)\:ds.
+\end{align*}
+
+Áp dụng bất đẳng thức Gronwall, ta có
+\begin{align} \label{373}
+    Z_m(t) \le 2T\left(\frac{4}{\sigma} + 9K^2\right)R^4 \exp \left[2T(1+2R^2)\right] \|v_{m-1}\|^2_{H_T}.
+\end{align}
+
+Từ \eqref{373} ta được
+\begin{align} \label{374}
+    \|v_{m}\|_{H_T}\le k_T \|v_{m-1}\|^2_{H_T},
+\end{align}
+với $k_T$ được cho bởi \eqref{344}. Khi đó \eqref{374} được viết lại là
+\begin{align} \label{375}
+\|u_{m+1} - u_m\|_{H_T} \le k_T \|u_m - u_{m-1}\|_{H_T}.
+\end{align}
+
+Từ \eqref{375} ta dễ dàng thu được
+\begin{align}
+    \|u_{m+q} - u_m\|_{H_T}
+    &\le \frac{k_T^m}{1 - k_T} \|u_1 - u_0\|_{H_T}
+    = \frac{k_T^m}{1 - k_T} \|u_1\|_{H_T} \\
+    &\le \frac{R}{1-k_T}k_T^m,\ \forall m,q \in \N. \notag
+\end{align}
+
+Từ đó suy ra $\{u_m\}$ là dãy Cauchy trong $H_T$, do đó tồn tại $u \in H_T$ sao cho
+\begin{align}
+    u_m \to u \text{ trong } H_T \text{ mạnh}.
+\end{align}
+
+Ta chú ý rằng $u_m \in W_1(R,T)$, do đó ta có thể lấy ra từ dãy $\{u_m\}$ một dãy con $\{u_{m_j}\}$ sao cho
+\begin{align} \label{378}
+\begin{cases}
+    u_{m_j} \to u \text{ yếu* trong } &L^\infty(0,T;H^2 \cap H^1_0), \\
+    u'_{m_j} \to u' \text{ yếu* trong } &L^\infty(0,T;H^2 \cap H^1_0),\\
+    u''_{m_j} \to u'' \text{ yếu trong } &L^2(0,T;H^1_0),\\
+    u \in W(R,T). &
+\end{cases}
+\end{align}
+
+Mặt khác, từ đánh giá sau
+\begin{align}
+    \|u^3_{m-1}(t) - u^3(t)\| \le 3R^2 \|u_{m-1} - u\|_{H_T},
+\end{align}
+ta suy ra
+\begin{align}
+    \|u^3_{m-1} - u^3\|_{C^0([0,T];L^2)} \le 3R^2 \|u_{m-1} - u\|_{H_T} \to 0 \text{ khi } m \to \infty.
+\end{align}
+
+Vậy
+\begin{align} \label{381}
+    u^3_{m-1} \to u^3 \text{ mạnh trong } C([0,T]; L^2),
+\end{align}
+dẫn đến
+\begin{align} \label{382}
+    F_m(t) = -Ku^3_{m-1}(t) + f(t) \to -Ku^3(t) + f(t) \text{ mạnh trong } C([0,T];L^2).
+\end{align}
+
+Tương tự
+\begin{align*}
+    \left| \mu_m(t) - 1 - \|\nabla u(t)\|^2 \right|
+    &= \left| \|\nabla u_{m-1}(t)\|^2 - \|\nabla u(t)\|^2 \right| \notag \\
+    &\le 2R \| \nabla u_{m-1}(t) - \nabla u(t) \| \notag \\
+    &\le 2R \| u_{m-1} - u\|_{H_T} \to 0. \notag
+\end{align*}
+dẫn đến
+\begin{align} \label{383}
+    \mu_m(t) \to 1 + \|\nabla u(\cdot)\|^2 \text{ mạnh trong } C([0,T];L^2).
+\end{align}
+
+Mặt khác, từ \eqref{352}, ta suy ra
+\begin{align} \label{384}
+    &\int_0^T \left<u''_{m_j},w\right> \varphi(t)\:dt
+    + \sigma \int_0^T \left<u'_{m_j x}(t), w_x\right> \varphi(t)\:dt \notag \\
+    &+ \int_0^T \mu_{m_j}(t) \left<u_{m_j x}(t), w_x\right> \varphi(t)\:dt
+    + \lambda \int_0^T \left<u'_{m_j}(t), w\right> \varphi(t)\:dt \\
+    &= \int_0^T \left<F_{m_j}(t), w\right> \varphi(t)\:dt,\ \forall w \in H^1_0,\ \forall \varphi \in D(0,T). \notag
+\end{align}
+
+Từ \eqref{381}, \eqref{382}, \eqref{383}, qua giới hạn trong \eqref{384}, khi cho $m_j \to \infty$, tồn tại $u \in W(R,T)$ thoả phương trình
+\begin{align}
+    &\int_0^T \left<u'',w\right> \varphi(t)\:dt
+    + \sigma \int_0^T \left<u'_{x}(t), w_x\right> \varphi(t)\:dt \notag \\
+    &+ \int_0^T \left(1 + \|u_x(t)\|^2\right) \left<u_{x}(t), w_x\right> \varphi(t)\:dt
+    + \lambda \int_0^T \left<u'(t), w\right> \varphi(t)\:dt \\
+    &= \int_0^T \left<-Ku^3(t) + f(t), w\right> \varphi(t)\:dt,\ \forall w \in H^1_0,\ \forall \varphi \in D(0,T). \notag
+\end{align}
+
+Điều này dẫn đến $u$ thoả phương trình biến phân
+\begin{align} \label{386}
+    &\left<u''(t),w\right> + \sigma \left<u'_{x}(t), w_x\right> + \left(1 + \|u_x(t)\|^2\right) \left<u_{x}(t), w_x\right> \\
+    &\quad + \lambda \left<u'(t), w\right> = \left<-Ku^3(t) + f(t), w\right>,\ \forall w \in H^1_0. \notag
+\end{align}
+
+Cùng với lý luận ở phần trên, ta có thể nghiệm lại hàm $u$ thoả các điều kiện đầu
+\begin{align}
+    u(0) = \tilde{u}_0,\: u'(0) = \tilde{u}_1.
+\end{align}.
+
+Mặt khác, ta suy ra từ $\eqref{378}_4$, \eqref{386} rằng
+\begin{align}
+    u'' = \sigma u'_{xx} + \left(1 + \|u_x(t)\|^2\right) u_{xx} - \lambda u' - Ku^3 + f \in L^\infty(0,T;L^2).
+\end{align}
+
+Vậy $u \in W_1(R,T)$ và chứng minh về sự tồn tại đã hoàn thành.
+
+\textit{(ii) Sự duy nhất nghiệm}
+
+Giả sử Bài toán \eqref{maineqn} có hai nghiệm yếu $u_1, u_2 \in W_1(R,T)$. Đặt $w = u_1 - u_2$ thì $w$ thoả mãn bài toán biến phân sau
+\begin{align}
+\begin{cases}
+    \left<w''(t),v\right> + \sigma \left<w'_x(t),v_x\right> + \left(1 + \|u_{1x}(t)\|^2\right)\left<w_x(t),v_x\right> + \lambda \left<w'(t),v\right> \\
+    \quad\quad\quad = -\left(\left\|u_{1x}(t)\right\|^2 - \left\|u_{2x}(t)\right\|^2\right) \left<u_{2x}(t), v_x\right> \\
+    \quad\quad\quad\quad - K\left<u_1^3(t) - u_2^3(t), v\right>, \forall v \in H^1_0, \text{a.e.}, t \in (0,T), \\
+    w(0) = w'(0) = 0.
+\end{cases}
+\end{align}
+
+Ta lấy $v = w'(t)$ và lấy tích phân theo biến thời gian $t$ ta được
+\begin{align}
+     X(t) &= 2 \int_0^t \left<u_{1x}(s), u'_{1x}(s)\right> \|w_x(s)\|^2 ds \\
+     &\quad -2 \int_0^t \left(\left\|u_{1x}(s)\right\|^2 - \left\|u_{2x}(s)\right\|^2\right) \left<u_{2x}(s), w'_x(s)\right> ds \notag \\
+     &\quad - 2K \int_0^t \left<u_1^3(s) - u_2^3(s), w'(s)\right> ds \notag \\
+     &= J_1 + J_2 + J_3, \notag
+\end{align}
+trong đó
+\begin{align} \label{390}
+    X(t) = \left\|w'(t)\right\|^2
+    + \left(1 + \left\|u_{1x}(t)\right\|^2\right) \|w_x(t)\|^2
+    &+ 2 \sigma \int_0^t \left\|w'_x(s)\right\|^2 ds \\
+    &+ 2 \lambda \int_0^t \left\|w'(s)\right\|^2 ds. \notag
+\end{align}
+
+Đánh giá tương tự, ta có
+\begin{align}
+    \left|\|u_{1x}(s)\|^2 - \|u_{2x}(s)\|^2\right| &\le 2R \|w_x(s)\| \le 2R \sqrt{X(s)}, \\
+    \left\|u_1^3(s) - u_2^3(s)\right\| &\le 3R^2 \|w(s)\| \le 3R^2 \sqrt{X(s)}. \notag
+\end{align}
+
+Từ đó ta đánh giá được các tích phân $J_1, J_2$ và $J_3$ như sau
+
+\textit{Đánh giá tích phân} $\displaystyle J_1 = 2 \int_0^t \left<u_{1x}(s), u'_{1x}(s)\right> \|w_x(s)\|^2 ds$.
+\begin{align} \label{393}
+    J_1 &= 2 \int_0^t \left<u_{1x}(s), u'_{1x}(s)\right> \|w_x(s)\|^2 ds \\
+    &\le 2 \int_0^t \left\|u_{1x}(s)\right\| \left\|u'_{1x}(s)\right\| \left\|w_x(s)\right\|^2 ds \notag \\
+    &\le 2R^2 \int_0^t X(s)\:ds. \notag
+\end{align}
+
+\textit{Đánh giá tích phân} $\displaystyle J_2 = -2 \int_0^t \left(\left\|u_{1x}(s)\right\|^2 - \left\|u_{2x}(s)\right\|^2\right) \left<u_{2x}(s), w'_x(s)\right> ds$.
+\begin{align*}
+    J_2 &= -2 \int_0^t \left(\left\|u_{1x}(s)\right\|^2 - \left\|u_{2x}(s)\right\|^2\right) \left<u_{2x}(s), w'_x(s)\right> ds \\
+    &\le 2 \int_0^t \left|\left\|u_{1x}(s)\right\|^2 - \left\|u_{2x}(s)\right\|^2\right| \left\|u_{2x}(s)\right\| \left\|w'_x(s)\right\| ds \\
+    &\le 4R^2 \int_0^t \sqrt{X(s)} \|w'_x(s)\| ds \\
+    &\le \frac{1}{2\sigma \gamma} 4R^4 \int_0^t X(s)\:ds + 2 \sigma \gamma \int_0^t \left\|w'_x(s)\right\|^2 ds.
+\end{align*}
+
+Chọn $\gamma = \dfrac{1}{2}$ ta được
+\begin{align}
+    J_2 &\le \frac{4}{\sigma} R^4\int_0^t X(s)\:ds + \sigma \int_0^t \left\|w'_x(s)\right\|^2 ds \\
+    &\le \frac{4}{\sigma} R^4\int_0^t X(s)\:ds + \frac{1}{2}X(t). \notag
+\end{align}
+
+\textit{Đánh giá tích phân} $\displaystyle J_3 = -2K \int_0^t \left<u_1^3(s) - u_2^3(s), w'(s)\right> ds$.
+\begin{align} \label{395}
+    J_3 &= -2K \int_0^t \left<u_1^3(s) - u_2^3(s), w'(s)\right> ds \\
+    &\le 2K \int_0^t \left\|u_1^3(s) - u_2^3(s)\right\| \left\|w'(s)\right\| ds \notag \\
+    &\le 6KR^2 \int_0^t \sqrt{X(s)}\left\|w'(s)\right\| ds \notag \\
+    &\le 6KR^2 \int_0^t X(s)\:ds. \notag
+\end{align}
+
+Từ \eqref{390}, \eqref{393}-\eqref{395} ta suy ra rằng
+\begin{align}
+    X(t) \le 4 \left(1 + \frac{2}{\sigma} R^2 + 3K\right) R^2 \int_0^t X(s)\:ds.
+\end{align}
+
+Áp dụng Bất đẳng thức Gronwall, ta suy ra $X(t) = 0$, nghĩa là $u_1 = u_2$.
+
+Phần chứng minh duy nhất nghiệm được hoàn thành. Định lý \ref{theorem33} đã được chứng minh. \qed
+\pagebreak
+
+\section[Sự tồn tại và duy nhất nghiệm yếu với dữ kiện giảm tính trơn]{SỰ TỒN TẠI VÀ DUY NHẤT NGHIỆM YẾU VỚI DỮ KIỆN CHO GIẢM TÍNH TRƠN}
+
+Xét bài toán
+\begin{align} \label{problem}
+\begin{cases}
+    \begin{aligned}
+    u_{tt} - \sigma u_{txx} - \left(1 + \|u_x(t)\|^2\right) u_{xx} &+ Ku^3 + \lambda u_t \\
+    &= f(x,t), 0 < x < 1, 0 < t < T,
+    \end{aligned} \\
+    u(0,t) = u(1,t) = 0, \\
+    u(x,0) = \tilde{u}_0(x),\: u_t(x,0) = \tilde{u}_1(x),
+\end{cases}
+\end{align}
+trong đó $K, \lambda, \sigma > 0$ là các hằng số thực và $f, \tilde{u}_0, \tilde{u}_1$ là các hàm cho trước.
+
+Chương 4 và chương 5 nghiên cứu tính tắt dần mũ của nghiệm yếu của bài toán \eqref{problem}, tức là tồn tại các hằng số dương $C, \gamma$ sao cho
+\begin{align}
+    \left\|u'(t)\right\|^2 + \left\|u_x(t)\right\|^2 \le C e^{-\gamma t}, \text{ với mọi } t \ge 0.
+\end{align}
+
+Ta thành lập các giả thiết sau
+\begin{enumerate}
+    \item[($H_1$)] $\tilde{u}_0 \in H^2 \cap H^1_0,\ \tilde{u}_1 \in H^1_0$,
+    \item[($H_2$)] $f \in C^1([0,T] \times \R)$ thoả điều kiện $f(0,t) = f(1,t) = 0, \forall t \ge 0$.
+\end{enumerate}
+
+Theo Định lý \ref{theorem33}, Bài toán \eqref{problem} có duy nhất một nghiệm yếu $u$ sao cho
+\begin{align} \label{43}
+    u \quad \in \quad \tilde{W}_T = \{ v \in L^\infty(0,T;H^2 \cap H^1_0 \colon v' \in L^\infty(0,T;H^2 \cap H^1_0), \\
+    v'' \in L^2(0,T;H^1_0) \cap L^\infty(0,T;L^2) \}, \notag
+\end{align}
+với $T > 0$ đủ bé. Ta cũng chú ý rằng, từ \eqref{43} ta có
+\begin{align}
+    u \quad &\in \quad C^0([0,T]; H^2 \cap H^1_0) \cap C^1([0,T];H^1_0), \\
+    u' \quad &\in \quad C^0([0,T]; H^1_0) \cap L^\infty(0,T; H^2 \cap H^1_0), \notag \\
+    u'' \quad &\in \quad L^2(0,T;H^1_0) \cap L^\infty(0,T; L^2). \notag
+\end{align}
+
+Để giảm tính trơn của các dữ kiện, ta thay thế các điều kiện ($H_1$)-($H_2$) của $(\tilde{u}_0, \tilde{u}_1)$ và $f$ thành các điều kiện yếu hơn như sau
+\begin{enumerate}
+    \item[($\tilde{H}_1$)] $(\tilde{u}_0, \tilde{u}_1) \in H^1_0 \times L^2$,
+    \item[($\tilde{H}_2$)] $f \in L^2(Q_T)$.
+\end{enumerate}
+
+Khi đó, ta có định lý sau đây
+
+\begin{theorem} \label{theorem41}
+    Cho $T > 0, K > 0, \lambda > 0$ và các giả thiết ($\tilde{H}_1$)-($\tilde{H}_2$) được thoả. Khi đó, bài toán \eqref{problem} có duy nhất một nghiệm yếu $u$ thoả
+    \begin{align}
+        u \in H_T = \{ v \in C^0([0,T];H^1_0) \cap C^1([0,T];L^2) \colon v' \in L^2(0,T;H^1_0) \}.
+    \end{align}
+\end{theorem}
+
+\textit{Chứng minh Định lý \ref{theorem41}.}
+Cho $(\tilde{u}_0, \tilde{u}_1, f) \in H^1_0 \times L^2 \times L^2(Q_T)$. Do tính trù mật, tồn tại dãy $\{(\tilde{u}_{0m}, \tilde{u}_{1m}, f_m)\} \subset C_c^\infty(\Omega) \times C_c^\infty(\Omega) \times C_c^\infty(Q_T)$ sao cho
+\begin{align} \label{46}
+\begin{cases}
+    \tilde{u}_{0m} \to \tilde{u}_0 &\text{ mạnh trong } H^1_0, \\
+    \tilde{u}_{1m} \to \tilde{u}_1 &\text{ mạnh trong } L^2, \\
+    f_m \to f &\text{ mạnh trong } L^2(Q_T).
+\end{cases}
+\end{align}
+
+Khi đó, với mỗi $m \in \N$, tồn tại duy nhất một hàm $u_m$ thoả điều kiện của Định lý \ref{theorem31}, tức là thoả phương trình biến phân
+\begin{align} \label{47}
+\begin{cases}
+    \left<u''_m(t),v\right>
+    + \sigma \left<u'_{mx}(t),v_x\right>
+    + \left(1 + \|u_{mx}(t)\|^2\right)\left<u_{mx}(t),v_x\right>
+    + \lambda \left<u'_m(t),v\right> \\
+    \quad \quad \quad \quad + K\left<u^3_m(t),v\right> = \left<f_m(t),v\right>, \forall v \in H^1_0, \text{a.e.}, t \in (0,T_m), \\
+    u_m(0) = \tilde{u}_{0m},\: u'_m(0) = \tilde{u}_{1m},
+\end{cases}
+\end{align}
+và
+\begin{align} \label{48}
+\begin{cases}
+    u \in C^0([0,T_m]; H^2 \cap H^1_0) \cap C^1([0,T_m];H^1_0), \\
+    u' \in C^0([0,T_m]; H^1_0) \cap L^\infty(0,T_m; H^2 \cap H^1_0),\\
+    u'' \in L^2(0,T_m;H^1_0) \cap L^\infty(0,T_m; L^2).
+\end{cases}
+\end{align}
+
+\textit{Đánh giá tiên nghiệm.}
+
+Lấy $v = u'_m(t)$ trong \eqref{47} ta được
+\begin{align}
+    S_m(t) = S_m(0) + 2 \int_0^t \left<f_m(s), u'_m(s)\right> ds,
+\end{align}
+trong đó
+\begin{align}
+    S_m(t) &= \left\|u'_m(t)\right\|^2 + 2 \int_0^{\|u_{mx}(t)\|^2} (1+z)\:dz + \frac{K}{2} \|u_m(t)\|^4_{L^4} \\
+    &\quad + 2 \sigma \int_0^t \left\|u'_{mx}(s)\right\|^2 ds + 2 \lambda \int_0^t \left\|u'_m(s)\right\|^2 ds. \notag
+\end{align}
+
+Mặt khác ta có
+\begin{align}
+    2 \int_0^t \left<f_m(s), u'_m(s)\right> ds
+    &\le 2 \int_0^t \|f_m(s)\| \|u'_m(s)\| ds \\
+    &\le \int_0^t \|f_m(s)\|^2 ds + \int_0^t \|u'_m(s)\|^2 \notag \\
+    &\le \|f_m\|^2_{L^2(Q_T)} + \int_0^t S_m(s)\:ds. \notag 
+\end{align}
+
+Do đó
+\begin{align}
+    S_m(t) \le S_m(0) + \|f_m\|^2_{L^2(Q_T)} + \int_0^t S_m(s)\:ds.
+\end{align}
+
+Do \eqref{46}, tồn tại hằng số $\overline{C}_0 > 0$, độc lập với $m$ sao cho
+\begin{align}
+    S_m(0) + \|f_m\|^2_{L^2(Q_T)} &= \|\tilde{u}_{1m}\|^2 + \|\tilde{u}_{0mx}\|^2 + \frac{1}{2}\|\tilde{u}_{0mx}\|^4 + \frac{K}{2} \|\tilde{u}_{0m}\|^4_{L^4} + \|f_m\|^2_{L^2(Q_T)} \notag \\
+    &\le \overline{C}_0,\ \forall m \in \N. 
+\end{align}
+
+Sử dụng Bất đẳng thức Gronwall ta có
+\begin{align} \label{414}
+    S_m(t) \le \left(S_m(0) + \|f_m\|^2_{L^2(Q_T)}\right) e^t \le \overline{C}_0 e^T = C_T, \forall t \in [0,T_m],\ \forall m \in \N.
+\end{align}
+
+Đánh giá này cho phép ta lấy $T_m = T, \forall m \in \N$.
+
+Tiếp theo ta chứng minh dãy $\{u_m\}$ là dãy Cauchy trong $H_T$.
+
+Trước hết, ta đặt
+\begin{align}
+\begin{cases}
+    w_{m,l} = u_m - u_l, \\
+    f_{m,l} = f_m - f_l.
+\end{cases}
+\end{align}
+
+Từ \eqref{47}, ta suy ra rằng
+\begin{align} \label{416}
+\begin{cases}
+    \left< w''_{m,l}, v \right>
+    + \sigma \left< \nabla w'_{m,l}(t), v_x \right> + \left(1 + \|u_{mx}(t)\|^2\right) \left< \nabla w_{m,l}(t), v_x \right>\\
+    \quad\quad\quad + \left(\|u_{mx}(t)\|^2 - \|u_{lx}(t)\|^2\right) \left<u_{lx},v_x\right>
+    + \lambda \left<w'_{m,l}, v \right> \\
+    \quad\quad\quad + K \left< u_m^3(t) - u_l^3(t), v \right>
+    = \left< f_{m,l}(t), v \right>,\ \forall v \in H^1_0, \text{a.e.}, t \in (0,T), \\
+    w_{m,l}(0) = \tilde{u}_{0m} - \tilde{u}_{0l}, \: w'_{m,l} = \tilde{u}_{1m} - \tilde{u}_{1l}.
+\end{cases}
+\end{align}
+
+Lấy $v = w'_{m,l} = u'_m - u'_l$ trong \eqref{416}
+\begin{align}
+    S'_{m,l}(t) &= 2 \left<f_{m,l}(t), w'_{m,l}(t)\right> - 2 \|u_{mx}(t)\|^2 \left<\nabla w_{m,l}(t), \nabla w'_{m,l}(t)\right> \\
+    &\quad - 2 \left(\|u_{mx}(t)\|^2 - \|u_{lx}(t)\|^2\right) \left< u_{lx}(t), \nabla w'_{m,l}(t)\right> \notag \\
+    &\quad - 2K \left< u^3_m(t) - u^3_l(t), w'_{m,l}(t)\right>, \notag
+\end{align}
+trong đó
+\begin{align}
+    S_{m,l}(t)
+    &= \left\|w'_{m,l}(t)\right\|^2
+    + \left\|\nabla w_{m,l}(t)\right\|^2
+    + 2\sigma \int_0^t \left\|\nabla w'_{m,l}(s)\right\|^2 ds \\
+    &\quad + 2\lambda \int_0^t \left\|w'_{m,l}(s)\right\|^2 ds. \notag
+\end{align}
+
+Tích phân theo biến $t$, ta được
+\begin{align} \label{419}
+    S_{m,l}(t)
+    &= S_{m,l}(0)
+    + 2 \int_0^t \left<f_{m,l}(s), w'_{m,l}(s)\right> ds \\
+    &\quad - 2 \int_0^t \|u_{mx}(s)\|^2 \left<\nabla w_{m,l}(s), \nabla w'_{m,l}(s)\right> ds \notag \\
+    &\quad - 2 \int_0^t \left(\|u_{mx}(s)\|^2 - \|u_{lx}(s)\|^2\right) \left< u_{lx}(s), \nabla w'_{m,l}(s)\right> ds \notag \\
+    &\quad - 2K \int_0^t \left< u^3_m(s) - u^3_l(s), w'_{m,l}(s)\right> ds \notag \\
+    &\equiv S_{m,l}(0) + J_1 + J_2 + J_3 + J_4, \notag 
+\end{align}
+trong đó
+\begin{align}
+    S_{m,l}(0) = \left\|w'_{m,l}(0)\right\|^2 + \left\|\nabla w_{m,l}(0)\right\|^2
+    = \left\|\tilde{u}_{1m} - \tilde{u}_{1l}\right\|^2 + \left\|\tilde{u}_{0mx} - \tilde{u}_{0lx}\right\|^2.
+\end{align}
+
+Ta lần lượt đánh giá các tích phân $J_1-J_4$ trong vế phải của \eqref{419}.
+
+\textit{Đánh giá tích phân} $\displaystyle J_1 = 2 \int_0^t \left<f_{m,l}(s), w'_{m,l}(s)\right> ds$.
+\begin{align} \label{421}
+    J_1 &= 2 \int_0^t \left<f_{m,l}(s), w'_{m,l}(s)\right> ds \\
+    &\le 2 \int_0^t \left\|f_{m,l}(s)\right\| \left\|w'_{m,l}(s)\right\| ds \notag \\
+    &\le \int_0^t \left\|f_{m,l}(s)\right\|^2 + \int_0^t \left\|w'_{m,l}(s)\right\|^2 ds \notag \\
+    &\le \|f_{m,l}\|^2_{L^2(Q_T)} + \int_0^t S_{m,l}(s)\:ds. \notag 
+\end{align}
+
+\textit{Đánh giá tích phân} $\displaystyle J_2 = - 2 \int_0^t \|u_{mx}(s)\|^2 \left<\nabla w_{m,l}(s), \nabla w'_{m,l}(s)\right> ds$.
+
+Ta có
+\begin{align*}
+    \|u_{mx}(t)\|^2 \quad &\le \quad \int_0^{\|u_{mx}(t)\|^2} (1+z)\:dz \le S_m(t) \le \overline{C}_T, \forall t \in [0,T_m],\ \forall m \in \N, \\
+    S_{m,l}(t) \quad &\ge \quad \|\nabla u_{m,l}(t)\|^2 + 2\sigma \int_0^t \left\|\nabla w'_{m,l}(s)\right\|^2 ds.
+\end{align*}
+
+Khi đó
+\begin{align*}
+    J_2 &= - 2 \int_0^t \|u_{mx}(s)\|^2 \left<\nabla w_{m,l}(s), \nabla w'_{m,l}(s)\right> ds \\
+    &\le 2C_T \int_0^t \left\|\nabla w_{m,l}(s)\right\| \left\|\nabla w'_{m,l}(s)\right\| ds \\
+    &\le 2C_T \int_0^t \sqrt{S_{m,l}(s)} \left\|\nabla w'_{m,l}(s)\right\| ds \\
+    &\le \frac{1}{2\sigma\gamma}C_T^2 \int_0^t S_{m,l}(s)\:ds + 2\sigma\gamma \int_0^t \left\|\nabla w'_{m,l}(s)\right\|^2 ds \\
+    &\le \frac{1}{2\sigma\gamma}C_T^2 \int_0^t S_{m,l}(s)\:ds + \gamma S_{m,l}(t).
+\end{align*}
+
+\textit{Đánh giá tích phân} $\displaystyle J_3 = - 2 \int_0^t \left(\|u_{mx}(s)\|^2 - \|u_{lx}(s)\|^2\right) \left< u_{lx}(s), \nabla w'_{m,l}(s)\right> ds$.
+
+Ta có
+\begin{align*}
+    \left|\|u_{mx}(s)\|^2 - \|u_{lx}(s)\|^2\right|
+    &= \left(\|u_{mx}(s)\| + \|u_{lx}(s)\|\right)\big|\|u_{mx}(s)\| - \|u_{lx}(s)\|\big| \\
+    &\le 2\sqrt{C_T} \|\nabla w_{m,l}(s)\| \le 2\sqrt{C_T} \sqrt{S_{m,l}(s)}.
+\end{align*}
+
+Khi đó
+\begin{align*}
+    J_3 &= - 2 \int_0^t \left(\|u_{mx}(s)\|^2 - \|u_{lx}(s)\|^2\right) \left< u_{lx}(s), \nabla w'_{m,l}(s)\right> ds \\
+    &\le 2 \int_0^t \left|\|u_{mx}(s)\|^2 - \|u_{lx}(s)\|^2\right| \|u_{lx}(s)\| \|\nabla w'_{m,l}(s)\| ds \\
+    &\le 4C_T \int_0^t \sqrt{S_{m,l}(s)} \|\nabla w'_{m,l}(s)\| ds \\
+    &\le \frac{1}{2\sigma\gamma}4C_T^2 \int_0^t S_{m,l}(s)\:ds + 2\sigma\gamma \int_0^t \|\nabla w'_{m,l}(s)\|^2 ds \\
+    &\le \frac{1}{2\sigma\gamma}4C_T^2 \int_0^t S_{m,l}(s)\:ds + \gamma S_{m,l}(t).
+\end{align*}
+
+\textit{Đánh giá tích phân} $\displaystyle J_4 = - 2K \int_0^t \left< u^3_m(s) - u^3_l(s), w'_{m,l}(s)\right> ds$.
+
+Do
+\begin{align*}
+    u_m^2(x,t) \quad &\le \quad \|u_{mx}(t)\|^2 \le S_m(t) \le C_T, \forall t \in [0,T_m],\ \forall m \in \N, \\
+    S_{m,l}(t) \quad &\ge \quad \left\|w'_{m,l}(t)\right\|^2 + \left\|\nabla w_{m,l}(t)\right\|^2 \ge 2 \left\|w'_{m,l}(t)\right\| \left\|\nabla w_{m,l}(t)\right\|,
+\end{align*}
+và sử dụng bất đẳng thức
+\begin{align} \label{422}
+    |x^3 - y^3| \le 3M^2 |x-y|,\ \forall x, y \in [-M,M],\ \forall M > 0,
+\end{align}
+với $M = \sqrt{C_T}$, ta có
+\begin{align*}
+    \left|u_m^3(x,t) - u_m^3(x,t)\right|
+    &\le 3C_T |u_m(x,t) - u_l(x,t)| \\
+    &= 3C_T |w_{m,l}(x,t)| \le 3C_T \|\nabla w_{m,l}(t)\|. \notag
+\end{align*}
+
+Như vậy
+\begin{align} \label{423}
+    J_4 &= - 2K \int_0^t \left< u^3_m(s) - u^3_l(s), w'_{m,l}(s)\right> ds \\
+    &\le 2K \int_0^t \left\|u^3_m(s) - u^3_l(s)\right\| \left\|w'_{m,l}(s)\right\| ds \notag \\
+    &\le 6KC_T \int_0^t \left\|\nabla w_{m,l}(s)\right\| \left\|w'_{m,l}(s)\right\| ds \notag \\
+    &\le 3KC_T \int_0^t S_{m,l}(s)\:ds. \notag
+\end{align}
+
+Chọn $\gamma = \dfrac{1}{4}$, từ các bất đẳng thức \eqref{421}, \eqref{423}, ta suy ra từ \eqref{419} rằng
+\begin{align} \label{424}
+    S_{m,l}(t) \le R_T(m,l) + \overline{R}_T \int_0^t S_{m,l}(s)\:ds,
+\end{align}
+trong đó
+\begin{align}
+    R_T(m,l) \quad &= \quad 2S_{m,l}(0) + 2 \|f_{m,l}\|^2_{L^2(Q_T)}, \\
+    \overline{R}_T \quad &= \quad 2 \left(1 + \frac{10}{\sigma} C_T^2 + 3KC_T\right). \notag
+\end{align}
+
+Do \eqref{46} ta có
+\begin{align} \label{426}
+    R_T(m,l) &= S_{m,l}(0) + 2\|f_{m,l}\|^2_{L^2(Q_T)} \\
+    &= 2 \|\tilde{u}_{1m} - \tilde{u}_{1l}\|^2 + 2 \| \tilde{u}_{0mx} - \tilde{u}_{0lx} \|^2 \notag \\
+    &\quad + 2 \|f_m - f_l\|^2_{L^2(Q_T)} \to 0, \text{ khi } m,l \to +\infty. \notag
+\end{align}
+
+Dùng Bổ đề Gronwall, từ \eqref{424} ta suy ra
+\begin{align} \label{427}
+    S_{m,l}(t) \le R_T(m,l) \exp (T\overline{R}_T), \ \forall t \in [0,T].
+\end{align}
+
+Do \eqref{426}, \eqref{427}, ta suy ra rằng
+\begin{align} \label{428}
+    \|u_m - u_l\|_{H_T} &= \sup_{0 \le t \le T} \|u_{mx}(t) - u_{lx}(t)\| + \sup_{0 \le t \le T} \|u'_m(t) - u'_l(t)\| + \|u'_m - u'_l\|_{L^2(0,T;H^1_0)} \notag \\
+    &\le \left(2 + \frac{1}{\sqrt{2\lambda}}\right) \sqrt{R_T(m,l) \exp(T\overline{R}_T}) \to 0, \text{ khi } m,l \to +\infty.
+\end{align}
+
+Khi đó dãy $\{u_m\}$ là dãy Cauchy trong $H_T$, do đó tồn tại $u \in H_T$ sao cho
+\begin{align} \label{429}
+    u_m \to u \text{ mạnh trong } H_T.
+\end{align}
+
+Mặt khác, từ \eqref{46}, ta suy ra rằng tồn tại một dãy con của $\{u_m\}$, mà vẫn ký hiệu là $\{u_m\}$ sao cho
+\begin{align} \label{430}
+\begin{cases}
+    u_m \to u \text{ yếu* trong } &L^\infty(0,T;H^1_0), \\
+    u'_m \to u' \text{ yếu* trong } &L^\infty(0,T;L^2), \\
+    u'_m \to u' \text{ yếu trong } &L^2(0,T;H^1_0).
+\end{cases}
+\end{align}
+
+Do \eqref{414}, \eqref{428} và dùng bất đẳng thức \eqref{422} với $M = \sqrt{C_T}$, ta có
+\begin{align} \label{431}
+    \|u^3_m - u^3\| &\le 3C_T \|u_m - u\|_{L^2(Q_T)} \\
+    &\le 3C_T\sqrt{T} \sup_{0 \le t \le T} \|u_{mx}(t) - u_x(t)\| \to 0, \notag \\
+    \left|\|u_{mx}(t)\|^2 - \|u_x(t)\|^2\right| &\le 2\sqrt{C_T} \|u_{mx}(t) - u_x(t)\| \notag \\
+    &\le 2\sqrt{C_T} \sup_{0 \le t \le T} \|u_{mx}(t) - u_x(t) \| \to 0. \notag
+\end{align}
+
+Qua giới hạn trong \eqref{47} nhờ vào \eqref{429}, \eqref{430}, \eqref{431}, ta có $u$ thoả bài toán
+\begin{align} \label{432}
+\begin{cases}
+    \dfrac{d}{dt}\left<u'(t),v\right> + \sigma\left<u'_x(t),v_x\right>
+    + \left(1 + \|u_x(t)\|^2\right)\left<u_x(t),v_x\right> + \lambda \left<u'(t),v\right>, \\
+    \quad \quad \quad \quad \quad + K\left<u^3(t),v\right> = \left<f(t),v\right>,\ \forall v \in H^1_0, \text{a.e.}, t \in (0,T), \\
+    u(0) = \tilde{u}_0,\: u'(0) = \tilde{u}_1.
+\end{cases}
+\end{align}
+
+Thật vậy, ta kiểm tra lại \eqref{432} như sau.
+
+Nhân phương trình $\eqref{47}_1$ với $\varphi \in D(0,T)$, sau đó lấy tích phân theo biến $t$ trên $0 \le t \le T$, ta được
+\begin{align} \label{433}
+    &-\int_0^T \left<u'_m(t),v\right> \varphi'(t)\:dt
+    + \sigma \int_0^T \left<u'_{mx}(t),v_x\right> \varphi(t)\:dt \\
+    &\quad+ \int_0^T \left(1 + \|u_{mx}(t)\|^2\right)\left<u_{mx}(t),v_x\right> \varphi(t)\:dt
+    + \lambda \int_0^T \left<u'_m(t),v\right> \varphi(t)\:dt \notag \\
+    &\quad+ \int_0^T K\left<u^3_m(t),v\right> \varphi(t)\:dt = \int_0^T \left<f_m(t),v\right> \varphi(t)\:dt,\ \forall v \in H^1_0. \notag
+\end{align}
+
+Từ \eqref{429}, \eqref{430}, \eqref{431}, ta lần lượt thu được
+\begin{align} \label{434}
+    -\int_0^T \left<u'_m(t),v\right> \varphi'(t)\:dt
+    &\to -\int_0^T \left<u'(t),v\right> \varphi'(t)\:dt \\
+    &\quad\quad= \int_0^T \left[\frac{d}{dt}\left<u'(t),v\right>\right] \varphi(t)\:dt, \notag \\
+    \sigma \int_0^T \left<u'_{mx}(t),v_x\right> \varphi(t)\:dt
+    &\to \sigma \int_0^T \left<u'_{x}(t),v_x\right> \varphi(t)\:dt, \notag \\
+    \int_0^T \left(1 + \|u_{mx}(t)\|^2\right)\left<u_{mx}(t),v_x\right> \varphi(t)\:dt
+    &\to \int_0^T \left(1 + \|u_{x}(t)\|^2\right)\left<u_{x}(t),v_x\right> \varphi(t)\:dt, \notag \\
+    \lambda \int_0^T \left<u'_m(t),v\right> \varphi(t)\:dt
+    &\to \lambda \int_0^T \left<u'(t),v\right> \varphi(t)\:dt, \notag \\
+    K \int_0^T \left<u^3_m(t),v\right> \varphi(t)\:dt &\to K \int_0^T \left<u^3(t),v\right> \varphi(t)\:dt, \notag \\
+    \int_0^T \left<f_m(t),v\right> \varphi(t)\:dt &\to \int_0^T \left<f(t),v\right> \varphi(t)\:dt. \notag
+\end{align}
+
+Từ \eqref{433} và \eqref{434}, ta được
+\begin{align}
+    &\int_0^T \left[\frac{d}{dt}\left<u'(t),v\right>\right] \varphi(t)\:dt
+    + \sigma \int_0^T \left<u'_{x}(t),v_x\right> \varphi(t)\:dt \\
+    &+ \int_0^T \left(1 + \|u_{x}(t)\|^2\right)\left<u_{x}(t),v_x\right> \varphi(t)\:dt
+    + \lambda \int_0^T \left<u'(t),v\right> \varphi(t)\:dt \notag \\
+    &+ K\int_0^T \left<u^3(t),v\right> \varphi(t)\:dt
+    = \int_0^T \left<f(t),v\right> \varphi(t)\:dt,\ \forall v \in H^1_0,\ \forall \varphi \in D(0,T). \notag
+\end{align}
+
+Điều này dẫn đến $\eqref{431}_1$ là đúng.
+
+\medskip
+
+\textit{Nghiệm lại điều kiện đầu $\eqref{431}_2$.}
+
+(i) $u(0) = \tilde{u}_0$.
+
+Ta có
+\begin{align}
+    \|u(0) - \tilde{u}_0\| &\le \|u(0) - u_m(0)\| + \|u_m(0) - \tilde{u}_0\| \\
+    &\le \|u_x(0) - u_{mx}(0)\| + \|\tilde{u}_{0mx} - \tilde{u}_{0x}\| \notag \\
+    &\le \|u - u_m\|_{C^0([0,T];H^1_0)} + \|\tilde{u}_{0mx} - \tilde{u}_{0x}\| \to 0. \notag
+\end{align}
+
+Vậy
+\begin{align}
+     \|u(0) - \tilde{u}_0\| = 0 \text{ hay } u(0) = \tilde{u}_0.
+\end{align}
+
+(ii) $u'(0) = \tilde{u}_1$.
+
+Tương tự, ta cũng có
+\begin{align}
+    \|u'(0) - \tilde{u}_1\| &\le \|u'(0) - u'_m(0)\| + \|u'_m(0) - \tilde{u}_1\| \\
+    &\le \|u'(0) - u'_{m}(0)\| + \|\tilde{u}_{1m} - \tilde{u}_{1}\| \notag \\
+    &\le \|u' - u'_m\|_{C^0([0,T];L^2)} + \|\tilde{u}_{1m} - \tilde{u}_{1}\| \to 0. \notag
+\end{align}
+
+Vậy
+\begin{align}
+    u'(0) = \tilde{u}_1.
+\end{align}
+
+Cuối cùng, tính duy nhất nghiệm cũng được chứng minh tương tự.
+
+Định lý \ref{theorem41} được chứng minh hoàn tất. \qed
+\pagebreak
+
+\section[Tính tắt dần mũ của nghiệm yếu]{TÍNH TẮT DẦN MŨ CỦA NGHIỆM YẾU}
+
+Để khảo sát tính tắt dần của nghiệm, ta bổ sung thêm giả thiết về hàm $f$ như sau
+\begin{enumerate}
+    \item[($\tilde{H}_3$)] $f \in L^2(\R_+; L^2)$ sao cho tồn tại hai hằng số dương $C_*, \eta_*$ sao cho
+\end{enumerate}
+\begin{align*}
+    \|f(t)\| \le C_* e^{-\eta_* t}, \forall t \ge 0.
+\end{align*}
+
+Theo Định lý \ref{theorem41}, với các giả thiết ($\tilde{H}_1$)-($\tilde{H}_3$) và với $K > 0, \lambda > 0$ cho trước, với mọi $T > 0$, bài toán \eqref{problem} có duy nhất nghiệm yếu $u$ thoả
+\begin{align}
+    u \in H_T = \{ v \in C^0([0,T];H^1_0) \cap C^1([0,T];L^2) \colon v' \in L^2(0,T;H^1_0) \}.
+\end{align}
+
+Để khảo sát tính tắt dần, trước hết ta xét phiếm hàm Lyapunov sau
+\begin{align}
+    \mathcal{L}(t) = E(t) + \delta \Psi(t),
+\end{align}
+trong đó
+\begin{align} \label{53}
+\begin{cases}
+    E(t) &= \displaystyle\frac{1}{2} \left\|u'(t)\right\|^2 + \frac{1}{2} \int_0^{\left\|u_x(t)\right\|^2} (1+z)\:dz + \frac{K}{4}\left\|u(t)\right\|^4_{L^4} \\
+    &= \displaystyle \frac{1}{2} \left\|u'(t)\right\|^2 + \frac{1}{2} \left\|u_x(t)\right\|^2 + \frac{1}{4} \left\|u_x(t)\right\|^4 + \frac{K}{4}\left\|u(t)\right\|^4_{L^4}, \\
+    \Psi(t) &= \displaystyle\left<u(t), u'(t)\right> + \frac{\lambda}{2} \left\|u(t)\right\|^2 + \frac{\sigma}{2} \|u_x(t)\|^2.
+\end{cases}
+\end{align}
+
+Khi đó, ta đánh giá đạo hàm $E'(t)$ như sau
+
+\begin{lemma} \label{lemma51}
+    Với mọi $\varepsilon_1 > 0$, ta có
+    \begin{align} \label{54}
+        E'(t) \le -\left(\lambda - \frac{\varepsilon_1}{2}\right) \left\|u'(t)\right\|^2
+        - \sigma \left\|u'_x(t)\right\|^2 + \frac{1}{2\varepsilon_1}\|f(t)\|^2.
+    \end{align}
+\end{lemma}
+
+\textit{Chứng minh Bổ đề \ref{lemma51}.} Nhân $\eqref{problem}_1$ bởi $u'(x,t)$ với $u$ đủ trơn, sau đó tích phân trên $[0,1]$, ta có
+\begin{align} \label{55}
+    \frac{d}{dt}\left[ \frac{1}{2}\left\|u'(t)\right\|^2 + \frac{1}{2}\left\|u_x(t)\right\|^2 + \frac{1}{4}\left\|u_x(t)\right\|^4 + \frac{K}{4}\left\|u(t)\right\|^4_{L^4} \right] \\
+    = -\lambda \left\|u'(t)\right\|^2 - \sigma \left\|u'_x(t)\right\|^2 + \left<f(t),u'(t)\right>. \notag
+\end{align}
+
+Từ biểu thức của phiếm hàm $E(t)$ như $\eqref{53}_1$, ta viết lại và từ \eqref{55}, ta được công thức
+\begin{align} \label{56}
+    E'(t) = -\lambda \left\|u'(t)\right\|^2 - \sigma \left\|u'_x(t)\right\|^2 + \left<f(t),u'(t)\right>,
+\end{align}
+là đúng với mọi nghiệm trơn $u$. Ta có thể nới rộng cho \eqref{56} đúng với mọi nghiệm yếu $u$ thông qua lý luận trù mật.
+
+Nhờ vào đẳng thức sau
+\begin{align} \label{57}
+    \left<f(t),u'(t)\right> \le \frac{\varepsilon_1}{2} \left\|u'(t)\right\|^2 + \frac{1}{2\varepsilon_1} \|f(t)\|^2, \text{ với mọi } \varepsilon_1 > 0,
+\end{align}
+khi đó ta thu được \eqref{54} từ \eqref{56}, \eqref{57}. Bổ đề \ref{lemma51} được chứng minh. \qed
+
+Từ Bổ đề \ref{lemma51}, với $\varepsilon_1 = \lambda$, dẫn tới
+\begin{align*}
+    E(t) &\le E(0) + \frac{1}{2\lambda} \int_0^\infty \|f(t)\|^2 dt \\
+    &= E(0) + \frac{1}{2\lambda} \|f\|^2_{L^2(\R_+;L^2)} = C, \forall t \in [0,T], \forall T > 0.
+\end{align*}
+
+Điều này dẫn tới bài toán \eqref{problem} có nghiệm toàn cục xác định trên $\R_+$.
+
+Đánh giá phiếm hàm $\Psi'(t)$, ta có bổ đề sau
+
+\begin{lemma} \label{lemma52}
+    Với mọi $\varepsilon_2 > 0$, ta có
+    \begin{align}
+        \Psi(t) \le \left\|u'(t)\right\|^2 - \left(1 - \frac{\varepsilon_2}{2}\right)\left\|u_x(t)\right\|^2 - \left\|u_x(t)\right\|^4 - K \left\|u(t)\right\|^4_{L^4} + \frac{1}{2\varepsilon_2}\|f(t)\|^2.
+    \end{align}
+\end{lemma}
+
+\textit{Chứng minh Bổ đề \ref{lemma52}.} Nhân $\eqref{problem}_1$ bởi $u(x,t)$ với $u$ đủ trơn, sau đó tích phân trên $[0,1]$, ta có
+\begin{align}
+    &\frac{d}{dt} \left[ \left<u(t),u'(t)\right> + \frac{\lambda}{2}\|u(t)\|^2 + \frac{\sigma}{2} \|u_x(t)\|^2 \right] \\
+    &\quad= \|u'(t)\|^2 - \|u_x(t)\|^2 - \|u_x(t)\|^4 - K\|u(t)\|^4_{L^4} + \left<f(t),u(t)\right>. \notag
+\end{align}
+
+Từ biểu thức của phiếm hàm $\Psi(t)$ như $\eqref{53}_2$, ta được công thức
+\begin{align} \label{510}
+    \Psi'(t) = \|u'(t)\|^2 - \|u_x(t)\|^2 - \|u_x(t)\|^4 - K\|u(t)\|^4_{L^4} + \left<f(t),u(t)\right>,
+\end{align}
+là đúng với mọi nghiệm trơn $u$. Ta có thể nới rộng cho \eqref{510} đúng với mọi nghiệm yếu $u$ thông qua lý luận trù mật.
+
+Chú ý rằng
+\begin{align} \label{511}
+    \left<f(t),u(t)\right>
+    &\le \frac{\varepsilon_2}{2}\|u(t)\|^2 + \frac{1}{2\varepsilon_2}\|f(t)\|^2 \\
+    &\le \frac{\varepsilon_2}{2}\|u_x(t)\|^2 + \frac{1}{2\varepsilon_2}\|f(t)\|^2, \text{ với mọi } \varepsilon_2 > 0, \notag
+\end{align}
+ta suy ra từ \eqref{510} và \eqref{511} rằng
+\begin{align}
+    \Psi'(t) &= \|u'(t)\|^2 - \|u_x(t)\|^2 - \|u_x(t)\|^4 - K\|u(t)\|^4_{L^4} + \left<f(t),u(t)\right> \\
+    &\le \left\|u'(t)\right\|^2 - \left(1 - \frac{\varepsilon_2}{2}\right)\left\|u_x(t)\right\|^2 - \left\|u_x(t)\right\|^4 - K \left\|u(t)\right\|^4_{L^4} + \frac{1}{2\varepsilon_2}\|f(t)\|^2. \notag
+\end{align}
+
+Bổ đề \ref{lemma52} được chứng minh. \qed
+
+\textit{Đánh giá phiếm hàm $\mathcal{L}(t)$}.
+
+\begin{lemma} \label{lemme53}
+    Ta đặt
+    \begin{align}
+        E_1(t) = \|u'(t)\|^2 + \|u_x(t)\|^2 + \|u_x(t)\|^4 + \|u(t)\|^4_{L^4}.
+    \end{align}
+    Khi đó, với mọi $\delta \in (0,1)$, tồn tại các hằng số dương $\overline{\beta}_1, \overline{\beta}_2$ sao cho
+    \begin{align}
+        \overline{\beta}_1 E_1(t) \le \mathcal{L}(t) \le \overline{\beta}_2 E_1(t).
+    \end{align}
+\end{lemma}
+
+\textit{Chứng minh Bổ đề \ref{lemme53}.} Từ bất đẳng thức
+\begin{align}
+    \left|\left<u'(t),u(t)\right>\right|
+    &\le \|u'(t)\| \|u(t)\| \\
+    &\le \frac{1}{2} \|u'(t)\|^2 + \frac{1}{2} \|u(t)\|^2 \notag \\
+    &\le \frac{1}{2} \|u'(t)\|^2 + \frac{1}{2} \|u_x(t)\|^2, \notag
+\end{align}
+ta suy ra
+\begin{align}
+    \Psi(t) &= \left<u(t),u'(t)\right> + \frac{\lambda}{2} \|u(t)\|^2 + \frac{\sigma}{2} \|u_x(t)\|^2 \\
+    &\ge \left<u'(t),u(t)\right> \notag \\
+    &\ge - \frac{1}{2} \left( \|u'(t)\|^2 + \|u_x(t)\|^2\right). \notag
+\end{align}
+
+Do đó
+\begin{align}
+    \mathcal{L}(t) &= E(t) + \delta \Psi(t) \\
+    &\ge \frac{1}{2} \left\|u'(t)\right\|^2 + \frac{1}{2} \left\|u_x(t)\right\|^2 + \frac{1}{4} \left\|u_x(t)\right\|^4 + \frac{K}{4}\left\|u(t)\right\|^4_{L^4} \notag \\
+    &\quad - \frac{\delta}{2} \left( \|u'(t)\|^2 + \|u_x(t)\|^2\right) \notag \\
+    &= \frac{1-\delta}{2} \|u'(t)\|^2 + \frac{1-\delta}{2} \|u_x(t)\|^2 + \frac{1}{4} \|u_x(t)\|^4 + \frac{K}{4} \|u(t)\|^4_{L^4} \notag \\
+    &\ge \overline{\beta}_1 E_1(t), \notag
+\end{align}
+trong đó $\displaystyle \overline{\beta}_1 = \min \left\{\frac{1-\delta}{2}; \frac{1}{4}; \frac{K}{4}\right\}$, với $0 < \delta < 1$.
+
+Mặt khác
+\begin{align}
+    \Psi(t) &= \left<u(t),u'(t)\right> + \frac{\lambda}{2} \|u(t)\|^2 + \frac{\sigma}{2} \|u_x(t)\|^2 \\
+    &\le \frac{1}{2} \|u'(t)\|^2 + \frac{1}{2} \|u_x(t)\|^2 + \left(\frac{\lambda}{2} + \frac{\sigma}{2}\right) \|u_x(t)\|^2 \notag \\
+    &= \frac{1}{2} \|u'(t)\|^2 + \frac{1 + \lambda + \sigma}{2} \|u_x(t)\|^2, \notag
+\end{align}
+ta suy ra
+\begin{align}
+    \mathcal{L}(t) &= E(t) + \delta \Psi(t) \\
+    &\le \frac{1}{2} \left\|u'(t)\right\|^2 + \frac{1}{2} \left\|u_x(t)\right\|^2 + \frac{1}{4} \left\|u_x(t)\right\|^4 + \frac{K}{4}\left\|u(t)\right\|^4_{L^4} \notag \\
+    &\quad + \frac{\delta}{2}\|u'(t)\|^2 + \frac{\delta(1 + \lambda + \sigma)}{2} \|u_x(t)|^2 \notag \\
+    &= \frac{1+\delta}{2} \|u'(t)\|^2 + \frac{1+\delta(1+\lambda+\sigma)}{2}\|u_x(t)\|^2 + \frac{1}{4}\|u_x(t)\|^4 + \frac{K}{4}\|u(t)\|^4_{L^4} \notag \\
+    &\le \overline{\beta}_2 E_1(t), \notag
+\end{align}
+trong đó $\displaystyle \overline{\beta}_2 = \max \left\{\frac{1+\delta}{2}; \frac{1+\delta(1+\lambda+\sigma)}{2}; \frac{K}{4}\right\}$.
+
+Bổ đề \ref{lemme53} được chứng minh hoàn tất. \qed
+
+Bây giờ ta sẽ đánh giá nghiệm tắt dần
+\begin{theorem} \label{theorem54}
+    Cho trước $K > 0, \lambda > 0$. Với các giả thiết ($\tilde{H}_1$)-($\tilde{H}_3$), bài toán \eqref{problem} có duy nhất một nghiệm yếu $u \in C^0(\R_+;H^1_0) \cap C^1(\R_+;L^2)$ sao cho $u' \in L^2_{\text{loc}}(0,\infty;H^1_0)$ thoả có tính chất tắt dần mũ, nghĩa là, tồn tại hai hằng số dương $\overline{C}, \overline{\gamma}$ sao cho
+    \begin{align}
+        \|u'(t)\|^2 + \|u_x(t)\|^2 + \|u_x(t)\|^4 + \|u(t)\|^4_{L^4} \le \overline{C} e^{-\overline{\gamma}t}, \forall t \ge 0.
+    \end{align}
+\end{theorem}
+
+\textit{Chứng minh Định lý \ref{theorem54}.}
+
+Đặt $\displaystyle \rho(t) = \frac{1}{2}\left(\frac{1}{\varepsilon_1} + \frac{\delta}{\varepsilon_2}\right) \|f(t)\|^2$, từ các Bổ đề \ref{lemma51}, \ref{lemma52}, \ref{lemme53} ta suy ra
+\begin{align}
+    \mathcal{L}'(t) &= E'(t) + \delta \Psi'(t) \\
+    &\le -\left(\lambda - \frac{\varepsilon_1}{2}\right) \left\|u'(t)\right\|^2 - \sigma \left\|u'_x(t)\right\|^2 + \frac{1}{2\varepsilon_1}\|f(t)\|^2 \notag \\
+    &\quad + \delta \left(\left\|u'(t)\right\|^2 - \left(1 - \frac{\varepsilon_2}{2}\right)\left\|u_x(t)\right\|^2 - \left\|u_x(t)\right\|^4 - K \left\|u(t)\right\|^4_{L^4} + \frac{1}{2\varepsilon_2}\|f(t)\|^2\right) \notag \\
+    &\le -\left(\lambda - \frac{\varepsilon_1}{2} - \delta\right)\|u'(t)\|^2 - \delta\left(1 - \frac{\varepsilon_2}{2}\right)\|u_x(t)\|^2 \notag \\
+    &\quad - \delta \|u_x(t)\|^4 - \delta K \|u(t)\|^4_{L^4} + \rho(t), \notag
+\end{align}
+với mọi $\delta \in (0,1), \forall \varepsilon_1 > 0, \forall \varepsilon_2 > 0$.
+
+Chọn $\varepsilon_1 > 0, \varepsilon_2 > 0$ sao cho
+\begin{align}
+    0 < \frac{\varepsilon_1}{2} < \lambda, \quad \theta_1 = 1 - \frac{\varepsilon_2}{2} > 0.
+\end{align}
+
+Sau đó chọn $\delta$ sao cho
+\begin{align}
+    0 < \delta < 1, \quad
+    \theta_2 = \lambda - \frac{\varepsilon_1}{2} - \delta > 0.
+\end{align}
+
+Sau khi chọn $\varepsilon_1, \varepsilon_2, \delta$, do giả thiết của $f$ ta có
+\begin{align}
+    \rho(t) &= \frac{1}{2}\left(\frac{1}{\varepsilon_1} + \frac{\delta}{\varepsilon_2}\right) \|f(t)\|^2 \\
+    &\le \frac{1}{2}\left(\frac{1}{\varepsilon_1} + \frac{\delta}{\varepsilon_2}\right) C_*^2 e^{-2\eta_* t} \equiv \tilde{C}_1 e^{-2\eta_* t}, \forall t \ge 0. \notag
+\end{align}
+
+Đặt $\gamma_2 = \min\{\theta_2;\: \delta\theta_1;\: \delta;\: \delta K\} > 0$, chọn $\overline{\gamma} > 0$ và $\displaystyle \overline{\gamma} < \min \left\{2\eta_*; \frac{\gamma_2}{\overline{\beta}_2}\right\}$, ta có
+\begin{align}
+    \mathcal{L}'(t) &\le -\theta_2 \|u'(t)\|^2 - \delta\theta_1 \|u_x(t)\|^2 - \delta \|u_x(t)\|^4 - \delta K \|u(t)\|^4_{L^4} + \rho(t) \\
+    &\le -\gamma_2 E_1(t) + \tilde{C}_1 e^{-2\eta_* t} \notag \\
+    &\le -\frac{\gamma_2}{\overline{\beta}_2} \mathcal{L}(t) + \tilde{C}_1 e^{-2\eta_* t} \notag \\
+    &\le -\overline{\gamma} \mathcal{L}(t) + \tilde{C}_1 e^{-2\eta_* t}. \notag
+\end{align}
+
+Tích phân ta được
+\begin{align} \label{525}
+    \mathcal{L}(t) \le \left(\mathcal{L}(0) + \frac{\tilde{C}_1}{2\eta_* - \overline{\gamma}}\right) e^{-\overline{\gamma}t}, \forall t > 0.
+\end{align}
+
+Do đó, dùng Bổ đề \ref{lemme53}, kết hợp với \eqref{525} ta thu được
+\begin{align}
+    E_1(t) \le \frac{1}{\overline{\beta}_1} \mathcal{L}(t)
+    \le \frac{1}{\overline{\beta}_1} \left(\mathcal{L}(0) + \frac{\tilde{C}_1}{2\eta_* - \overline{\gamma}}\right) e^{-\overline{\gamma}t}
+    \equiv \overline{C} e^{-\overline{\gamma}t}, \forall t \ge 0.
+\end{align}
+
+Định lý \ref{theorem54} được chứng minh hoàn tất. \qed
+\pagebreak
+
+\section*{PHẦN KẾT LUẬN}
+
+Trong khoá luận, tác giả đã sử dụng phương pháp xấp xỉ Faedo-Galerkin cùng với các kỹ thuật đánh giá tiên nghiệm, kỹ thuật về tính hội tụ yếu để khảo sát phương trình sóng phi tuyến. Tác giả đã có dịp sử dụng định lý ánh xạ co trong việc chứng minh tồn tại nghiệm yếu với điều kiện biên Dirichlet thuần nhất. Hơn nữa, tác giả làm quen được kỹ thuật chứng minh sự tồn tại và duy nhất nghiệm yếu dựa vào xấp xỉ trù mật, cũng như tính tất dần mũ của nghiệm yếu.
+
+
+Thông qua khoá luận, tác giả có cơ hội để làm quen với công việc nghiên cứu khoa học một cách nghiêm túc và có hệ thống. Tác giả học tập được các phương pháp nghiên cứu trong việc đọc tài liệu, trình bày vấn đề, thảo luận thông qua nhóm sinh hoạt định kỳ. Tuy nhiên, với sự hạn chế về kiến thức và kinh nghiệm, tác giả mong học hỏi nhiều hơn từ sự hướng dẫn và góp ý của Quý Thầy, Cô và bạn bè.
+
+
+Tác giả xin chân thành cảm ơn.
+\newpage
+
+\renewcommand{\refname}{TÀI LIỆU THAM KHẢO}
+
+\begin{thebibliography}{1}
+\bibitem[1]{Bre} H. Brézis, \textit{Functional Analysis, Sobolev Spaces
+and Partial Differential Equations}, Springer New York Dordrecht Heidelberg
+London, 2010.
+
+\bibitem[2]{Lions} J.L. Lions, \textit{Quelques m\'{e}thodes de r\'{e}%
+solution des probl\`{e}mes aux limites nonlin\'{e}aires}, Dunod; Gauthier-
+Villars, Paris. 1969.
+
+\bibitem[3]{3} Nguyen Thanh Long, Le Thi Phuong Ngoc, \textit{On nonlinear
+boundary value problems for nonlinear wave equations}, Vietnam J. Math. 
+\textbf{37 }(2-3) (2009) 141-178\textbf{.}
+
+\bibitem[4]{4} Nguyen Thanh Long, Alain Pham Ngoc Dinh, Tran Ngoc Diem, 
+\textit{Linear recursive schemes and asymptotic expansion associated with
+the Kirchhoff-Carrier operator}, J. Math. Anal. Appl. \textbf{267} (1)
+(2002) 116-134.
+
+\bibitem[5]{5} Le Thi Phuong Ngoc, Nguyen Thanh Long,
+\textit{Existence and exponential decay for a nonlinear wave equation with 
+a nonlocal boundary condition}, Communications on Pure and Applied Analysis,
+\textbf{12} (5) (2013) 2001-2029.
+
+\bibitem[6]{6} Nguyen Anh Triet, Le Thi Phuong Ngoc, Nguyen Thanh Long, 
+\textit{A mixed Dirichlet-Robin problem for a nonlinear Kirchhoff-Carrier
+wave equation}, Nonlinear Anal. RWA. \textbf{13} (2) (2012) 817-839.
+\end{thebibliography}
+
+
+\end{document}
