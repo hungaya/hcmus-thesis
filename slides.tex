@@ -1,1488 +1,361 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[9pt]{beamer}
 \usepackage[utf8]{vietnam}
-\usepackage[left=2.5cm, right=3cm, top=2.00cm, bottom=2.00cm]{geometry}
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-%\fancyhead[R]{\textit {Đỗ Sỹ Hưng}}
-%\fancyhead[L]{Luận văn }
-\fancyfoot[L]{\nouppercase{\leftmark}}
-\fancyfoot[R]{\thepage}
-\rfoot{\thepage}
-
-
-
-\usepackage{chngcntr}
-\counterwithin{equation}{section} 
-\usepackage{tikz}
-\usetikzlibrary{snakes}
-\usepackage{rotating}
+%----------Packages----------
+\usepackage{enumitem}
 \usepackage{amsmath}
-\usepackage{mathtools}
-\usepackage{longfbox}
-\usepackage{chronology}
+\usepackage{amssymb}
+\usepackage{framed,color}
+\usepackage{esint}
+\usepackage{amsthm}
+%\usepackage{amsrefs}
+\usepackage{dsfont}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[all]{xy}
+\usepackage[mathscr]{eucal}
+\usepackage{verbatim}  %%includes comment environmenthttps://www.overleaf.com/7333733538cgxrxfpzqxhk
+\usepackage{hyperref}
+\usepackage[scr]{rsfso}
+\usepackage{tikz}
+\usepackage{tikz-cd}
 \usepackage{graphicx}
-\usepackage{amssymb} % $\mathbb{R}
-\usepackage{amsthm} % Unnumbered theorem
-\usepackage{graphicx} %insert picture
-\usepackage{tabu}
-\usepackage[define-L-C-R]{nicematrix}
-\usepackage{enumitem} %a, b, c [label=(\alph*)]; [label=(\Alph*)]; [label=(\roman*)] [label=(\arabic*)]
-\graphicspath{ {images/} } %insert picture
-% \renewcommand\refname{A}
-\def\N{\mathbb{N}}
-\def\Z{\mathbb{Z}}
-\def\Q{\mathbb{Q}}
-\def\R{\mathbb{R}}
-\NiceMatrixOptions{cell-space-top-limit=1pt,cell-space-bottom-limit=1pt}
-\newcommand{\Char}{{\mathrm char}}
-\newcommand{\im}{{\mathrm im}}
-\newcommand{\setheight}[2]{\smash{#1}\vphantom{#2}}
+
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+
+
+%---------math operators------
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\DeclareMathOperator\supp{supp}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\sets}{\mathbf{Sets}}
+\DeclareMathOperator{\topbf}{\mathbf{Top}}
+\DeclareMathOperator{\topbfast}{\mathbf{Top_\ast}}
+\DeclareMathOperator{\grp}{\mathbf{Groups}}
+\DeclareMathOperator{\obj}{obj}
+\DeclareMathOperator{\id}{Id}
 \DeclareMathOperator{\esssup}{esssup}
-\DeclareMathOperator{\supp}{supp}
-\newtheorem{theorem}{Bài toán}[section]
-\newtheorem{prop}[theorem]{}
-\newtheorem{proposition}[theorem]{Mệnh đề}
-\newtheorem{lemma}[theorem]{Bổ đề}
-\newtheorem{corollary}[theorem]{Corollary}
-% \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Định nghĩa}
-\newtheorem{remark}[theorem]{Nhận xét}
-\newtheorem{warning}[theorem]{Warning}
-\theoremstyle{definition}
-\newtheorem{rem}{Remark}[subsection]
-\newtheorem{example}{Example}[subsection]
-\newenvironment{solution}
-  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[ minh]}
-  {\end{proof}}
-\pagestyle{fancy}
+\DeclareMathOperator{\sgn}{sgn}
 
-% for the abstract
-% Abstracts have to be 12pt, indented 1.4 inches on each side, and inline with the label
-\renewenvironment{abstract}{%
-\noindent\begin{minipage}{1\textwidth}
-\setlength{\leftskip}{0.4in}
-\setlength{\rightskip}{0.4in}
-\textbf{Abstract.}}
-{\end{minipage}}
+\mode<presentation>
+{
+  \usetheme{Warsaw}      % or try Darmstadt, Madrid, Warsaw, ...
+  \usecolortheme{whale} % or try albatross, beaver, crane, ...
+  \usefonttheme{default}  % or try serif, structurebold, ...
+  \setbeamertemplate{navigation symbols}{}
+  \setbeamertemplate{caption}[numbered]
+}
 
-\lhead{\it Phụ lục khoá luận}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Mục lục}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
 
-\rhead{\it Ngành: Toán Giải tích}
+\title[Tính chất nghiệm của bài toán Dirichet cho phương trình Kirchhoff phi tuyến]{Tính chất nghiệm của bài toán Dirichet cho phương trình Kirchhoff phi tuyến chứa số hạng tắt dần mạnh}
+\author[Đỗ Sỹ Hưng]{\large Đỗ Sỹ Hưng \\[0.2cm] \normalsize \textbf{GVHD:} TS. Nguyễn Thành Long}
+\institute{Trường Đại học Khoa học Tự nhiên, ĐHQG TP.HCM}
+\date{Ngày 10 tháng 07 năm 2023}
 
 
-\renewcommand{\headrulewidth}{1,2pt}
-
-\renewcommand{\footrulewidth}{1,2pt} % Cái này là tiêu đề chạy
 \begin{document}
-\begin{titlepage}
 
-\thispagestyle{empty}
+\begin{frame}
+  \titlepage
+\end{frame}
 
-\begin{center}
-\vspace*{0.3cm}
-{\fontsize{14}{1}\selectfont  ĐẠI HỌC QUỐC GIA TP. HỒ CHÍ MINH}\\
-{\fontsize{14}{1}\selectfont\bf TRƯỜNG ĐẠI HỌC KHOA HỌC TỰ NHIÊN}\\
-\hfill
+%---------------------------------------------------
+%---------------------------------------------------
 
-\vspace*{3cm}
-
-{\fontsize{14}{1}\selectfont\bf ĐỖ SỸ HƯNG}
-
-\vspace*{3cm}
-
-{\fontsize{16}{1}\selectfont \bf { TÍNH CHẤT NGHIỆM CỦA BÀI TOÁN DIRICHLET CHO PHƯƠNG TRÌNH KIRCHHOFF PHI TUYẾN CHỨA SỐ HẠNG TẮT DẦN MẠNH }}
-
-\vspace*{4cm}
-
-{\fontsize{14}{1}\selectfont\bf PHỤ LỤC \\ KHOÁ LUẬN TỐT NGHIỆP ĐẠI HỌC}
-
-\vfill
-
-{\fontsize{12}{1}\selectfont Thành phố Hồ Chí Minh - 2023}
-\end{center}
-\vspace*{0.5cm}
+% \begin{frame}[plain]
+% 	\tableofcontents
+% \end{frame}
+% Uncomment these lines for an automatically generated outline.
+\begin{frame}{Mục lục}
+ \tableofcontents
+\end{frame}
 
 
-\end{titlepage}
+%---------------------------------------------------
+%---------------------------------------------------
+\section{Phần tổng quan}
 
-\newpage
-\thispagestyle{empty}
+\subsection{Phương trình Kirchoff phi tuyến}
 
+\begin{frame}
+    \begin{block}{Phương trình Kirchoff phi tuyến}
+    Ta xét bài toán sau
+    \begin{align}
+        \begin{aligned}
+        u_{tt} - \sigma u_{txx} - \left(1 + \textcolor{blue}{\|u_x(t)\|^2}\right) u_{xx} &+ Ku^3 + \lambda u_t  \\
+        &= f(x,t),\: 0 < x < 1,\: 0 < t < T,
+        \end{aligned}\label{maineqn}
+    \end{align}
+    với điều kiện Dirichet thuần nhất
+    \begin{align}
+        u(0,t) = u(1,t) = 0,
+    \end{align}
+    và điều kiện đầu
+    \begin{align}
+        u(x,0) = \tilde{u}_0(x);\ u_t(x,0) = \tilde{u}_1(x),
+    \end{align}
+    trong đó $K, \sigma, \lambda > 0$ là các hằng số thực cho trước, hàm $f, \tilde{u}_0, \tilde{u}_1$ là các hàm cho trước.
+    \end{block}
+\end{frame}
 
-\begin{center}
-\vspace*{0.3cm}
-{\fontsize{14}{1}\selectfont  ĐẠI HỌC QUỐC GIA TP. HỒ CHÍ MINH}\\
-{\fontsize{14}{1}\selectfont\bf TRƯỜNG ĐẠI HỌC KHOA HỌC TỰ NHIÊN}\\
-\vspace*{3cm}
+\subsection{Phương trình biến phân}
 
-{\fontsize{14}{1}\selectfont\bf ĐỖ SỸ HƯNG}
+\begin{frame}
+    \begin{block}{Phương trình biến phân}
+    Nhân hai vế của phương trình $\eqref{maineqn}_1$ với $v \in H^1_0$, ta được phương trình biến phân sau
+    \begin{align} \label{vareqn}
+        \left< u''(t), v \right>
+        + \sigma \left< u'_x(t), v_x \right>
+        &+ \left(1 + \|u_x(t)\|^2\right) \left< u_x(t), v_x \right> \\
+        &+ K \left< u^3(t), v \right> + \lambda \left< u'(t), v \right>
+        = \left< f(t), v \right>, \notag
+    \end{align}
+    hầu hết $t \in (0,T)$, với điều kiện đầu
+    \begin{align}
+        u(0) = \tilde{u}_0;\ u'(0) = \tilde{u}_1.
+    \end{align}
+    \end{block}
+\end{frame}
 
-\vspace*{3cm}
+\subsection{Các bài toán liên quan đến khoá luận}
 
-{\fontsize{16}{1}\selectfont \bf {TÍNH CHẤT NGHIỆM CỦA BÀI TOÁN DIRICHLET CHO PHƯƠNG TRÌNH KIRCHHOFF PHI TUYẾN CHỨA SỐ HẠNG TẮT DẦN MẠNH
-}}
-
-\vspace*{2cm}
-
-\end{center}
- 
-
-
-\begin{center}
-    {\fontsize{13}{1}\selectfont \qquad Ngành: \textbf{Toán Giải tích}} 
-\end{center}
- 
-
-
-\vspace*{2.5cm}
-
-\begin{center}
-    {\fontsize{13}{1}\selectfont \qquad Giáo viên hướng dẫn}
-
-    {\fontsize{13}{1}\selectfont \qquad \textbf{TS. Nguyễn Thành Long}}
-\end{center}
- 
-
-
-\vfill
-
-\begin{center}
-{\fontsize{12}{1}\selectfont  Thành phố Hồ Chí Minh - 2023}
-\end{center}
- 
-
-\vspace*{0.5cm}
-
-\newpage
-\tableofcontents
-\newpage
-
-\section{Chương tổng quan}
-\section{Kiến thức chuẩn bị}
-\section{Sự tồn tại và xấp xỉ của nghiệm yếu}
-
-\subsection{Giới thiệu}
-
-\begin{theorem}
-Bài toán
-\begin{align} \label{maineqn}
+\begin{frame}
+    \begin{block}{Bài toán 1}
+    Trong \cite{4}, các tác giả đã chứng minh được sự tồn tại duy nhất và khai triển tiệm cận của nghiệm của phương trình
+    \begin{align*}
     \begin{cases}
-        u_{tt} - \sigma u_{txx} - \left(1 + \|u_x(t)\|^2\right) u_{xx} + Ku^3 + \lambda u_t = f(x,t), 0 < x < 1, 0 < t < T \\
+        u_{tt} - \left(b_0 + B\left(\textcolor{blue}{\|u_x\|^2}\right)\right) u_{xx} = f(x,t,u,u_x,u_t),\ 0 < x < 1,\ 0 < t < T, \\
         u(0,t) = u(1,t) = 0, \\
         u(x,0) = \tilde{u}_0(x),\ u_t(x,0) = \tilde{u}_1(x).
     \end{cases}
-\end{align}
-có nghiệm yếu $u$ thoả bài toán biến phân sau
-\begin{align}
-    \left< u''(t), v \right> + \sigma \left< u'_x(t), v_x \right> + &\left(1 + \|u_x(t)\|^2\right) \left< u_x(t), v_x \right> \\
-    &+ K \left< u^3(t), v \right> + \lambda \left< u'(t), v \right> = \left< f(t), v \right>. \notag
-\end{align}
-\end{theorem}
-
-\textit{Chứng minh.}
-
-Ta biến đổi tích phân và sử dụng tích phân từng phần cho từng số hạng trong phương trình $\eqref{maineqn}_1$.
-
-Đối với số hạng thứ nhất của vế trái
-\begin{align*}
-    \left<u_{tt}(t), v\right> = \left<u''(t), v\right>.
-\end{align*}
-
-Số hạng thứ hai của vế trái
-\begin{align*}
-    -\sigma \left<u_{txx}(t), v\right>
-    &= -\sigma \left<u'_{xx}(t), v\right> \\
-    &= -\sigma \left(\left.u'_x(x,t) v(x)\right|_{x=0}^{x=1} - \left<u'_x(t),v_x\right> \right)
-    = \sigma \left<u'_x(t), v_x\right>.
-\end{align*}
-
-Số hạng thứ ba của vế trái
-\begin{align*}
-    -\left(1 + \|u_x(t)\|^2\right)\left<u_{xx}(t),v\right>
-    &= -\left(1 + \|u_x(t)\|^2\right)\left(\left.u_x(x,t)v(x)\right|_{x=0}^{x=1} - \left<u_x(t),v_x\right>\right) \\
-    &= \left(1 + \|u_x(t)\|^2\right) \left<u_x(t),v_x\right>.
-\end{align*}
-
-Các số hạng còn lại
-\begin{align*}
-    &K\left<u^3(t),v\right>, \\
-    &\lambda \left<u_t(t),v\right> = \lambda \left<u'(t),v\right>, \\
-    &\left<f(t),v\right>.
-\end{align*} \qed
-
-\subsection{Thuật giải xấp xỉ tuyến tính}
-\subsection{Sự tồn tại của dãy lặp}
-
-\begin{theorem}
-    Cơ sở Hilbert $\{w_j\}$ của $L^2$, $w_j = \sqrt{2} \sin(j\pi x), j = 1,2,\dots$ được thành lập từ toán tử Laplace $-\Delta = \frac{-\partial^2}{\partial x^2}$ sao cho
-    \begin{align*}
-        -\Delta w_j = \lambda_j w_j, \: w_j \in H^1_0 \cap C^\infty([0,1]), \: \lambda_j = (j\pi)^2, j=1,2,\dots
     \end{align*}
-    Hơn nữa, $\left\{\frac{w_j}{\sqrt{\lambda_j}}\right\}$ tạo thành cơ sở của $H^1_0$ với tích vô hướng $\left<u_x, v_x\right>$.
-\end{theorem}
+    trong đó $b_0 > 0$ là hằng số thực và $B, f, \tilde{u}_0, \tilde{u}_1$ là các hàm cho trước.
+    \end{block}
 
-\textit{Chứng minh.}
-
-Phương trình
-\begin{align*}
-    -\Delta u = \lambda u \Leftrightarrow u_{xx} + \lambda u = 0.
-\end{align*}
-
-Phương trình đặc trưng tương ứng
-\begin{align*}
-    k^2 + \lambda = 0 \Leftrightarrow k^2 = -\lambda.
-\end{align*}
-
-Nếu $\lambda \le 0$, ta được $k = \pm\sqrt{-\lambda}$. Khi đó
-\begin{align*}
-    u(x) = C_1 e^{\sqrt{-\lambda} x} + C_2 e^{-\sqrt{-\lambda} x}.
-\end{align*}
-
-Vì $u \in H^1_0$ nên $u(0) = u(1) = 0$, hay thoả hệ phương trình
-\begin{align*}
-\begin{cases}
-    C_1 + C_2 = 0 \\
-    C_1 e^{\sqrt{-\lambda}} + C_2 e^{-\sqrt{-\lambda}} = 0
-\end{cases}
-\end{align*}
-suy ra $C_1 = C_2 = 0$, do đó ta loại trường hợp $\lambda \le 0$.
-
-Nếu $\lambda > 0$, khi đó $k = \pm i\sqrt{\lambda}$ và
-\begin{align*}
-    u(x) = C_1 \cos(\sqrt{\lambda}x) + C_2 \sin(\sqrt{\lambda}x).
-\end{align*}
-
-Vì $u \in H^1_0$ nên $u(0) = u(1) = 0$, hay thoả hệ phương trình
-\begin{align*}
-\begin{cases}
-    C_1 = 0, \\
-    C_1 \cos(\sqrt{\lambda}) + C_2 \sin(\sqrt{\lambda}) = 0,
-\end{cases} \Leftrightarrow \begin{cases}
-    C_1 = 0, \\
-    C_2 \sin(\sqrt{\lambda}) = 0.
-\end{cases}
-\end{align*}
-
-Để $u \not\equiv 0$, ta cần $C_2 \ne 0$, khi đó $\sin(\sqrt{\lambda}) = 0$, dẫn đến
-\begin{align*}
-    \lambda = (j\pi)^2, \: j = 1,2,\dots
-\end{align*}
-
-Ta chọn dãy độc lập tuyến tính $\{w_j\}$ có công thức
-\begin{align*}
-    w_j(x) = C_j \sin(j\pi x), j=1,2,\dots
-\end{align*}
-
-Ta thấy
-\begin{align*}
-    \left<w_i, w_j\right> = C_i C_j \int_0^1 \sin(i\pi x). \sin(j\pi x)\:dx  = 0, \: \forall i \ne j.
-\end{align*}
-và
-\begin{align*}
-    \|w_j\|^2 = C_j^2 \int_0^1 \sin^2(j\pi x)\:dx
-    = \frac{C_j^2}{2} \int_0^1 \left(1 - \cos(2j \pi x)\right)\:dx \\
-    = \frac{C_j^2}{2} \left.\left(x - \frac{\sin(2j \pi x)}{2j \pi}\right)\right|_{x=0}^{x=1}
-    = \frac{C_j^2}{2}.
-\end{align*}
-
-Để $\|w_j\| = 1$, ta cần $C_j = \sqrt{2}$. Vậy
-\begin{align*}
-    w_j(x) &= \sqrt{2} \sin(j \pi x), \: j = 1,2,\dots, \\
-    \lambda_j &= (j\pi)^2.
-\end{align*}
-
-Đạo hàm $w_j$ và chia cho $\sqrt{\lambda_j} = j\pi$, ta được
-\begin{align*}
-    w_{jx}(x) &= \sqrt{2} j\pi \cos(j\pi x), j=1,2,\dots, \\
-    \frac{w_{jx}(x)}{\sqrt{\lambda_j}} &= \sqrt{2} \cos(j\pi x).
-\end{align*}
-
-Khi đó
-\begin{align*}
-    \left<\frac{w_{ix}}{\sqrt{\lambda_i}}, \frac{w_{jx}}{\sqrt{\lambda_j}}\right>
-    = 2 \int_0^1 \cos(i\pi x). \cos(j\pi x)\: dx = 0, \forall i \ne j,
-\end{align*}
-và
-\begin{align*}
-    \left\|\frac{w_{jx}}{\sqrt{\lambda_j}}\right\|^2
-    &= 2 \int_0^1 \cos^2 (j \pi x)\:dx
-    = \int_0^1 \left(1 + \cos(2j\pi x)\right)dx \\
-    &= \left.\left(x + \frac{\sin(2j\pi x)}{2j\pi}\right)\right|_{x=0}^{x=1}
-    = 1.
-\end{align*}
-
-Khi đó $\left\{\frac{w_{jx}}{\sqrt{\lambda_j}}\right\}$ là cơ sở Hilbert của $H^1_0$ với tích vô hướng $\left<u_x,v_x\right>$. \qed
-
-\begin{theorem}
-    Giải hệ phương trình
+    \begin{block}{Bài toán 2}
+    Trong \cite{6}, Triết đã thu được các kết quả tương tự cho bài toán giá trị biên và ban đầu cho phương trình phi tuyến
     \begin{align*}
     \begin{cases}
-        \ddot{c}_{mj}^{(k)}(t)
-        + (\sigma \lambda + \lambda_j) \dot{c}_{mj}^{(k)}(t)
-        + \lambda_j \mu_m(t) c_{mj}^{(k)}(t)
-        = \left<F_m(t), w_j\right>, j = 1,\dots,k, \\
-        c_{mj}^{(k)}(0) = \alpha_j^{(k)}, \: \dot{c}_{mj}^{(k)}(0) = \beta_j^{(k)}.
+        u_{tt} - \frac{\partial}{\partial x} \left(B\left(x,t,u, \|u\|^2, \textcolor{blue}{\|u_x\|^2}\right) u_x\right) = f(x,t,u,u_x,u_t), \ 0 < x < 1,\ 0 < t < T, \\
+        \textcolor{teal}{u_x(0,t) - h_0 u(0,t) = g_0(t),} \\
+        \textcolor{teal}{u(1,t) = g_1(t),} \\
+        u(x,0) = \tilde{u}_0(x),\ u_t(x,0) = \tilde{u}_1(x).
     \end{cases}
     \end{align*}
-\end{theorem}
+    trong đó $h_0 \ge 0$ là hằng số thực và $B, f, g_0, g_1, \tilde{u}_0, \tilde{u}_1$ là các hàm cho trước.
+    \end{block}
+\end{frame}
 
-\textit{Chứng minh.}
+\section{Sự tồn tại và duy nhất nghiệm yếu}
 
-Từ $u_m^{(k)}(0) = \tilde{u}_{0k}$, ta suy ra
-\begin{align*}
-    \sum_{j=0}^k c_{mj}^{(k)}(0) w_j = \sum_{j=1}^k \alpha_j^{(k)} w_j,
-\end{align*}
-dẫn đến $c_{mj}^{(k)}(0) = \alpha_j^{(k)}$. Tương tự, từ $\dot{u}_m^{(k)}(0) = \tilde{u}_{1k}$, ta suy ra
-\begin{align*}
-    \sum_{j=0}^k \dot{c}_{mj}^{(k)}(0) w_j = \sum_{j=1}^k \beta_j^{(k)} w_j,
-\end{align*}
-dẫn đến $\dot{c}_{mj}^{(k)}(0) = \beta_j^{(k)}$.
+\subsection{Giả thiết cho các hàm $\tilde{u}_0, \tilde{u}_1$ và $f$}
 
-Số hạng thứ nhất, với $\overline{\lambda}_j = \sigma \lambda + \lambda_j$,
-\begin{align*}
-    \int_0^t \ddot{c}_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds
-    &= \left.\dot{c}_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\right|_{s=0}^{s=t} - \overline{\lambda}_j \int_0^t \dot{c}_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds \\
-    &= \dot{c}_{mj}^{(k)}(t) e^{\overline{\lambda}_j t} - \dot{c}_{mj}^{(k)}(0) - \overline{\lambda}_j \int_0^t \dot{c}_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds \\
-    &= \dot{c}_{mj}^{(k)}(t) e^{\overline{\lambda}_j t} - \beta_j^{(k)} - \overline{\lambda}_j \int_0^t \dot{c}_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds \\
-    &= \dot{c}_{mj}^{(k)}(t) e^{\overline{\lambda}_j t} - \beta_j^{(k)} - \overline{\lambda}_j \left(\left.c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\right|_{s=0}^{s=t} - \overline{\lambda}_j \int_0^t c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds\right) \\
-    &= \dot{c}_{mj}^{(k)}(t) e^{\overline{\lambda}_j t} - \beta_j^{(k)} - \overline{\lambda}_j \left(c_{mj}^{(k)}(t) e^{\overline{\lambda}_j t} - c_{mj}^{(k)}(0)  - \overline{\lambda}_j \int_0^t c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds\right) \\
-    &= \dot{c}_{mj}^{(k)}(t) e^{\overline{\lambda}_j t} - \beta_j^{(k)} - \overline{\lambda}_j \left(c_{mj}^{(k)}(t) e^{\overline{\lambda}_j t} - \alpha_j^{(k)}  - \overline{\lambda}_j \int_0^t c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds\right) \\
-    &= \dot{c}_{mj}^{(k)}(t) e^{\overline{\lambda}_j t} - \beta_j^{(k)} - \overline{\lambda}_j c_{mj}^{(k)}(t) e^{\overline{\lambda}_j t} + \overline{\lambda}_j \alpha_j^{(k)}  + \overline{\lambda}^2_j \int_0^t c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds.
-\end{align*}
+\begin{frame}
+    \begin{block}{Giả thiết cho các hàm $\tilde{u}_0, \tilde{u}_1$ và $f$}
+    $(\text{H}_1)$ $\tilde{u}_0, \tilde{u}_1 \in H^2 \cap H^1_0$,
 
-Số hạng thứ hai
-\begin{align*}
-    \overline{\lambda}_j \int_0^t \dot{c}_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds
-    &= \overline{\lambda}_j \left(\left.c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\right|_{s=0}^{s=t} - \overline{\lambda}_j \int_0^t c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s} \:ds\right) \\
-    &= \overline{\lambda}_j \left(c_{mj}^{(k)}(t) e^{\overline{\lambda}_j t} - c_{mj}^{(k)}(0) - \overline{\lambda}_j \int_0^t c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s} \:ds\right) \\
-    &= \overline{\lambda}_j \left(c_{mj}^{(k)}(t) e^{\overline{\lambda}_j t} - \alpha_j^{(k)} - \overline{\lambda}_j \int_0^t c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s} \:ds\right) \\
-    &= \overline{\lambda}_j c_{mj}^{(k)}(t) e^{\overline{\lambda}_j t} - \overline{\lambda}_j \alpha_j^{(k)} - \overline{\lambda}^2_j \int_0^t c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s} \:ds.
-\end{align*}
-
-Các số hạng còn lại
-\begin{align*}
-    \lambda_j \int_0^t \mu_m(s) c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds, \\
-    \int_0^t \left<F_m(s),w_j\right>e^{\overline{\lambda}_j s}\:ds.
-\end{align*}
-
-Phương trình trở thành
-\begin{align*}
-    \dot{c}_{mj}^{(k)}(t) e^{\overline{\lambda}_j t} - \beta_j^{(k)}
-    + \lambda_j \int_0^t \mu_m(s) c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds
-    = \int_0^t \left<F_m(s),w_j\right>e^{\overline{\lambda}_j s}\:ds,
-\end{align*}
-tương đương
-\begin{align*}
-    \dot{c}_{mj}^{(k)}(t) e^{\overline{\lambda}_j t}
-    = \beta_j^{(k)}
-    - \lambda_j \int_0^t \mu_m(s) c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds
-    + \int_0^t \left<F_m(s),w_j\right>e^{\overline{\lambda}_j s}\:ds,
-\end{align*}
-tương đương
-\begin{align*}
-    \dot{c}_{mj}^{(k)}(t)
-    = \beta_j^{(k)} e^{-\overline{\lambda}_j t}
-    - \lambda_j e^{-\overline{\lambda}_j t} \int_0^t \mu_m(s) c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds
-    + e^{-\overline{\lambda}_j t} \int_0^t \left<F_m(s),w_j\right>e^{\overline{\lambda}_j s}\:ds.
-\end{align*}
-
-Lấy tích phân theo biến $t$, ta được
-\begin{align*}
-    c_{mj}^{(k)}(t) - c_{mj}^{(k)}(0)
-    = \beta_j^{(k)} \int_0^t e^{-\overline{\lambda}_j r} dr
-    - \lambda_j \int_0^t e^{-\overline{\lambda}_j r} dr \int_0^r \mu_m(s) c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds  \\
-    + \int_0^r e^{-\overline{\lambda}_j r} dr \int_0^r \left<F_m(s),w_j\right>e^{\overline{\lambda}_j s}\:ds,
-\end{align*}
-tương đương
-\begin{align*}
-    c_{mj}^{(k)}(t) - \alpha_j^{(k)}
-    = - \frac{\beta_j^{(k)}}{\overline{\lambda}_j} \left.e^{-\overline{\lambda}_j r}\right|_{r=0}^{r=t}
-    - \lambda_j \int_0^t e^{-\overline{\lambda}_j r} dr \int_0^r \mu_m(s) c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds  \\
-    + \int_0^r e^{-\overline{\lambda}_j r} dr \int_0^r \left<F_m(s),w_j\right>e^{\overline{\lambda}_j s}\:ds,
-\end{align*}
-tương đương
-\begin{align*}
-    c_{mj}^{(k)}(t) - \alpha_j^{(k)}
-    = - \frac{\beta_j^{(k)}}{\overline{\lambda}_j} \left(e^{-\overline{\lambda}_j t} - 1\right)
-    - \lambda_j \int_0^t e^{-\overline{\lambda}_j r} dr \int_0^r \mu_m(s) c_{mj}^{(k)}(s) e^{\overline{\lambda}_j s}\:ds  \\
-    + \int_0^r e^{-\overline{\lambda}_j r} dr \int_0^r \left<F_m(s),w_j\right>e^{\overline{\lambda}_j s}\:ds,
-\end{align*}
-tương đương
-\begin{align*}
-    c_{mj}^{(k)}(t) =
-    \alpha_j^{(k)} + \frac{\beta_j^{(k)}}{\overline{\lambda}_j} \left(1 - e^{-\overline{\lambda}_j t}\right)
-    - \lambda_j \int_0^t e^{-\overline{\lambda}_j r} dr \int_0^r e^{\overline{\lambda}_j s} \mu_m(s) c_{mj}^{(k)}(s)ds  \\
-    + \int_0^r e^{-\overline{\lambda}_j r} dr \int_0^r e^{\overline{\lambda}_j s} \left<F_m(s),w_j\right>ds.
-\end{align*} \qed
-
-\begin{theorem}
-    Chứng tỏ bất đẳng thức sau
+    $(\text{H}_2)$ $f \in C^1([0,1]\times[0,T^*])$ thoả mãn
     \begin{align*}
-        \int_0^t e^{-\overline{\lambda}_j r} dr \int_0^r e^{\overline{\lambda}_j s} f(s)\:ds
-        \le \int_0^t dr \int_0^r f(s)\:ds,
+        f(0,t) = f(1,t) = 0, \ \forall t \in [0,T^*].
     \end{align*}
-    với $f(s) \ge 0, \forall s \in (0,t)$.
-\end{theorem}
+    \end{block}
 
-\textit{Chứng minh.} 
+    \begin{exampleblock}{Tập hợp và không gian hàm $W_T, W(R,T)$ và $W_1(R,T)$}
+    Với $0 < T < T^*$ và $R > 0$, ta có không gian hàm $W_T$
+    \begin{align}
+        W_T = \{ v \in L^\infty (0,T;H^2 \cap H^1_0) \colon v' \in L^\infty (0,T; H^2 \cap H^1_0), v'' \in L^2(0,T; H^1_0) \},
+    \end{align}
+    với chuẩn
+    \begin{align}
+        \|v\|_{W_T} = \max \{ \|v\|_{L^\infty(0,T;H^2 \cap H^1_0)} ; \|v'\|_{L^\infty(0,T;H^2 \cap H^1_0)}; \|v''\|_{ L^2(0,T;H^1_0)} \}.
+    \end{align}
+    Ngoài ra, ta định nghĩa hai tập hợp của $W_T$ như sau
+    \begin{align}
+        W(R,T) &= \{ v \in W_T \colon \|v\|_{W_T} \le R \}, \\
+        W_1(R,T) &= \{ v \in W(R,T) \colon v'' \in L^\infty(0,T;L^2) \}. \notag
+    \end{align}
+    \end{exampleblock}
+\end{frame}
 
-Ta có
-\begin{align*}
-    \int_0^t e^{-\overline{\lambda}_j r} dr \int_0^r e^{\overline{\lambda}_j s} f(s)\:ds
-    &= \int_0^t dr \int_0^r e^{-\overline{\lambda}_j (r-s)} f(s)\:ds.
-\end{align*}
+\subsection{Sự tồn tại dãy trong $W_1(R,T)$}
 
-Vì $s \le r$ nên $e^{-\overline{\lambda}_j (r-s)} \le 1$, kéo theo
-\begin{align*}
-    \int_0^r e^{-\overline{\lambda}_j (r-s)} f(s)\:ds \le \int_0^r f(s)\:ds
-\end{align*}
-
-Khi đó
-\begin{align*}
-    \int_0^t e^{-\overline{\lambda}_j r} dr \int_0^r e^{\overline{\lambda}_j s} f(s)\:ds
-    \le \int_0^t dr \int_0^r f(s)\:ds.
-\end{align*} \qed
-
-\begin{theorem}
-    Chứng tỏ bất đẳng thức
-    \begin{align*}
-        \int_0^t dr \int_0^r e^{\gamma s} ds \le \frac{1}{\gamma^2} e^{\gamma t}.
-    \end{align*}
-\end{theorem}
-
-\textit{Chứng minh.}
-\begin{align*}
-    \int_0^t dr \int_0^r e^{\gamma s} ds
-    &= \frac{1}{\gamma} \int_0^t dr \left.e^{\gamma s}\right|_{s=0}^{s=r}
-    = \frac{1}{\gamma} \int_0^r \left(e^{\gamma r} - 1\right)dr \\
-    &\le \frac{1}{\gamma} \int_0^r e^{\gamma r} dr
-    = \frac{1}{\gamma^2} \left.e^{\gamma r}\right|_{r=0}^{r=t}
-    = \frac{1}{\gamma^2} \left(e^{\gamma t} - 1\right) \\
-    &\le \frac{1}{\gamma^2} e^{\gamma t}.
-\end{align*} \qed
-
-\begin{theorem}
-    Hai chuẩn $\|.\|_X$ và $\|.\|_{\gamma,X}$ là hai chuẩn tương đương.
-\end{theorem}
-
-\textit{Chứng minh.}
-\begin{align*}
-    e^{-\gamma T} \|c\|_X
-    &= e^{-\gamma T} \sup_{0 \le t \le T} |c(t)|_1
-    = \sup_{0 \le t \le T} \left(e^{-\gamma T} |c(t)|_1\right) \\
-    &\le \sup_{0 \le t \le T} \left(e^{-\gamma t} |c(t)|_1\right)
-    = \|c\|_{\gamma,X},
-\end{align*}
-ta suy ra $\|c\|_X \le e^{\gamma T} \|c\|_{\gamma,X}$.
-\begin{align*}
-    \|c\|_{\gamma,X}
-    = \sup_{0 \le t \le T} \left(e^{-\gamma t} |c(t)|_1\right)
-    \le \sup_{0 \le t \le T} |c(t)|_1
-    = \|c\|_X.
-\end{align*} \qed
-
-\begin{theorem}
-Thay $w_j$ bởi $\dot{u}_m^{(k)}(t) \in H^1_0$ trong
-\begin{align*}
-    \left<\ddot{u}_m^{(k)}(t), w_j\right>
-    + \sigma \left<\dot{u}_{mx}^{(k)}(t), w_{jx}\right>
-    + \mu_m(t) \left<u_{mx}^{(k)}(t), w_{jx}\right>
-    + \lambda \left<\dot{u}_m^{(k)}(t), w_j\right>
-    = \left<F_m(t), w_j\right>,
-\end{align*}
-ta được
-\begin{align*}
-    &\frac{1}{2} \frac{d}{dt} \left[ \left\|\dot{u}_m^{(k)}(t)\right\|^2 + \mu_m(t) \left\|u_{mx}^{(k)}(t)\right\|^2 + 2 \lambda \int_0^t \left\|\dot{u}_m^{(k)}(s)\right\|^2  ds + 2 \sigma \int_0^t \left\|\dot{u}_{mx}^{(k)}(s)\right\|^2  ds \right] \\
-    &= \frac{1}{2} \mu'_m(t) \left\|u_{mx}^{(k)}(t)\right\|^2 + \left<F_m(t), \dot{u}_m^{(k)}(t)\right>. \notag
-\end{align*}
-\end{theorem}
-
-\textit{Chứng minh.}
-
-Số hạng thứ nhất
-\begin{align*}
-    \left<\ddot{u}_m^{(k)}(t), \dot{u}_m^{(k)}(t)\right>
-    = \frac{1}{2} \frac{d}{dt} \left\|\dot{u}_m^{(k)}(t)\right\|^2.
-\end{align*}
-
-Số hạng thứ hai
-\begin{align*}
-    \sigma \left<\dot{u}_{mx}^{(k)}(t), \dot{u}_{mx}^{(k)}(t)\right>
-    = \sigma \left\|\dot{u}_{mx}^{(k)}(t)\right\|^2
-    = \sigma \frac{d}{dt} \int_0^t \left\|\dot{u}_{mx}^{(k)}(s)\right\|^2 ds.
-\end{align*}
-
-Số hạng thứ ba
-\begin{align*}
-    \mu_m(t) \left<u_{mx}^{(k)}(t), \dot{u}_{mx}^{(k}(t)\right>
-    &= \frac{1}{2} \mu_m(t) \frac{d}{dt} \left\|u_{mx}^{(k)}(t)\right\|^2 \\
-    &= \frac{1}{2} \frac{d}{dt} \left(\mu_m(t) \left\|u_{mx}^{(k)}(t)\right\|^2\right) - \frac{1}{2} \mu'_m(t) \left\|u_{mx}^{(k)}(t)\right\|^2.
-\end{align*}
-
-Số hạng thứ tư
-\begin{align*}
-    \lambda \left<\dot{u}_m^{(k)}(t), \dot{u}_m^{(k)}(t)\right>
-    &= \lambda \left\|\dot{u}_m^{(k)}(t)\right\|^2
-    = \lambda \frac{d}{dt} \int_0^t \left\|\dot{u}_m^{(k)}(t)\right\|^2 ds.
-\end{align*} \qed
-
-\begin{theorem}
-Thay $w_j$ bởi $\frac{-1}{\lambda_j} \Delta w_j \in H^1_0$ trong
-\begin{align*}
-    \left<\ddot{u}_m^{(k)}(t), w_j\right>
-    + \sigma \left<\dot{u}_{mx}^{(k)}(t), w_{jx}\right>
-    + \mu_m(t) \left<u_{mx}^{(k)}(t), w_{jx}\right>
-    + \lambda \left<\dot{u}_m^{(k)}(t), w_j\right>
-    = \left<F_m(t), w_j\right>,
-\end{align*}
-ta được
-\begin{align*}
-    \left<\ddot{u}_{mx}^{(k)}(t), w_{jx}\right>
-    + \sigma \left< \Delta \dot{u}_m^{(k)}(t), \Delta w_j\right>
-    + &\mu_m(t) \left<\Delta u_m^{(k)}(t), \Delta w_j\right> \\
-    &+ \lambda \left<\dot{u}_{mx}^{(k)}(t), w_{jx}\right>
-    = \left<F_{mx}(t), w_{jx}\right>.
-\end{align*}
-\end{theorem}
-
-\textit{Chứng minh.}
-
-Thay $w_j$ bằng $\frac{-1}{\lambda_j}\Delta w_j$, ta được
-\begin{align*}
-    \left<\ddot{u}_m^{(k)}(t), \frac{-1}{\lambda_j}\Delta w_j\right>
-    &+ \sigma \left<\dot{u}_{mx}^{(k)}(t), \frac{-1}{\lambda_j}\Delta w_{jx}\right>
-    + \mu_m(t) \left<u_{mx}^{(k)}(t), \frac{-1}{\lambda_j}\Delta w_{jx}\right> \\
-    &+ \lambda \left<\dot{u}_m^{(k)}(t), \frac{-1}{\lambda_j}\Delta w_j\right>
-    = \left<F_m(t), \frac{-1}{\lambda_j}\Delta w_j\right>.
-\end{align*}
-
-Đơn giản $\lambda_j$, ta được
-\begin{align*}
-    \left<\ddot{u}_m^{(k)}(t), -\Delta w_j\right>
-    + \sigma \left<\dot{u}_{mx}^{(k)}(t), -\Delta w_{jx}\right>
-    &+ \mu_m(t) \left<u_{mx}^{(k)}(t), -\Delta w_{jx}\right> \\
-    &+ \lambda \left<\dot{u}_m^{(k)}(t), -\Delta w_j\right>
-    = \left<F_m(t), -\Delta w_j\right>,
-\end{align*}
-
-Số hạng thứ nhất của vế trái
-\begin{align*}
-    \left<\ddot{u}_m^{(k)}(t), -\Delta w_j\right>
-    &= - \left<\ddot{u}_m^{(k)}(t), \Delta w_j\right> \\
-    &= - \left(\left.\ddot{u}_m^{(k})(x,t) w_{jx}(x)\right|_{x=0}^{x=1} -\left<\ddot{u}_{mx}^{(k)}(t), w_{jx}\right>\right) \\
-    &= \left<\ddot{u}_{mx}^{(k)}(t), w_{jx}\right>,
-\end{align*}
-do
-\begin{align*}
-    \ddot{u}_m^{(k)}(0,t) = \sum_{j=0}^k \ddot{c}_{mj}^{(k)}(t) w_j(0) = 0, \\
-    \ddot{u}_m^{(k)}(1,t) = \sum_{j=0}^k \ddot{c}_{mj}^{(k)}(t) w_j(1) = 0.
-\end{align*}
-
-Số hạng thứ hai của vế trái
-\begin{align*}
-    \sigma \left<\dot{u}_{mx}^{(k)}(t), -\Delta w_{jx}\right>
-    &= -\sigma \left<\dot{u}_{mx}^{(k)}(t), \Delta w_{jx}\right> \\
-    &= -\sigma \left(\left.\dot{u}_{mx}^{(k)}(x,t) \Delta w_j(x)\right|_{x=0}^{x=1} - \left<\Delta\dot{u}_m^{(k)}(t), \Delta w_j\right>\right) \\
-    &= \sigma \left<\Delta\dot{u}_m^{(k)}(t), \Delta w_j\right>,
-\end{align*}
-do
-\begin{align*}
-    \Delta w_j(0) = -\lambda_j w_j(0) = 0, \quad \Delta w_j(1) = -\lambda_j w_j(1) = 0.
-\end{align*}
-
-Số hạng thứ ba của vế trái
-\begin{align*}
-    \mu_m(t) \left<u_{mx}^{(k)}(t), -\Delta w_{jx}\right>
-    &= -\mu_m(t) \left<u_{mx}^{(k)}(t), \Delta w_{jx}\right> \\
-    &= -\mu_m(t) \left(\left.u_{mx}^{(k)}(x,t) \Delta w_j(x)\right|_{x=0}^{x=1} - \left<\Delta u_m^{(k)}(t), \Delta w_j\right>\right) \\
-    &= \mu_m(t) \left<\Delta u_m^{(k)}(t), \Delta w_j\right>.
-\end{align*}
-
-Số hạng thứ tư của vế trái
-\begin{align*}
-    \lambda \left<\dot{u}_m^{(k)}(t), -\Delta w_j\right>
-    &= -\lambda \left<\dot{u}_m^{(k)}(t), \Delta w_j\right> \\
-    &=  -\lambda \left(\left.\dot{u}_m^{(k)}(x,t) w_{jx}(x)\right|_{x=0}^{x=1} - \left<\dot{u}_{mx}^{(k)}(t), w_{jx}\right>\right) \\
-    &= \lambda \left<\dot{u}_{mx}^{(k)}(t), w_{jx}\right>,
-\end{align*}
-do
-\begin{align*}
-    \dot{u}_m^{(k)}(0,t) = \sum_{j=0}^k \dot{c}_{mj}^{(k)}(t) w_j(0) = 0, \\
-    \dot{u}_m^{(k)}(1,t) = \sum_{j=0}^k \dot{c}_{mj}^{(k)}(t) w_j(1) = 0.
-\end{align*}
-
-Số hạng của vế phải
-\begin{align*}
-    \left<F_m(t), -\Delta w_j\right>
-    &= - \left<F_m(t), \Delta w_j\right> \\
-    &= -\left(\left.F_m(x,t) w_{jx}(x)\right|_{x=0}^{x=1} - \left<F_{mx}(t), w_{jx}\right>\right) \\
-    &= \left<F_{mx}(t), w_{jx}\right>,
-\end{align*}
-do
-\begin{align*}
-    F_m(0,t) &= -K u^3_{m-1}(0,t) + f(0,t) = -K.0 + 0 = 0, \\
-    F_m(1,t) &= -K u^3_{m-1}(1,t) + f(1,t) = -K.0 + 0 = 0.
-\end{align*} \qed
-
-\begin{theorem}
-Thay $w_j$ bởi $\dot{u}_m^{(k)}(t) \in H^1_0$ trong
-\begin{align*}
-    \left<\ddot{u}_{mx}^{(k)}(t), w_{jx}\right>
-    + \sigma \left< \Delta \dot{u}_m^{(k)}(t), \Delta w_j\right>
-    &+ \mu_m(t) \left<\Delta u_m^{(k)}(t), \Delta w_j\right> \\
-    &+ \lambda \left<\dot{u}_{mx}^{(k)}(t), w_{jx}\right>
-    = \left<F_{mx}(t), w_{jx}\right>.
-\end{align*}
-ta được
-\begin{align*}
-    \frac{1}{2} \frac{d}{dt} \left[ \left\|\dot{u}_{mx}^{(k)}(t)\right\|^2 + \mu_m(t) \left\|\Delta u_{m}^{(k)}(t)\right\|^2 + 2\lambda \int_0^t \left\|\dot{u}_{mx}^{(k)}(s)\right\|^2 ds + 2\sigma \int_0^t \left\|\Delta \dot{u}_{m}^{(k)}(s)\right\|^2 ds \right] \\
-    = \frac{1}{2} \mu'_m(t) \left\|\Delta u_{m}^{(k)}(t)\right\|^2 + \left<F_{mx}(t), \dot{u}_{mx}^{(k)}(t)\right>.
-\end{align*}
-\end{theorem}
-
-\textit{Chứng minh.}
-
-Số hạng thứ nhất của vế trái
-\begin{align*}
-    \left<\ddot{u}_{mx}^{(k)}(t), \dot{u}_{mx}^{(k)}(t)\right>
-    = \frac{1}{2} \frac{d}{dt} \left\|\dot{u}_{mx}^{(k)}(t)\right\|^2.
-\end{align*}
-
-Số hạng thứ hai của vế trái
-\begin{align*}
-    \sigma \left<\Delta \dot{u}_m^{(k)}(t), \Delta \dot{u}_m^{(k)}(t)\right>
-    = \sigma \left\|\Delta \dot{u}_m^{(k)}(t)\right\|^2
-    = \sigma \frac{d}{dt} \int_0^t \left\|\Delta \dot{u}_m^{(k)}(s)\right\|^2 ds.
-\end{align*}
-
-Số hạng thứ ba của vế trái
-\begin{align*}
-    \mu_m(t) \left<\Delta u_m^{(k)}(t), \Delta \dot{u}_m^{k}(t)\right>
-    &= \frac{1}{2} \mu_m(t) \frac{d}{dt} \left\|\Delta u_m^{(k)}(t)\right\|^2 \\
-    &= \frac{1}{2} \frac{d}{dt} \left(\mu_m(t) \left\|\Delta u_m^{(k)}(t)\right\|^2\right) - \frac{1}{2} \mu'_m(t) \left\|\Delta u_m^{(k)}(t)\right\|^2.
-\end{align*}
-
-Số hạng thứ tư của vế trái
-\begin{align*}
-    \lambda \left<\dot{u}_{mx}^{(k)}(t), \dot{u}_{mx}^{(k})(t)\right>
-    = \lambda \left\|\dot{u}_{mx}^{(k)}(t)\right\|^2
-    = \lambda \frac{d}{dt} \int_0^t \left\|\dot{u}_{mx}^{(k)}(s)\right\|^2 ds.
-\end{align*}
-
-Số hạng vế phải
-\begin{align*}
-    \left<F_{mx}(t), \dot{u}_{mx}^{(k)}(t)\right>.
-\end{align*} \qed
-
-\begin{theorem}
-Thay $w_j$ bởi $\ddot{u}_m^{(k)}(t) \in H^1_0$ trong
-\begin{align*}
-    \left<\ddot{u}_{mx}^{(k)}(t), w_{jx}\right>
-    + \sigma \left< \Delta \dot{u}_m^{(k)}(t), \Delta w_j\right>
-    &+ \mu_m(t) \left<\Delta u_m^{(k)}(t), \Delta w_j\right> \\
-    &+ \lambda \left<\dot{u}_{mx}^{(k)}(t), w_{jx}\right>
-    = \left<F_{mx}(t), w_{jx}\right>.
-\end{align*}
-ta được
-\begin{align*}
-    &\frac{d}{dt} \left[ \sigma \left\|\Delta \dot{u}_{m}^{(k)}(t)\right\|^2 + \lambda \left\|\dot{u}_{mx}^{(k)}(t)\right\|^2 + 2 \int_0^t \left\|\ddot{u}_{mx}^{(k)}(t)\right\|^2 \right] \\
-    &= -2 \frac{d}{dt} \left[\mu_m(t) \left<\Delta u_m^{(k)}(t), \Delta \dot{u}_m^{(k)}(t)\right>\right] + 2 \mu'_m(t) \left<\Delta u_m^{(k)}(t), \Delta \dot{u}_m^{(k)}(t)\right> \\
-    &\quad + 2 \mu_m(t) \left\|\Delta \dot{u}_m^{(k)}(t)\right\|^2 + 2 \left<F_{mx}(t), \ddot{u}_{mx}^{(k)}(t)\right>.
-\end{align*}
-\end{theorem}
-
-\textit{Chứng minh.}
-
-Số hạng thứ nhất của vế trái
-\begin{align*}
-    \left<\ddot{u}_{mx}^{(k)}(t), \ddot{u}_{mx}^{(k)}(t)\right>
-    = \left\|\ddot{u}_{mx}^{(k)}(t)\right\|^2
-    = \frac{d}{dt} \int_0^t \left\|\ddot{u}_{mx}^{(k)}(s)\right\|^2 ds.
-\end{align*}
-
-Số hạng thứ hai của vế trái
-\begin{align*}
-    \sigma \left<\Delta \dot{u}_m^{(k)}(t), \Delta \ddot{u}_m^{(k)}(t)\right>
-    = \frac{\sigma}{2} \frac{d}{dt} \left\|\Delta \dot{u}_m^{(k)}(t)\right\|^2.
-\end{align*}
-
-Số hạng thứ ba của vế trái
-\begin{align*}
-    \mu_m(t) \left<\Delta u_m^{(k)}(t), \Delta \ddot{u}_m^{(k)}(t)\right>
-    &= \mu_m(t) \frac{d}{dt}\left<\Delta u_m^{(k)}(t), \Delta \dot{u}_m^{(k)}(t)\right> - \mu_m(t) \left\|\Delta \dot{u}_m^{(k)}(t) \right\|^2 \\
-    &\begin{aligned}
-        =\frac{d}{dt} \left[\mu_m(t) \left<\Delta u_m^{(k)}(t), \Delta \dot{u}_m^{(k)}(t)\right>\right] &- \mu'_m(t) \left<\Delta u_m^{(k)}(t), \Delta \dot{u}_m^{(k)}(t)\right> \\
-        &- \mu_m(t) \left\|\Delta \dot{u}_m^{(k)}(t) \right\|^2.
-    \end{aligned}
-\end{align*}
-
-Số hạng thứ tư của vế trái
-\begin{align*}
-    \lambda \left< \dot{u}_{mx}^{(k)}(t), \ddot{u}_{mx}^{(k)}(t)\right>
-    = \frac{\lambda}{2} \frac{d}{dt} \left\|\dot{u}_{mx}^{(k)}(t)\right\|^2.
-\end{align*}
-
-Số hạng vế phải
-\begin{align*}
-    \left<F_{mx}(t), \ddot{u}_{mx}(t)\right>.
-\end{align*} \qed
-
-\begin{theorem}
-    Cho $\overline{S}_m^{(k)}(t)$ được cho bởi
-    \begin{align*}
-        \overline{S}_m^{(k)}(t)= \|\dot{u}_m^{(k)}(t)\|^2_{H^2\cap H^1_0} + \|u_m^{(k)}(t)\|^2_{H^2\cap H^1_0}
-        + \int_0^t \left(\|\dot{u}_m^{(k)}(s)\|^2_{H^2\cap H^1_0} + \|\ddot{u}_{mx}^{(k)}(s)\|^2\right)ds,
-    \end{align*}
-    và $S_m^{(k)}(t)$ được cho bởi
-    \begin{align*}
-        S_m^{(k)}(t) &= \|\dot{u}_m^{(k)}(t)\|^2
-        + (1 + \lambda) \|\dot{u}_{mx}^{(k)}(t)\|^2
-        + \sigma \|\Delta \dot{u}_m^{(k)}(t)\|^2
-        + \mu_m(t) \left(\|u_{mx}^{(k)}(t)\|^2 + \|\Delta u_m^{(k)}(t)\|^2\right) \\
-        &\quad + 2 \lambda \int_0^t \|\dot{u}_m^{(k)}(s)\|^2 ds
-        + 2 (\lambda + \sigma) \int_0^t \|\dot{u}_{mx}^{(k)}(s)\|^2 ds \\
-        &\quad + 2 \sigma \int_0^t \|\Delta \dot{u}_m^{(k)}(s)\|^2 ds
-        + 2 \int_0^t \|\ddot{u}_{mx}^{(k)}(s)\|^2 ds.
-    \end{align*}
-    Chứng tỏ rằng, với $\sigma_* = \min \{ \lambda, \sigma, 1 \}$, ta có
-    \begin{align*}
-        S_m^{(k)}(t) \ \ge \ \sigma_* \overline{S}_m^{(k)}(t).
-    \end{align*}
-\end{theorem}
-
-\textit{Chứng minh.}
-\begin{align*}
-    S_m^{(k)}(t) &\ge (1 + \lambda) \|\dot{u}_{mx}^{(k)}(t)\|^2
-    + \sigma \|\Delta \dot{u}_m^{(k)}(t)\|^2
-    + \mu_m(t) \left(\|u_{mx}^{(k)}(t)\|^2 + \|\Delta u_m^{(k)}(t)\|^2\right) \\
-    &\quad + 2 (\lambda + \sigma) \int_0^t \|\dot{u}_{mx}^{(k)}(s)\|^2 ds 
-    + 2 \sigma \int_0^t \|\Delta \dot{u}_m^{(k)}(s)\|^2 ds
-    + 2 \int_0^t \|\ddot{u}_{mx}^{(k)}(s)\|^2 ds \\
-    &\ge \sigma_* \Big[\|\dot{u}_{mx}^{(k)}(t)\|^2
-    + \|\Delta \dot{u}_m^{(k)}(t)\|^2
-    + \|u_{mx}^{(k)}(t)\|^2 + \|\Delta u_m^{(k)}(t)\|^2 \\
-    &\qquad\quad + \int_0^t \big(\|\dot{u}_{mx}^{(k)}(s)\|^2 + \|\Delta \dot{u}_m^{(k)}(s)\|^2
-    + \|\ddot{u}_{mx}^{(k)}(s)\|^2\big)ds\Big] \\
-    &= \sigma_* \Big[\|\dot{u}_m^{(k)}(t)\|^2_{H^2\cap H^1_0} + \|u_m^{(k)}(t)\|^2_{H^2\cap H^1_0}
-    + \int_0^t \big(\|\dot{u}_m^{(k)}(s)\|^2_{H^2\cap H^1_0} + \|\ddot{u}_{mx}^{(k)}(s)\|^2\big)ds\Big] \\
-    &= \sigma_* \overline{S}_m^{(k)}(t).
-\end{align*} \qed
-
-\subsection{Sự hội tụ của dãy lặp}
-
-\begin{theorem}
-    Cho $u_m$ thoả bài toán biến phân
-    \begin{align*}
-    \begin{cases}
-        \left<u''_m(t),v\right> + \sigma \left<u'_{mx}(t),v_x\right> + \mu_m(t) \left<u_{mx}(t),v_x\right> + \lambda \left<u'_m(t),v\right> = \left<F_m(t),v\right>, \forall v \in H^1_0, \\
-        u_m(0) = u'_m(0) = 0.
-    \end{cases}
-    \end{align*}
-    Đặt $v_m = u_{m+1} - u_m$, thì $v_m$ thoả mãn bài toán biến phân
-    \begin{align*}
+\begin{frame}
+    \begin{block}{Định lý 3.1. Sự tồn tại dãy trong $W_1(R,T)$}
+    Giả sử $(\text{H}_1)$-$(\text{H}_2)$ đúng. Khi đó, tồn tại các hằng số $R > 0, T > 0$ sao cho tồn tại dãy $\{u_m\} \subset W_1(R,T)$ xác định bởi $u_0 \equiv 0$ và nếu $u_{m-1} \in W_1(R,T)$, thì $u_m \in W_1(R,T)$ là nghiệm của Bài toán \eqref{vareqn}, cụ thể $u_m$ là nghiệm của bài toán
+    \begin{align} \label{eqn31}
     \begin{cases}
         \begin{aligned}
-            \left<v''_m(t),w\right> &+ \sigma \left<v'_{mx}(t),w_x\right> + \mu_{m+1}(t) \left<v_{mx}(t),w_x\right> \\
-            &+ [\mu_{m+1}(t) - \mu_m(t)] \left<u_{mx}(t),w_x\right> + \lambda \left<v'_m(t),w\right> = \left<F_{m+1}(t) - F_m(t),w\right>,
-        \end{aligned}\\
-        v_m(0) = v'_m(0) = 0.
+            \left< u''_m(t), v \right>
+        &+ \sigma \left< u'_{mx}(t), v_x \right>
+        + \left(1 + \textcolor{blue}{\|\nabla u_{m-1}(t)\|^2}\right) \left< u_{mx}(t), v_x \right> \\
+        &+ K \left< \textcolor{blue}{u^3_{m-1}(t)}, v \right> + \lambda \left< u'_m(t), v \right>
+        = \left< f(t), v \right>,\ \forall v \in H^1_0.
+        \end{aligned} \\
+        u_m(0) = \tilde{u}_0; \  u'_m(0) = \tilde{u}_1.
     \end{cases}
-    \end{align*}
-\end{theorem}
+    \end{align}
+    \end{block}
 
-\textit{Chứng minh.}
+    \begin{exampleblock}{Sơ lược chứng minh}
+        Cho $u_{m-1} \in W_1(R,T)$
+        \begin{itemize}
+            \item[(i)] Chứng minh $u_m \in W(R,T)$ bằng phương pháp xấp xỉ Faedo-Galerkin liên kết với thuật giải xấp xỉ tuyến tính cùng với các kỹ thuật đánh giá tiên nghiệm.
+            \item[(ii)] Chứng minh $u_m \in W_1(R,T)$ và thoả Bài toán \eqref{eqn31} bằng phương pháp hội tụ yếu dựa vào tính compact.
+        \end{itemize}
+    \end{exampleblock}
+\end{frame}
 
-Số hạng thứ nhất của vế trái
-\begin{align*}
-    \left<u''_{m+1}(t),w\right> - \left<u''_m(t),w\right> = \left<u''_{m+1}(t) - u''_m(t),w\right> = \left<w''_m(t),w\right>.
-\end{align*}
+\subsection{Không gian hàm $H_T$}
 
-Số hạng thứ hai của vế trái
-\begin{align*}
-    \sigma \left<u'_{m+1,x}(t),w_x\right> - \sigma \left<u'_{mx}(t),w_x\right> = \sigma \left<u'_{m+1,x}(t) - u'_{mx}(t),w_x\right> = \sigma \left<v'_{mx}(t),w_x\right>.
-\end{align*}
+\begin{frame}
+    \begin{exampleblock}{Không gian hàm $H_T$}
+    Không gian hàm $H_T$
+    \begin{align}
+        H_T = \left\{ v \in C^0([0,T]; H^1_0) \cap C^1([0,T]; L^2) \colon v' \in L^2(0,T;H^1_0) \right\},
+    \end{align}
+    với chuẩn
+    \begin{align}
+        \|v\|_{H_T} = \|v\|_{C^0([0,T]; H^1_0)} + \|v\|_{C^1([0,T]; L^2)} + \|v'\|_{L^2(0,T;H^1_0)},
+    \end{align}
+    hoặc chuẩn tương đương
+    \begin{align}
+        \|v\|_{H_T} = \|v\|_{C^0([0,T]; H^1_0)} + \|v'\|_{C^0([0,T]; L^2)} + \|v'\|_{L^2(0,T;H^1_0)}.
+    \end{align}
+    \end{exampleblock}
+\end{frame}
 
-Số hạng thứ ba của vế trái
-\begin{align*}
-    \mu_{m+1}(t) &\left<u_{m+1,x}(t),w_x\right> - \mu_m(t) \left<u_{mx}(t),w_x\right> \\
-    &= \mu_{m+1}(t) \left<v_{mx}(t),w_x\right> + \mu_{m+1}(t)\left<u_{mx},w_x\right> - \mu_m(t) \left<u_{mx}(t),w_x\right> \\
-    &= \mu_{m+1}(t) \left<v_{mx}(t),w_x\right> + [ \mu_{m+1}(t) - \mu_m(t)]\left<u_{mx}(t),w_x\right>.
-\end{align*}
+\subsection{Sự tồn tại và duy nhất nghiệm trong $H_T$}
 
-Số hạng thứ tư của vế trái
-\begin{align*}
-    \lambda \left<u'_{m+1}(t),w\right> - \lambda \left<u'_m(t),w\right>
-    = \lambda \left<u'_{m+1}(t) - u'_m(t),w\right>
-    = \lambda \left<v'_m(t),w\right>.
-\end{align*}
-
-Số hạng vế phải
-\begin{align*}
-    \left<F_{m+1}(t),w\right> - \left<F_m(t),w\right> = \left<F_{m+1}(t) - F_m(t),w\right>.
-\end{align*}
-
-Điều kiện đầu
-\begin{align*}
-    v_m(0) = u_{m+1}(0) - u_m(0) = \tilde{u}_0 - \tilde{u}_0 = 0, \\
-    v'_m(0) = u'_{m+1}(0) - u'_m(0) = \tilde{u}_1 - \tilde{u}_1 = 0.
-\end{align*} \qed
-
-\begin{theorem}
-    Lấy $w = v'_m(t) \in H^1_0$ trong bài toán biến phân $v_m$, ta được
-    \begin{align*}
-        \frac{d}{dt} &\left[ \|v'_m(t)\|^2 + \mu_{m+1}(t)\|v_{mx}(t)\|^2 + 2\sigma\int_0^t \|v'_{mx}(t)\|^2 ds + 2\lambda\int_0^t \|v'_m(s)\|^2 ds \right] \\
-        &\begin{aligned}
-            = \mu'_{m+1}(t) \|v_{mx}(t)\|^2 &- 2[\mu_{m+1}(t) - \mu_m(t)] \left<u_{mx}(t), v'_{mx}(t)\right> \\ &+ 2\left<F_{m+1}(t) - F_m(t),v'_m(t)\right>.
-        \end{aligned}
-    \end{align*}
-\end{theorem}
-
-\textit{Chứng minh.}
-
-Số hạng thứ nhất của vế trái
-\begin{align*}
-    \left<v''_m(t), v'_m(t)\right> = \frac{1}{2} \frac{d}{dt} \|v'_m(t)\|^2.
-\end{align*}
-
-Số hạng thứ hai của vế trái
-\begin{align*}
-    \sigma \left<v'_{mx}(t), v'_{mx}(t)\right> = \sigma \|v'_{mx}(t)\|^2 = \sigma \frac{d}{dt} \int_0^t \|v'_{mx}(s)\|^2 ds.
-\end{align*}
-
-Số hạng thứ ba của vế trái
-\begin{align*}
-    \mu_{m+1}(t) \left<v_{mx}(t),v'_{mx}(t)\right>
-    &= \frac{1}{2} \mu_{m+1}(t) \frac{d}{dt} \|v_{mx}(t)\|^2 \\
-    &= \frac{1}{2} \frac{d}{dt} \left[\mu_{m+1}(t) \|v_{mx}(t)\|^2\right] - \frac{1}{2} \mu'_{m+1}(t) \|v_{mx}(t)\|^2.
-\end{align*}
-
-Số hạng thứ tư của vế trái
-\begin{align*}
-    [\mu_{m+1}(t) - \mu_m(t)] \left<u_{mx}(t), v'_{mx}(t)\right>.
-\end{align*}
-
-Số hạng thứ năm của vế trái
-\begin{align*}
-    \lambda \left<v'_m(t),v'_m(t)\right> = \lambda \|v'_m(t)\|^2 = \lambda \frac{d}{dt}\int_0^t \|v'_m(s)\|^2 ds.
-\end{align*}
-
-Số hạng vế phải
-\begin{align*}
-    \left<F_{m+1}(t) - F_m(t),v'_m(t)\right>.
-\end{align*} \qed
-
-\begin{theorem}
-    Cho
-    \begin{align*}
-        \|u_{m+1}(t) - u_m(t)\|_{H_T} \ \le \ k_T \|u_m - u_{m-1}\|_{H_T},
-    \end{align*}
-    khi đó ta được
-    \begin{align*}
-        \|u_{m+q}(t) - u_m\|_{H_T} \ \le \ \frac{k_T^m}{1 - k_T} \|u_1 - u_0\|_{H_T},\ \forall q \in \N.
-    \end{align*}
-\end{theorem}
-
-\textit{Chứng minh.}
-
-Với $q = 1$ ta được
-\begin{align*}
-    \|u_{m+1} - u_m\|_{H_T}
-    \ &\le \ k_T \|u_m - u_{m-1}\|_{H_T} \le k_T^2 \|u_{m-1} - u_{m-2}\|_{H_T}\\
-    &\le \ \dots \le k_T^m \|u_1 - u_0\|_{H_T} \le \frac{k_T^m}{1 - k_T} \|u_1 - u_0\|_{H_T}.
-\end{align*}
-
-Xét $q \in \N$ bất kỳ, ta có
-\begin{align*}
-    &\|u_{m+q} - u_m\|_{H_T} \\
-    &\le \|u_{m+q} - u_{m+q-1}\|_{H_T} + \|u_{m+q-1} - u_{m+q-2}\|_{H_T} + \dots + \|u_{m+1} - u_m\|_{H_T} \\
-    &\le k_T^{m+q-1} \|u_1 - u_0\|_{H_T} + k_T^{m+q-2} \|u_1 - u_0\|_{H_T} + \dots + k_T^m \|u_1 - u_0\|_{H_T} \\
-    &= \left( k_T^{q-1} + k_T^{q-2} + \dots + 1\right) k_T^m \|u_1 - u_0\|_{H_T} \\
-    &\le \left(\sum_{q=0}^\infty k_T^q\right) k_T^m \|u_1 - u_0\|_{H_T}
-    = \frac{k_T^m}{1 - k_T} \|u_1 - u_0\|_{H_T}.
-\end{align*} \qed
-
-\begin{theorem}
-    Cho dãy $\{u_{m_j}\} \subset W_1(R,T)$ và $u \in H_T$ thoả
-    \begin{align*}
-    \begin{cases}
-        u_{m_j} \to u \text{ yếu* trong } L^\infty(0,T;H^2 \cap H^1_0), \\
-        u'_{m_j} \to u' \text{ yếu* trong } L^\infty(0,T;H^2 \cap H^1_0), \\
-        u''_{m_j} \to u'' \text{ yếu trong } L^2(0,T;H^1_0), \\
-        u \in W(R,T),
-    \end{cases}
-    \end{align*}
-    và $u_{m_j}, u$ thoả phương trình biến phân
-    \begin{align*}
-        \left<u''(t),w\right> + \sigma \left<u'_x(t),w_x\right> &+ \left(1 + \|u_x(t)\|^2\right) \left<u_x(t),w_x\right> \\
-        &+ \lambda \left<u'(t),w\right> = \left<-Ku^3(t) + f(t),w\right>,
-    \end{align*}
-    với điều kiện đầu cho dãy $\{u_{m_j}\}$
-    \begin{align*}
-        u_{m_j}(0) = \tilde{u}_0, \ u_{m_j}'(0) = \tilde{u}_1.
-    \end{align*}
-    Chứng tỏ rằng $u$ thoả điều kiện đầu
-    \begin{align*}
-        u(0) = \tilde{u}_0, \ u'(0) = \tilde{u}_1.
-    \end{align*}
-\end{theorem}
-
-\textit{Chứng minh.}
-
-Điều kiện đầu $u(0) = \tilde{u}_0$.
-
-Ta có
-\begin{align*}
-    \int_0^T \left<u'_{m_j}(t), (T-t)w\right> dt = -T\left<\tilde{u}_0,w\right> + \int_0^T \left<u_{m_j}(t),w\right>dt, \forall j \in \N.
-\end{align*}
-
-Cho $j \to \infty$, ta được
-\begin{align*}
-    \int_0^T \left<u'(t), (T-t)w\right>dt = -T\left<\tilde{u}_0,w\right> + \int_0^T \left<u(t),w\right>dt.
-\end{align*}
-
-Mặt khác, ta có
-\begin{align*}
-    \int_0^T \left<u'(t), (T-t)w\right>dt = -T\left(u(0),w\right> + \int_0^T \left<u(t),w\right>dt.
-\end{align*}
-
-Khi đó
-\begin{align*}
-    \left<u(0),w\right> = \left<\tilde{u}_0,w\right>, \forall w \in H^1_0,
-\end{align*}
-tương đương $u(0) = \tilde{u}_0$.
-
-Điều kiện đầu $u'(0) = \tilde{u}_1$.
-
-Ta có
-\begin{align*}
-    \int_0^T \left<u''_{m_j}(t), (T-t)w\right> dt = -T\left<\tilde{u}_1,w\right> + \int_0^T \left<u'_{m_j}(t),w\right>dt, \forall j \in \N.
-\end{align*}
-
-Cho $j \to \infty$, ta được
-\begin{align*}
-    \int_0^T \left<u''(t), (T-t)w\right>dt = -T\left<\tilde{u}_1,w\right> + \int_0^T \left<u('t),w\right>dt.
-\end{align*}
-
-Mặt khác, ta có
-\begin{align*}
-    \int_0^T \left<u''(t), (T-t)w\right>dt = -T\left(u'(0),w\right> + \int_0^T \left<u'(t),w\right>dt.
-\end{align*}
-
-Khi đó
-\begin{align*}
-    \left<u'(0),w\right> = \left<\tilde{u}_1,w\right>, \forall w \in H^1_0,
-\end{align*}
-tương đương $u'(0) = \tilde{u}_1$. \qed
-
-\begin{theorem}
-    Cho $u_1, u_2 \in W_1(R,T)$, đặt $w = u_1 - u_2$. Khi đó $w$ thoả bài toán biến phân
-    \begin{align*}
-    \begin{cases}
-        \begin{aligned}
-            \left<w''(t),v\right> &+ \sigma \left<w'_x(t),v_x\right> + \left(1 + \|u_{1x}(t)\|^2\right) \left<w_x(t),v_x\right> + \lambda \left<w'(t),v\right> \\
-            &= - \left(\|u_{1x}(t)\|^2 - \|u_{2x}(t)\|^2\right) \left<u_{2x}(t),v_x\right> - K\left<u^3_1(t) - u^3_2(t),v\right>,
-        \end{aligned}\\
-        w(0) = w'(0) = 0,
-    \end{cases}
-    \end{align*}
-\end{theorem}
-với mọi $v \in H^1_0, a.e., t \in (0,T)$.
-
-\textit{Chứng minh.}
-
-Ta có $u_1,u_2$ thoả mãn phương trình biến phân
-\begin{align*}
-\begin{cases}
-    \begin{aligned}
-        \left<u''_1(t),v\right> + \sigma \left<u'_{1x}(t),v_x\right> &+ \left(1+\|u_{1x}(t)\|^2\right) \left<u_{1x}(t),v_x\right> \\[0.1cm] &+ \lambda \left<u'_1(t),v\right> = \left<-Ku^3_1(t) + f(t),v\right>,
-    \end{aligned} \\[0.4cm]
-    \begin{aligned}
-         \left<u''_2(t),v\right> + \sigma \left<u'_{2x}(t),v_x\right> &+ \left(1+\|u_{2x}(t)\|^2\right) \left<u_{2x}(t),v_x\right> \\[0.1cm] &+ \lambda \left<u'_2(t),v\right> = \left<-Ku^3_2(t) + f(t),v\right>.
-    \end{aligned}
-\end{cases}
-\end{align*}
-
-Lấy phương trình thứ nhất trừ đi cho phương trình thứ hai, ta được các số hạng như sau.
-
-Số hạng thứ nhất của vế trái
-\begin{align*}
-    \left<u''_1(t),w\right> - \left<u''_2(t),w\right> = \left<u''_1(t) - u''_2(t),w\right> = \left<w''(t),w\right>.
-\end{align*}
-
-Số hạng thứ hai của vế trái
-\begin{align*}
-    \sigma \left<u'_{1x}(t),v_x\right> - \sigma \left<u'_{2x}(t),v_x\right>
-    = \sigma \left<u'_{1x}(t) - u'_{2x}(t),v_x\right> 
-    = \sigma \left<w'_x(t),v_x\right>.
-\end{align*}
-
-Số hạng thứ ba của vế trái
-\begin{align*}
-    &\left(1+\|u_{1x}(t)\|^2\right) \left<u_{1x}(t),v_x\right> - \left(1+\|u_{2x}(t)\|^2\right) \left<u_{2x}(t),v_x\right> \\
-    &\begin{aligned}
-        = \left(1+\|u_{1x}(t)\|^2\right) \left<w_x(t),v_x\right> &+ \left(1+\|u_{1x}(t)\|^2\right) \left<u_{2x}(t),v_x\right> \\ &-\left(1+\|u_{2x}(t)\|^2\right) \left<u_{2x}(t),v_x\right>
-    \end{aligned} \\
-    &= \left(1+\|u_{1x}(t)\|^2\right) \left<w_x(t),v_x\right> + \left(\|u_{1x}(t)\|^2 - \|u_{2x}(t)\|^2\right) \left<u_{2x}(t),v_x\right>.
-\end{align*}
-
-Số hạng thứ tư của vế trái
-\begin{align*}
-    \lambda \left<u'_1(t),v\right> - \lambda \left<u'_2(t),v\right>
-    = \lambda \left<u'_1(t) - u'_2(t),v\right>
-    = \lambda \left<w'(t),v\right>.
-\end{align*}
-
-Số hạng vế phải
-\begin{align*}
-     \left<-Ku^3_1(t) + f(t),v\right> - \left<-Ku^3_2(t) + f(t),v\right> = -K \left<u^3_1(t) - u^3_2(t),v\right>.
-\end{align*}
-
-Điều kiện đầu
-\begin{align*}
-    w(0) = u_1(0) - u_2(0) = \tilde{u}_0 - \tilde{u}_0 = 0, \\
-    w('0) = u'_1(0) - u'_2(0) = \tilde{u}_1 - \tilde{u}_1 = 0.
-\end{align*} \qed
-
-\begin{theorem}
-    Lấy $v = w'(t) \in H^1_0$ và lây tích phân theo biến thời gian $t$ cho phương trình biến phân của $w$, ta được
-    \begin{align*}
-        X(t) &= 2 \int_0^t \left<u_{1x}(s), u'_{1x}(s)\right> \|w_x(s)\|^2 ds \\
-        &\quad - 2 \int_0^t \left(\|u_{1x}(s)\|^2 - \|u_{2x}(s)\|^2\right) \left<u_{2x}(s),w'_x(s)\right> ds \\
-        &\quad - 2K \int_0^t \left<u^3_1(s) - u^3_2(s), w'(s)\right>ds,
-    \end{align*}
-    trong đó
-    \begin{align*}
-        X(t) = \|w'(t)\|^2 + \left(1 + \|u_{1x}(t)\|^2\right) \|w_x(t)\|^2
-        + 2\sigma \int_0^t \|w'_x(s)\|^2 ds + 2\lambda \int_0^t \|w'(s)\|^2 ds.
-    \end{align*}
-\end{theorem}
-
-\textit{Chứng minh.}
-
-Vì $u_1, u_2 \in W_1(R,T)$ nên $u'_1(t), u'_2(t) \in H^1_0$, dẫn đến $w'(t) = u'_1(t) - u'_2(t) \in H^1_0$.
-
-Số hạng thứ nhất của vế trái
-\begin{align*}
-    \left<w''(t),w'(t)\right> = \frac{1}{2} \frac{d}{dt} \|w'(t)\|^2.
-\end{align*}
-
-Số hạng thứ hai của vế trái
-\begin{align*}
-    \sigma \left<w'_x(t),w'_x(t)\right> = \sigma \|w'_x(t)\|^2 = \sigma \frac{d}{dt} \int_0^t \|w'_x(s)\|^2 ds.
-\end{align*}
-
-Số hạng thứ ba của vế trái
-\begin{align*}
-    \left(1 + \|u_{1x}(t)\|^2\right) &\left<w_x(t),w'_x(t)\right> \\
-    &= \frac{1}{2} \left(1 + \|u_{1x}(t)\|^2\right) \frac{d}{dt} \|w_x(t)\|^2 \\
-    &= \frac{1}{2} \frac{d}{dt} \left[ \left(1 + \|u_{1x}(t)\|^2 \right) \|w_x(t)\|^2 \right] - \left<u_{1x}(t),u'_{1x}(t)\right> \|w_x(t)\|^2.
-\end{align*}
-
-Số hạng thứ tư của vế trái
-\begin{align*}
-    \lambda \left<w'(t),w'(t)\right> = \lambda \|w'(t)\|^2 = \lambda \frac{d}{dt} \int_0^t \|w'(s)\|^2 ds.
-\end{align*}
-
-Số hạng thứ nhất của vế phải
-\begin{align*}
-    -\left(\|u_{1x}(t)\|^2 - \|u_{2x}(t)\|^2\right) \left<u_{2x}(t),w'_x(t)\right>.
-\end{align*}
-
-Số hạng thứ hai của vế phải
-\begin{align*}
-    -K \left<u^3_1(t) - u^3_2(t),w'(t)\right>.
-\end{align*} \qed
+\begin{frame}
+     \begin{block}{Định lý 3.3. Sự tồn tại và duy nhất nghiệm trong $H_T$}
+        Giả sử $(\text{H}_1)$-$(\text{H}_2)$ đúng. Khi đó, hai hằng số $T > 0, R > 0$ được xác định ở Định lý 3.1 sao cho
+        \begin{itemize}
+            \item[(1)] Bài toán \eqref{vareqn} có duy nhất nghiệm $u \in W_1(R,T)$,
+            \item[(2)] Dãy quy nạp tuyến tính $\{u_m\}$ hội tụ về $u \in H_T$. Hơn nữa, ta có đánh giá sai số
+        \end{itemize}
+        \begin{align}
+            \|u_m - u\|_{H_T} \le \frac{R}{1 - k_T} k_T^m, \ \forall m \in \mathbb{N},
+        \end{align}
+        với $\color{blue} 0 < k_T < 1$ phụ thuộc $T, \lambda, \sigma, f, \tilde{u}_0, \tilde{u}_1$.
+    \end{block}    
+\end{frame}
 
 \section{Sự tồn tại và duy nhất nghiệm yếu với dữ kiện cho giảm tính trơn}
 
-\begin{theorem}
-    Lấy $v = u'_m(t)$ trong
+\subsection{Sự tồn tại và duy nhất nghiệm trong $H_T$}
+
+\begin{frame}
+    \begin{block}{Giả thiết chương 3}
+    $(\text{H}_1)$ $\tilde{u}_0, \tilde{u}_1 \in H^2 \cap H^1_0$,
+
+    $(\text{H}_2)$ $f \in C^1([0,1]\times[0,T^*])$ thoả mãn
     \begin{align*}
-        \left<u''_m(t), v\right>
-        + \sigma \left<u'_{mx}(t),v_x\right>
-        &+ \left(1 + \|u_{mx}(t)\|^2\right) \left<u_{mx}(t),v_x\right> \\
-        &+ \lambda \left<u'_m(t),v\right>
-        + K \left<u^3_m(t),v\right>
-        = \left<f_m(t),v\right>,
+        f(0,t) = f(1,t) = 0, \ \forall t \in [0,T^*].
     \end{align*}
-    ta được
-    \begin{align*}
-        S_m(t) = S_m(0) + 2 \int_0^t \left<f_m(s),u'_m(s)\right>ds,
-    \end{align*}
-    trong đó
-    \begin{align*}
-        S_m(t) = \|u'_m(t)\|^2
-        &+ \int_0^{\|u_{mx}(t)\|^2} (1+z)\:dz
-        + \frac{K}{2}\|u(t)\|^4_{L^4} \\
-        &+ 2\sigma \int_0^t \|u'_{mx}(s)\|^2 ds
-        + 2\lambda \int_0^t \|u'_m(s)\|^2 ds.
-    \end{align*}
-\end{theorem}
+    \end{block}
 
-\textit{Chứng minh}.
+    \begin{block}{Giả thiết với dữ kiện giảm tính trơn}
+    $(\tilde{\text{H}}_1)$ $(\tilde{u}_0, \tilde{u}_1) \in H^1_0 \times L^2$,
 
-Số hạng thứ nhất của vế trái
-\begin{align*}
-    \left<u''_m(t),u'_m(t)\right> = \frac{1}{2} \frac{d}{dt} \|u'_m(t)\|^2.
-\end{align*}
+    $(\tilde{\text{H}}_2)$ $f \in L^2(Q_T); Q_T = (0,1) \times (0, T)$.
+    \end{block}
 
-Số hạng thứ hai của vế trái
-\begin{align*}
-    \sigma \left<u'_{mx}(t), u'_{mx}(t)\right> = \sigma \|u'_{mx}(t)\|^2 = \sigma \frac{d}{dt} \int_0^t \|u'_{mx}(s)\|^2 ds.
-\end{align*}
+    \begin{block}{Định lý 4.1. Sự tồn tại và duy nhất nghiệm trong $H_T$}
+    Cho $T > 0, K > 0, \lambda > 0$ và các giả thiết $(\tilde{\text{H}}_1)$-$(\tilde{\text{H}}_2)$ được thoả. Khi đó, bài toán \eqref{vareqn} có duy nhất một nghiệm $u \in H_T$.
+    \end{block}
+\end{frame}
 
-Số hạng thứ ba của vế trái
-\begin{align*}
-    \left(1 + \|u_{mx}(t)\|^2\right) &\left<u_{mx}(t), u'_{mx}(t)\right> \\
-    &= \frac{1}{2} \left(1 + \|u_{mx}(t)\|^2\right) \frac{d}{dt} \|u_{mx}(t)\|^2 \\
-    &= \frac{1}{2} \frac{d}{dt} \|u_{mx}(t)\|^2 + \frac{1}{2} \|u_{mx}(t)\|^2 \frac{d}{dt} \|u_{mx}(t)\|^2 \\
-    &= \frac{1}{2} \frac{d}{dt} \|u_{mx}(t)\|^2 + \frac{1}{4} \frac{d}{dt} \left(\|u_{mx}(t)\|^2\right)^2 \\
-    &= \frac{1}{2} \frac{d}{dt} \|u_{mx}(t)\|^2 + \frac{1}{4} \|u_{mx}(t)\|^4 \\
-    &= \frac{1}{2} \frac{d}{dt} \left(z + \frac{z^2}{2}\right)_{z=0}^{z=\|u_{mx}(t)\|^2} \\
-    &= \frac{1}{2} \frac{d}{dt} \int_0^{\|u_{mx}(t)\|^2} (1+z)\:dz.
-\end{align*}
+\section{Tính tắt dần mũ của nghiệm}
 
-Số hạng thứ tư của vế trái
-\begin{align*}
-    \lambda \left<u'_m(t),u'_m(t)\right> = \lambda \|u'_m(t)\|^2 = \lambda \frac{d}{dt} \int_0^t \|u'_m(s)\|^2 ds.
-\end{align*}
+\begin{frame}
+    \begin{block}{Giả thiết về tính tắt dần mũ của hàm $f$}
+    $(\tilde{\text{H}}_1)$ $(\tilde{u}_0, \tilde{u}_1) \in H^1_0 \times L^2$,
 
-Số hạng thứ năm của vế trái
-\begin{align*}
-    K \left<u^3_m(t),u'_m(t)\right>
-    &= K \int_0^1 u^3_m(x,t) u'_m(x,t)\:dx
-    = \frac{K}{4} \int_0^1 \frac{d}{dt}\left(u^4_m(x,t)\right)dx \\
-    &= \frac{K}{4} \frac{d}{dt} \int_0^1 u^4_m(x,t)\:dx
-    = \frac{K}{4} \frac{d}{dt} \|u_m(t)\|^4_{L^4}.
-\end{align*}
+    $(\tilde{\text{H}}_3)$ $f \in L^2(\mathbb{R}_{+}; L^2)$ sao cho tồn tại $C_* > 0, \gamma_* > 0$ thoả mãn
+    \begin{align}
+        \|f(t)\| \le C_* e^{-\gamma_* t}, \  \forall t \ge 0.
+    \end{align}
+    \end{block}
 
-Số hạng vế phải
-\begin{align*}
-    \left<f_m(t), u'_m(t)\right>.
-\end{align*} \qed
+    \begin{block}{Tính tắt dần mũ của nghiệm}
+    Hàm $u$ là nghiệm của Bài toán \eqref{vareqn} và tồn tại các số dương $C, \gamma$ sao cho
+    \begin{align}
+        \|u'(t)\|^2 + \|u_x(t)\|^2 \le C e^{-\gamma t}, \ \forall t \ge 0.
+    \end{align}
+    Khi đó hàm, $u$ có tính chất tắt dần mũ.
+    \end{block}
 
-\begin{theorem}
-    Ta đặt
-    \begin{align*}
-    \begin{cases}
-        w_{m,l} = u_m - u_l, \\
-        f_{m,l} = f_m - f_l.
-    \end{cases}
-    \end{align*}
-    Với $u_m,u_l$ thoả phương trình biến phân
-    \begin{align*}
-        \left<u''(t), v\right>
-        + \sigma \left<u'_{mx}(t),v_x\right>
-        &+ \left(1 + \|u_{x}(t)\|^2\right) \left<u_{x}(t),v_x\right> \\
-        &+ \lambda \left<u'(t),v\right>
-        + K \left<u^3(t),v\right>
-        = \left<f(t),v\right>,
-    \end{align*}
-    ta suy ra
-    \begin{align*}
-    \begin{cases}
-        \begin{aligned}\left<w''_{m,l}(t),v\right>
-        &+ \sigma \left<\nabla w'_{m,l},v_x\right>
-        + \left(1 + \|u_{mx}(t)\|^2\right) \left<\nabla w_{m,l}(t),v_x\right> \\[0.1cm]
-        &+ \left(\|u_{mx}(t)\|^2 - \|u_{lx}\|^2\right) \left<u_{lx}(t),v_x\right>
-        + \lambda \left<w'_{m,l}(t),v\right> \\[0.1cm]
-        &+ K \left<u^3_m(t) - u^3_l(t),v\right>
-        = \left<f_{m,l},v\right>, \forall v \in H^1_0, \text{a.e.}, t \in (0,T),
-        \end{aligned}\\[0.3cm]
-        w_{m,l}(0) = \tilde{u}_{0m} - \tilde{u}_{0l}, \  w'_{m,l}(0) = \tilde{u}_{1m} - \tilde{u}_{1l}.
-    \end{cases}
-    \end{align*}
-\end{theorem}
+    \begin{block}{Định lý 5.4. Tính tắt dần mũ của nghiệm}
+        Cho trước $K > 0, \lambda > 0$. Với các giả thiết $(\tilde{\text{H}}_1)$-$(\tilde{\text{H}}_3)$, bài toán \eqref{vareqn} có duy nhất một nghiệm $\color{blue} u \in C^0(\mathbb{R}_{+}; L^2) \cap C^1(\mathbb{R}_{+}; L^2)$ sao cho $\color{teal} u' \in L^2_{\text{loc}}(0,\infty; H^1_0)$ thoả tính tắt dần mũ, nghĩa là, tồn tại hai hằng số dương $\overline{C}, \overline{\gamma}$ sao cho
+        \begin{align}
+            \|u'(t)\|^2 + \|u_x(t)\|^2 + \|u_x(t)\|^4 + \|u(t)\|^4_{L^4} \le \overline{C} e^{-\overline{\gamma} t}, \  \forall t \ge 0.
+        \end{align}
+    \end{block}
+\end{frame}
 
-\textit{Chứng minh.}
+\begin{frame}{Kết luận}
+    \textbf{Chương 3:} \\
+    Với các điều kiện $f, \tilde{u}_0, \tilde{u}_1$, ta chứng minh được sự tồn tại và duy nhất nghiệm \textbf{địa phương} của Bài toán biến phân \eqref{vareqn}.
+    \vspace{0.3cm}
+    
+    \textbf{Chương 4:} \\
+    Khi các dữ kiện được cho giảm tính trơn, Sự tồn tại và duy nhất nghiệm \textbf{toàn~cục} của Bài toán biến phân \eqref{vareqn}.
+     \vspace{0.3cm}
+     
+    \textbf{Chương 5:} \\
+    Cho giả thiết tắt dần mũ của hàm $f$, ta chứng minh được tính tắt dần của nghiệm.
+\end{frame}
 
-Ta có $u_m, u_l$ thoả các phương trình biến phân sau
-\begin{align*}
-\begin{cases}
-        \begin{aligned}
-            \left<u''_m(t), v\right>
-            + \sigma \left<u'_{mx}(t),v_x\right>
-            &+ \left(1 + \|u_{mx}(t)\|^2\right) \left<u_{mx} (t),v_x\right> \\[0.1cm]
-            &+ \lambda \left<u'_m(t),v\right>
-            + K \left<u^3_m(t),v\right>
-            = \left<f_m(t),v\right>,
-        \end{aligned} \\[0.3cm]
-        \begin{aligned}
-            \left<u''_l(t), v\right>
-            + \sigma \left<u'_{lx}(t),v_x\right>
-            &+ \left(1 + \|u_{lx}(t)\|^2\right) \left<u_{lx}(t),v_x\right> \\[0.1cm]
-            &+ \lambda \left<u'_l(t),v\right>
-            + K \left<u^3_l(t),v\right>
-            = \left<f_l(t),v\right>,
-        \end{aligned}
-\end{cases}
-\end{align*}
-với điều kiện đầu
-\begin{align*}
-\begin{cases}
-    u_m(0) = \tilde{u}_{0m},\ u'_m(0) = \tilde{u}_{1m}, \\
-    u_l(0) = \tilde{u}_{0l},\ u'_l(0) = \tilde{u}_{1l}.
-\end{cases}
-\end{align*}
+\begin{frame}
+    \frametitle{Tài liệu tham khảo}
+    \begin{thebibliography}{1}
+\bibitem[1]{Bre} H. Brézis, \textit{Functional Analysis, Sobolev Spaces
+and Partial Differential Equations}, Springer New York Dordrecht Heidelberg
+London, 2010.
 
-Lấy phương trình thứ nhất trừ đi cho phương trình thứ hai, ta được các số hạng như sau.
+\bibitem[2]{Lions} J.L. Lions, \textit{Quelques m\'{e}thodes de r\'{e}%
+solution des probl\`{e}mes aux limites nonlin\'{e}aires}, Dunod; Gauthier-
+Villars, Paris. 1969.
 
-Số hạng thứ nhất của vế trái
-\begin{align*}
-    \left<u''_m(t),v\right> - \left<u''_l(t),v\right>
-    = \left<u''_m(t) - u''_l(t),v\right>
-    = \left<w''_{m,l}(t),v\right>.
-\end{align*}
+\bibitem[3]{3} Nguyen Thanh Long, Le Thi Phuong Ngoc, \textit{On nonlinear
+boundary value problems for nonlinear wave equations}, Vietnam J. Math. 
+\textbf{37 }(2-3) (2009) 141-178\textbf{.}
 
-Số hạng thứ hai của vế trái
-\begin{align*}
-    \sigma \left<u'_{mx}(t),v_x\right> - \sigma \left<u'_{lx}(t),v_x\right>
-    = \sigma \left<u'_{mx}(t) - u'_{lx}(t),v_x\right>
-    = \sigma \left<\nabla w_{m,l}(t)\right>.
-\end{align*}
+\bibitem[4]{4} Nguyen Thanh Long, Alain Pham Ngoc Dinh, Tran Ngoc Diem, 
+\textit{Linear recursive schemes and asymptotic expansion associated with
+the Kirchhoff-Carrier operator}, J. Math. Anal. Appl. \textbf{267} (1)
+(2002) 116-134.
 
-Số hạng thứ ba của vế trái
-\begin{align*}
-    &\left(1 + \|u_{mx}(t)\|^2\right) \left<u_{mx}(t),v_x\right> - \left(1 + \|u_{lx}(t)\|^2\right) \left<u_{lx}(t),v_x\right> \\
-    &\begin{aligned}= \left(1 + \|u_{mx}(t)\|^2\right) \left<\nabla w_{m,l}(t),v_x\right> &+ \left(1 + \|u_{mx}(t)\|^2\right) \left<u_{lx}(t),v_x\right> \\ &- \left(1 + \|u_{lx}(t)\|^2\right) \left<u_{lx}(t),v_x\right>
-    \end{aligned}\\
-    &= \left(1 + \|u_{mx}(t)\|^2\right) \left<\nabla w_{m,l}(t),v_x\right> + \left(\|u_{mx}(t)\|^2 - \|u_{lx}(t)\|^2\right) \left<u_{lx}(t),v_x\right>.
-\end{align*}
+\bibitem[5]{5} Le Thi Phuong Ngoc, Nguyen Thanh Long,
+\textit{Existence and exponential decay for a nonlinear wave equation with 
+a nonlocal boundary condition}, Communications on Pure and Applied Analysis,
+\textbf{12} (5) (2013) 2001-2029.
 
-Số hạng thứ tư của vế trái
-\begin{align*}
-    \lambda \left<u'_m(t),v\right> - \lambda \left<u'_l(t),v\right>
-    = \lambda \left<u'_m(t) - u'_l(t),v\right>
-    = \lambda \left<w'_{m,l}(t),v\right>.
-\end{align*}
+\bibitem[6]{6} Nguyen Anh Triet, Le Thi Phuong Ngoc, Nguyen Thanh Long, 
+\textit{A mixed Dirichlet-Robin problem for a nonlinear Kirchhoff-Carrier
+wave equation}, Nonlinear Anal. RWA. \textbf{13} (2) (2012) 817-839.
+\end{thebibliography}
+\end{frame}
 
-Số hạng thứ năm của vế trái
-\begin{align*}
-    K \left<u^3_m(t),v\right> - K \left<u^3_l(t),v\right>
-    = K \left<u^3_m(t) - u^3_l(t),v\right>.
-\end{align*}
 
-Số hạng vế phải
-\begin{align*}
-    \left<f_m(t),v\right> - \left<f_l(t),v\right>
-    = \left<f_m(t) - f_l(t),v\right>
-    = \left<f_{m,l}(t),v\right>.
-\end{align*}
-
-Điều kiện đầu
-\begin{align*}
-    w_{m,l}(0) = u_m(0) - u_l(0) = \tilde{u}_{0m} - \tilde{u}_{0l}, \\
-    w'_{m,l}(0) = u'_m(0) - u'_l(0) = \tilde{u}_{1m} - \tilde{u}_{1l}.
-\end{align*} \qed
-
-\begin{theorem}
-    Lấy $v = w'_{m,l} = u'_m - u'_l \in H^1_0$ trong biểu thức biến phân của $w_{m,l}$ ta được
-    \begin{align*}
-        S'_{m,l}(t) &= 2 \left<f_{m,l}(t),w'_{m,l}(t)\right>
-        - 2 \|u_{mx}(t)\|^2 \left<\nabla w_{m,l}(t), \nabla w'_{m,l}(t)\right> \\
-        &\quad- 2 \left(\|u_{mx}(t)\|^2 - \|u_{lx}(t)\|^2\right) \left<u_{lx}(t), \nabla w'_{m,l}(t)\right>
-        - 2 K \left<u^3_m(t) - u^3_l(t), w'_{m,l}(t)\right>,
-    \end{align*}
-    trong đó
-    \begin{align*}
-        S_{m,l}(t) = \|w'_{m,l}(t)\|^2 + \|\nabla w_{m,l}(t)\|^2
-        + 2 \sigma \int_0^t \|\nabla w'_{m,l}(s)\|^2 ds
-        + 2 \lambda \int_0^t \|w'_{m,l}(s)\|^2 ds.
-    \end{align*}
-\end{theorem}
-
-\textit{Chứng minh.}
-
-Vì $u_m, u_l \in H_T$ nên $u'_m, u'_l \in H^1_0$, dẫn đến $w'_{m,l} \in H^1_0$. 
-
-Số hạng thứ nhất của vế trái
-\begin{align*}
-    \left<w''_{m,l}(t), w'_{m,l}(t)\right> = \frac{1}{2} \frac{d}{dt} \|w'_{m,l}(t)\|^2.
-\end{align*}
-
-Số hạng thứ hai của vế trái
-\begin{align*}
-    \sigma \left<\nabla w'_{m,l}(t), \nabla w'_{m,l}(t)\right>
-    = \sigma \|\nabla w'_{m,l}(t)\|^2
-    = \sigma \frac{d}{dt} \int_0^t \|\nabla w'_{m,l}(s)\|^2 ds.
-\end{align*}
-
-Số hạng thứ ba của vế trái
-\begin{align*}
-    \left(1 + \|u_{mx}(t)\|^2\right) &\left<\nabla w_{m,l}(t), \nabla w'_{m,l}(t)\right> \\
-    &= \left<\nabla w_{m,l}(t), \nabla w'_{m,l}(t)\right> + \|u_{mx}(t)\|^2 \left<\nabla w_{m,l}(t), \nabla w'_{m,l}(t)\right> \\
-    &= \frac{1}{2} \frac{d}{dt} \|\nabla w_{m,l}(t)\|^2 + \|u_{mx}(t)\|^2 \left<\nabla w_{m,l}(t), \nabla w'_{m,l}(t)\right>.
-\end{align*}
-
-Số hạng thứ tư của vế trái
-\begin{align*}
-    \left(\|u_{mx}(t)\|^2 - \|u_{lx}(t)\|^2\right) \left<u_{lx}(t),\nabla w'_{m,l}(t)\right>.
-\end{align*}
-
-Số hạng thứ năm của vế trái
-\begin{align*}
-    \lambda \left<w'_{m,l}(t), w'_{m,l}(t)\right>
-    = \lambda \|w'_{m,l}(t)\|^2
-    = \lambda \frac{d}{dt} \int_0^t \|w'_{m,l}(s)\|^2 ds.
-\end{align*}
-
-Số hạng thứ sáu của vế trái
-\begin{align*}
-    K \left<u^3_m(t) - u^3_l(t), w'_{m,l}(t)\right>.
-\end{align*}
-
-Số hạng vế phải
-\begin{align*}
-    \left<f_{m,l}(t), w'_{m,l}(t)\right>.
-\end{align*}
-
-\section{Tính tắt dần mũ của nghiệm yếu}
-
-\begin{theorem}
-Nhân hai vế của phương trình với $u'(x,t)$, với $u$ đủ trơn, sau đó tích phân trên $(0,1)$
-\begin{align*}
-    u_{tt} - \sigma u_{txx} - \left(1 + \|u_x(t)\|^2\right) u_{xx} + Ku^3 + \lambda u_t = f(x,t), 0 < x < 1, 0 < t < T.
-\end{align*}
-ta được
-\begin{align*}
-    \frac{d}{dt}\left[\frac{1}{2} \|u'(t)\|^2 + \frac{1}{2} \|u_x(t)\|^2 + \frac{1}{4} \|u_x(t)\|^4 + \frac{K}{4} \|u(t)\|^4_{L^4}\right] \\
-    = -\lambda \|u'(t)\|^2 - \sigma \|u'_x(t)\|^2 + \left<f(t), u'(t)\right>.
-\end{align*}
-\end{theorem}
-
-\textit{Chứng minh.}
-
-Số hạng thứ nhất của vế trái
-\begin{align*}
-    \int_0^1  u''(x,t) u'(x,t)\:dx = \left<u''(t), u'(t)\right> = \frac{1}{2} \frac{d}{dt} \|u'(t)\|^2.
-\end{align*}
-
-Số hạng thứ hai của vế trái
-\begin{align*}
-    -\sigma \int_0^1 u_{xx}(x,t) u'(x,t)\:dx &= \sigma \left<u_{xx}(t), u'(t)\right> \\
-    &= -\sigma \left(\left.u'_x(x,t) u'(x,t)\right|_{x=0}^{x=1} - \left<u'_x(t), u'_x(t)\right>\right) \\
-    &= \sigma \left<u'_x(t), u'_x(t)\right> \\
-    &= \sigma \|u'_x(t)\|^2.
-\end{align*}
-
-Số hạng thứ tư của vế trái
-\begin{align*}
-    K \int_0^1 u^3(x,t) u'(x,t)\:dx &= K \int_0^t \frac{1}{4} \frac{d}{dt} \left(u^4(x,t)\right)dx \\
-    &= \frac{K}{4} \frac{d}{dt} \int_0^1 u^4(x,t)\:dx = \frac{K}{4} \frac{d}{dt} \|u(t)\|^4_{L^4}.
-\end{align*}
-
-Số hạng thứ ba của vế trái
-\begin{align*}
-    -\left(1 + \|u_x(t)\|^2\right) &\int_0^1 u_{xx}(x,t) u'(x,t)\:dx \\
-    &= -\left(1 + \|u_x(t)\|^2\right) \left<u_{xx}(t), u'(t)\right> \\
-    &= -\left(1 + \|u_x(t)\|^2\right) \left(\left.u_x(x,t) u'(x,t)\right|_{x=0}^{x=1} - \left<u_x(t), u'_x(t)\right>\right) \\
-    &= \left(1 + \|u_x(t)\|^2\right) \left<u_x(t), u'_x(t)\right> \\
-    &= \frac{1}{2} \left(1 + \|u_x(t)\|^2\right) \frac{d}{dt} \|u_x(t)\|^2 \\
-    &= \frac{1}{2} \frac{d}{dt} \|u_x(t)\|^2 + \frac{1}{2} \|u_x(t)\|^2 \frac{d}{dt} \|u_x(t)\|^2 \\
-    &= \frac{1}{2} \frac{d}{dt} \|u_x(t)\|^2 + \frac{1}{4} \frac{d}{dt} \left( \|u_x(t)\|^2 \right)^2 \\
-    &= \frac{1}{2} \frac{d}{dt} \|u_x(t)\|^2 + \frac{1}{4} \frac{d}{dt} \|u_x(t)\|^4 \\
-    &= \frac{1}{2} \frac{d}{dt} \int_0^{\|u_x(t)\|^2} (1+z)\:dz.
-\end{align*}
-
-Số hạng thứ năm của vế trái
-\begin{align*}
-    \lambda \int_0^1 u'(x,t) u'(x,t)\:dx = \lambda \left<u'(t),u'(t)\right> = \lambda \|u'(t)\|^2.
-\end{align*}
-
-Số hạng của vế phải
-\begin{align*}
-    \int_0^1 f(x,t) u'(x,t)\:dx = \left<f(t),u'(t)\right>.
-\end{align*} \qed
-
-\begin{theorem}
-Nhân hai vế của phương trình với $u(x,t)$, với $u$ đủ trơn, sau đó tích phân trên $(0,1)$
-\begin{align*}
-    u_{tt} - \sigma u_{txx} - \left(1 + \|u_x(t)\|^2\right) u_{xx} + Ku^3 + \lambda u_t = f(x,t), 0 < x < 1, 0 < t < T.
-\end{align*}
-ta được
-\begin{align*}
-    &\frac{d}{dt}\left[\left<u(t),u'(t)\right> + \frac{\lambda}{2}\|u(t)\|^2 + \frac{\sigma}{2}\|u_x(t)\|^2\right] \\
-    &\quad = \|u'(t)\|^2 - \|u_x(t)\|^2 - \|u_x(t)\|^4 - K\|u(t)\|^4_{L^4} + \left<f(t),u(t)\right>.
-\end{align*}
-\end{theorem}
-
-\textit{Chứng minh.}
-
-Số hạng thứ nhất của vế trái
-\begin{align*}
-    \int_0^1 u''(x,t) u(x,t)\:dx &= \left<u''(t),u(t)\right> \\
-    &= \frac{d}{dt} \left<u(t), u'(t)\right> - \left<u'(t),u'(t)\right>
-    = \frac{d}{dt} \left<u(t), u'(t)\right> - \|u'(t)\|^2.
-\end{align*}
-
-Số hạng thứ hai của vế trái
-\begin{align*}
-    -\sigma \int_0^1 u'_{xx}(x,t) u(x,t)\:dx
-    &= -\sigma \left<u'_{xx}(t), u(t)\right> \\
-    &= -\sigma \left(\left.u'_x(x,t)u(x,t)\right|_{x=0}^{x=1} - \left<u'_x(t), u_x(t)\right>\right) \\
-    &= \sigma \left<u'_x(t), u_x(t)\right>
-    = \frac{\sigma}{2} \frac{d}{dt} \|u_x(t)\|^2.
-\end{align*}
-
-Số hạng thứ ba của vế trái
-\begin{align*}
-    -\left(1 + \|u_x(t)\|^2\right) &\int_0^1 u_{xx}(x,t)u(x,t)\:dx \\
-    &= - \left(1 + \|u_x(t)\|^2\right) \left<u_{xx}(t),u(t)\right> \\
-    &= - \left(1 + \|u_x(t)\|^2\right) \left(\left.u_x(x,t)u(x,t)\right|_{x=0}^{x=1} - \left<u_x(t), u_x(t)\right>\right) \\
-    &= \left(1 + \|u_x(t)\|^2\right) \left<u_x(t), u_x(t)\right>
-    = \left(1 + \|u_x(t)\|^2\right) \|u_x(t)\|^2 \\
-    &= \|u_x(t)\|^2 + \|u_x(t)\|^4.
-\end{align*}
-
-Số hạng thứ tư của vế trái
-\begin{align*}
-    K \int_0^1 u^3(x,t) u(x,t)\:dx = K \int_0^1 u^4(x,t)\:dx = K \|u(t)\|^4_{L^4}.
-\end{align*}
-
-Số hạng thứ năm của vế trái
-\begin{align*}
-    \lambda \int_0^1 u'(x,t) u(x,t)\:dx = \lambda \left<u'(t), u(t)\right> = \frac{\lambda}{2} \frac{d}{dt} \|u(t)\|^2.
-\end{align*}
-
-Số hạng của vế phải
-\begin{align*}
-    \int_0^1 f(x,t)u(x,t)\:dx = \left<f(t), u(t)\right>.
-\end{align*} \qed
-
-\begin{theorem}
-    Tích phân hai vế của
-    \begin{align*}
-        \mathcal{L}'(t) \le -\overline{\gamma} \mathcal{L}(t) + \tilde{C}_1 e^{-2 \eta_* t}, \forall t \ge 0,
-    \end{align*}
-    ta được
-    \begin{align*}
-        \mathcal{L}(t) \le \left(\mathcal{L}(0) + \frac{\tilde{C}_1}{2\eta_* - \overline{\gamma}}\right) e^{-\gamma t}, \forall t \ge 0.
-    \end{align*}
-\end{theorem}
-
-\textit{Chứng minh.}
-
-Nhân hai vế bất phương trình với $e^{\overline{\gamma}t}$, ta được
-\begin{align*}
-    e^{\overline{\gamma}t} \mathcal{L}'(t) + \overline{\gamma} e^{\overline{\gamma}t} \mathcal{L}(t) \ \le \ \tilde{C}_1 e^{-(2\eta_* - \overline{\gamma})t},
-\end{align*}
-tương đương
-\begin{align*}
-    \frac{d}{dt}\left(e^{\overline{\gamma}t} \mathcal{L}(t)\right) \ \le \ \tilde{C}_1 e^{-(2\eta_* - \overline{\gamma})t}.
-\end{align*}
-
-Tích phân hai vế ta được
-\begin{align*}
-    e^{\overline{\gamma}t} \mathcal{L}(t) - \mathcal{L}(0) \ \le \ \tilde{C}_1 \int_0^t e^{-(2\eta_* - \overline{\gamma})s}ds,
-\end{align*}
-tương đương
-\begin{align*}
-    e^{\overline{\gamma}t} \mathcal{L}(t) \ \le \ \mathcal{L}(0) + \frac{\tilde{C}_1}{2\eta_* - \overline{\gamma}} \left(1 - e^{-(2\eta_* - \overline{\gamma})t}\right) \ \le \ \mathcal{L}(0) + \frac{\tilde{C}_1}{2\eta_* - \overline{\gamma}}.
-\end{align*}
-tương đương
-\begin{align*}
-    \mathcal{L}(t) \ \le \ \left(\mathcal{L}(0) + \frac{\tilde{C}_1}{2\eta_* - \overline{\gamma}}\right) e^{-\overline{\gamma}t}.
-\end{align*} \qed
+\begin{frame}
+    \begin{center}
+        \Huge Cảm ơn Thầy, Cô và các bạn đã theo dõi!
+    \end{center}
+\end{frame}
 
 \end{document}
